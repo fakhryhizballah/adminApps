@@ -3,9 +3,6 @@
 namespace App\Controllers;
 
 
-use App\Models\DriverModel;
-use App\Models\LoginModel;
-use App\Models\UserModel;
 use App\Models\AdminModel;
 use App\Models\OtpModel;
 // use CodeIgniter\I18n\Time;
@@ -16,9 +13,6 @@ class Auth extends BaseController
 	protected $authModel;
 	public function __construct()
 	{
-		$this->DriverModel = new DriverModel();
-		$this->LoginModel = new LoginModel();
-		$this->UserModel = new UserModel();
 		$this->AdminModel = new AdminModel();
 		$this->OtpModel = new OtpModel();
 		// $this->Time = new Time('Asia/Jakarta');
@@ -45,12 +39,8 @@ class Auth extends BaseController
 		$nama = $this->request->getVar('nama');
 		// $password = password_verify($this->request->getVar('password'), PASSWORD_BCRYPT);
 		$pas = ($this->request->getVar('password'));
-		$level = $this->request->getVar('level');
-
 		//validasi
 		if (!$this->validate([
-
-
 			'nama' => [
 				'rules'  => 'required',
 				'errors' => [
@@ -66,7 +56,7 @@ class Auth extends BaseController
 			'title' => 'Registrasi',
 			'validation' => \Config\Services::validation()
 		];
-		$cek = $this->UserModel->cek_login($nama);
+		$cek = $this->AdminModel->cek_login($nama);
 		// dd($cek);
 		if (empty($cek)) {
 			session()->setFlashdata('gagal', 'Akun tidak terdaftar');
@@ -78,8 +68,8 @@ class Auth extends BaseController
 		if (($cek['password'] == $password)) {
 			//dd($cek);
 			session()->set('nama', $cek['nama']);
-			session()->set('id_user', $cek['id_user']);
-			return redirect()->to('/user');
+			session()->set('id_akun', $cek['id_akun']);
+			return redirect()->to('/Admin');
 		} else {
 			session()->setFlashdata('gagal', 'Username atau Password salah');
 			return redirect()->to('/');

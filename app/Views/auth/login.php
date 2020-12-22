@@ -17,6 +17,7 @@
                 <div class="from-auth user">
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                        <h1 class="h4 text-gray-900 mb-4">Admin Spairum</h1>
                     </div>
 
                     <?php if (!empty(session()->getFlashdata('gagal'))) { ?>
@@ -45,27 +46,17 @@
 
 
                     <form class="user" method="POST" action="Auth/login">
+                        <?= csrf_field(); ?>
                         <div class=" form-group user-form">
                             <img class="icon" src="/img/auth/user.png" alt="">
                             <input type="text" class="form-control form-control-user <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" style="padding-left: 50px;" id="username" name="nama" placeholder="Username atau Email atau Nomor Telepon" autofocus value="<?= old('nama'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama'); ?></div>
-
-
 
                             <div class="form-group user-form">
                                 <img class="icon" src="/img/auth/password.png" alt="">
                                 <input type="password" class="form-control form-control-user" style="padding-left: 50px;" id="password" name="password" placeholder="Password" required>
                             </div>
 
-                            <!-- <div class="form-group user-form">
-                                <select class="form-control level  <?= ($validation->hasError('level')) ? 'is-invalid' : ''; ?>" id="level" name="level">
-                                    <option selected>Pilih login sebagai</option>
-                                    <option value="1">User</option>
-                                    <option value="2">Driver</option>
-                                    <option value="3">Admin</option>
-                                </select>
-                                <div class="invalid-feedback"><?= $validation->getError('level'); ?></div>
-                            </div> -->
                             <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -85,9 +76,9 @@
                                         </a> -->
                             <!-- </form> -->
                             <hr>
-                            <div class="text-center">
+                            <!-- <div class="text-center">
                                 <a class="small" href="/daftar">Create an Account!</a>
-                            </div>
+                            </div> -->
                             <hr>
                             <div class="text-right">
                                 <a class="small" href="/lupa">lupa<strong class="text-primary">Password<strong></a>
@@ -95,8 +86,6 @@
                         </div>
                 </div>
             </div>
-
-
         </div>
 
     </div>
