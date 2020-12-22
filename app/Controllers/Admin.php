@@ -8,6 +8,7 @@ use App\Models\UserModel;
 use App\Models\ExploreModel;
 use App\Models\StasiunModel;
 use App\Models\DriverModel;
+use App\Models\HistoryModel;
 
 
 class Admin extends Controller
@@ -19,6 +20,7 @@ class Admin extends Controller
         $this->ExploreModel = new ExploreModel();
         $this->StasiunModel = new StasiunModel();
         $this->DriverModel = new DriverModel();
+        $this->HistoryModel = new HistoryModel();
     }
     public function index()
     {
@@ -110,10 +112,77 @@ class Admin extends Controller
             // 'stasiun' => $stasiun,
 
             'akun' => $akun
-
-
         ];
         return view('admin/stasiun', $data);
+    }
+
+    public function addStasiun()
+    {
+        if (session()->get('id_akun') == '') {
+            session()->setFlashdata('gagal', 'Login dulu');
+            return redirect()->to('/');
+        }
+        $nama = session()->get('nama');
+        $akun = $this->AdminModel->cek_login($nama);
+        //validasi
+        if (!$this->validate([
+            'nama' => [
+                'rules'  => 'required|alpha_dash|is_unique[mesin.lokasi]',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                    'is_unique' => 'Nama Account sudah terdaftar'
+                ]
+            ],
+            'lat' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'lng' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'link' => [
+                'rules'  => 'required|alpha_dash|is_unique[mesin.link]',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                    'alpha_dash' => 'Tidak boleh mengunakan spasi',
+                    'is_unique' => 'Link sudah terdaftar'
+                ]
+            ],
+        ])) {
+            $validation = \config\Services::validation();
+
+            return redirect()->to('/crtstasiun')->withInput()->with('validation', $validation);
+        }
+        $lokasi = $this->request->getVar('nama');
+        $lat = $this->request->getVar('lat');
+        $lng = $this->request->getVar('lng');
+        $link = $this->request->getVar('link');
+        $id_mesin = substr(sha1($lokasi), 0, 8);
+        $this->StasiunModel->save([
+            'id_mesin' => strtoupper("SP$id_mesin"),
+            'lokasi' => ucfirst($lokasi),
+            'lat' => $lat,
+            'lng' => $lng,
+            'link' => $link,
+            'status' => '1',
+            'isi' => '0',
+            'indikator' => '0',
+            'ket' => 'Belum Beroperasi',
+
+        ]);
+        $this->HistoryModel->save([
+            'id_master' => $akun['id_akun'],
+            'Id_slave' => strtoupper("SP$id_mesin"),
+            'Lokasi' => $lokasi,
+            'status' => 'Stasiun Baru'
+        ]);
+        session()->setFlashdata('Berhasil', 'Stasiun Berhasil Di tambahkan, Perlu Konfigurasi');
+        return redirect()->to('/admstasiun');
     }
 
     public function crtmitra()
@@ -156,7 +225,8 @@ class Admin extends Controller
         $akun = $this->AdminModel->cek_login($nama);
         $data = [
             'title' => 'Create Stasiun',
-            'akun' => $akun
+            'akun' => $akun,
+            'validation' => \Config\Services::validation()
         ];
         return view('admin/crt_stasiun', $data);
     }

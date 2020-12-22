@@ -13,7 +13,7 @@ class HistoryModel extends Model
     protected $allowedFields    =
     [
         'id_master',
-        'id_slave',
+        'Id_slave',
         'Lokasi',
         'status',
         'isi',

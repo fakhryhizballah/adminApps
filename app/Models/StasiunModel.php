@@ -9,7 +9,17 @@ class StasiunModel extends Model
 {
     protected $table            = 'mesin';
     protected $useTimestamps    = true;
-
+    protected $allowedFields    = [
+        'id_mesin',
+        'lokasi',
+        'lat',
+        'lng',
+        'link',
+        'status',
+        'isi',
+        'indikator',
+        'ket',
+    ];
     public function getStasiun($id = false)
     {
         if ($id === false) {

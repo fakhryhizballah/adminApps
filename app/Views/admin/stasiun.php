@@ -17,6 +17,7 @@
                 <th scope="col">Status</th>
                 <th scope="col">Isi</th>
                 <th scope="col">Indikator</th>
+                <th scope="col">Keterangan</th>
 
             </tr>
         </thead>
@@ -32,6 +33,7 @@
                     <td><?= $st['status']; ?></td>
                     <td><?= $st['isi']; ?></td>
                     <td><?= $st['indikator']; ?></td>
+                    <td><?= $st['ket']; ?></td>
                 </tr>
                 <?php $i++;  ?>
             <?php endforeach; ?>
