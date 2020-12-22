@@ -21,14 +21,18 @@ class Auth extends BaseController
 
 	public function index()
 	{
-		$data = [
-			'title' => 'Login',
-			'validation' => \Config\Services::validation()
-		];
-		// $myTime = Time::now('Asia/Pontianak');
-		// dd($myTime);
+		if (session()->get('id_akun') == '') {
+			$data = [
+				'title' => 'Login',
+				'validation' => \Config\Services::validation()
+			];
+			// $myTime = Time::now('Asia/Pontianak');
+			// dd($myTime);
 
-		return view('auth/login', $data);
+			return view('auth/login', $data);
+		}
+		session()->setFlashdata('gagal', 'Login dulu');
+		return redirect()->to('/admin');
 	}
 
 	//--------------------------------------------------------------------
