@@ -13,7 +13,7 @@
         <div class="row">
             <!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
             <div class="col-lg">
-                <img src="/img/IG.png" class="logo" alt="">
+                <img src="/img/logo.png" class="logo" alt="">
                 <div class="from-auth user">
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
@@ -46,14 +46,14 @@
 
                     <form class="user" method="POST" action="Auth/login">
                         <div class=" form-group user-form">
-                            <img class="icon" src="/img/Vector.png" alt="">
+                            <img class="icon" src="/img/auth/user.png" alt="">
                             <input type="text" class="form-control form-control-user <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" style="padding-left: 50px;" id="username" name="nama" placeholder="Username atau Email atau Nomor Telepon" autofocus value="<?= old('nama'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama'); ?></div>
 
 
 
                             <div class="form-group user-form">
-                                <img class="icon" src="/img/Group 13.png" alt="">
+                                <img class="icon" src="/img/auth/password.png" alt="">
                                 <input type="password" class="form-control form-control-user" style="padding-left: 50px;" id="password" name="password" placeholder="Password" required>
                             </div>
 
