@@ -81,6 +81,11 @@
                     <i class="fas fa-fw fa-landmark" style="color: black;"></i>
                     <span>Stasiun</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admstasiun" style="color: black;">
+                    <i class="fas fa-barcode" style="color: black;"></i>
+                    <span>Vocher</span></a>
+            </li>
 
 
             <li class="nav-item">
@@ -102,6 +107,10 @@
                         <a class="collapse-item" href="/crtstasiun">
                             <i class="fas fa-fw fa-landmark"></i>
                             <span>Stasiun</span>
+                        </a>
+                        <a class="collapse-item" href="/crtstasiun">
+                            <i class="fas fa-barcode"></i>
+                            <span>Buat vocher</span>
                         </a>
                     </div>
                 </div>
