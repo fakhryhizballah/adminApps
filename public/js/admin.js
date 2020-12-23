@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#example').DataTable({
+        "scrollY": 200,
         "scrollX": true,
         columnDefs: [{
             targets: [0],
@@ -12,4 +13,9 @@ $(document).ready(function() {
             orderData: [4, 0]
         }]
     });
+    $('#stasiun').DataTable({
+        "scrollY": 200,
+        "scrollX": true,
+    });
 });
+
