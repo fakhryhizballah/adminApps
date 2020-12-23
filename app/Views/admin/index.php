@@ -6,22 +6,6 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-    <!-- <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img class="card-img" src="">
-            </div>
-
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Fakhry</h5>
-                    <p class="card-text">D1021181063</p>
-                    <p class="card-text">gang</p>
-                    <p class="card-text"><small class="text-muted">Member since </small></p>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="row">
         <?php $i = 0; ?>
         <?php foreach ($tuser as $t) : ?>
@@ -55,7 +39,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Mitra</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
                         </div>
                         <div class="col-auto">
                             <span class="fa-stack">
@@ -135,7 +119,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah air yang sudah dibayar {Liter}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">2000 Liter</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">2000 <?= $; ?> Liter</div>
                         </div>
                         <div class="col-auto">
                             <span class="fa-stack">
