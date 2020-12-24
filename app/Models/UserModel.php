@@ -53,5 +53,9 @@ class UserModel extends Model
             ->where('id', $id)
             ->update($data);
     }
+    public function takeWater()
+    {
+        return $this->db->table('user')->get()->getResult();
+    }
 }
 // tes

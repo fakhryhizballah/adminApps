@@ -32,12 +32,24 @@ class Admin extends Controller
         $akun = $this->AdminModel->cek_login($nama);
         $tuser = $this->UserModel->findAll();
         $tstasiun = $this->StasiunModel->findAll();
+        $takeair = $this->UserModel->takeWater();
+        foreach ($takeair as $row) {
+            $totKerd[] = $row->kredit;
+        }
+        foreach ($takeair as $row) {
+            $totDebit[] = $row->debit;
+        }
+
+        $tkerdit = (array_sum($totKerd));
+        $tdebit = (array_sum($totDebit));
         //dd($akun);
         $data = [
             'title' => 'Dashboard',
             'akun' => $akun,
             'tuser' => $tuser,
-            'tstasiun' => $tstasiun
+            'tstasiun' => $tstasiun,
+            'tkerdit' => $tkerdit,
+            'tdebit' => $tdebit
         ];
         return view('admin/index', $data);
     }

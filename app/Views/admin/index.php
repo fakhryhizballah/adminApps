@@ -87,7 +87,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Grafik Pengisian Air Galon</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Status Stasiun Spairum</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -103,58 +103,59 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                    <div class="chart-bar">
+                        <canvas id="myBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah air yang telah di isi ulang User</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tkerdit, 0, ",", "."); ?> mL</div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x" style="color: palegreen;"></i>
+                            <i class="fa fa-check-circle fa-stack-1x" style="color: lime;"></i>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah air yang sudah dibayar {Liter}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">2000 <?= $; ?> Liter</div>
-                        </div>
-                        <div class="col-auto">
-                            <span class="fa-stack">
-                                <i class="fa fa-square fa-stack-2x" style="color: palegreen;"></i>
-                                <i class="fa fa-check-circle fa-stack-1x" style="color: lime;"></i>
-                            </span>
-                        </div>
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Air yang belum di isi ulang user</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tdebit, 0, ",", "."); ?> mL</div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah air yang belum dibayar {Liter}</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">100 Liter</div>
-                        </div>
-                        <div class="col-auto">
-                            <span class="fa-stack">
-                                <i class="fa fa-square fa-stack-2x" style="color: pink;"></i>
-                                <i class="fa fa-times-circle fa-stack-1x" style="color: red;"></i>
-                            </span>
-                        </div>
+                    <div class="col-auto">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x" style="color: pink;"></i>
+                            <i class="fa fa-times-circle fa-stack-1x" style="color: red;"></i>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- /.container-fluid -->
+<!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
 
