@@ -82,9 +82,9 @@
                     <span>Stasiun</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admstasiun" style="color: black;">
+                <a class="nav-link" href="/admvoucher" style="color: black;">
                     <i class="fas fa-barcode" style="color: black;"></i>
-                    <span>Vocher</span></a>
+                    <span>Voucher</span></a>
             </li>
 
 
@@ -108,7 +108,7 @@
                             <i class="fas fa-fw fa-landmark"></i>
                             <span>Stasiun</span>
                         </a>
-                        <a class="collapse-item" href="/crtstasiun">
+                        <a class="collapse-item" href="/crtvoucher">
                             <i class="fas fa-barcode"></i>
                             <span>Buat vocher</span>
                         </a>
@@ -256,7 +256,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span> <strong>Copyright &copy; <?= date('Y'); ?> SPAIRUM.</strong> All rights reserved. V.1</span>
+                            <span> <strong>Copyright &copy; <?= date('Y'); ?> SPAIRUM.</strong> All rights reserved.</span>
                         </div>
                     </div>
                 </footer>
