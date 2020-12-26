@@ -37,9 +37,11 @@ $routes->get('/admdriver', 'Admin::admdriver');
 $routes->get('/ptcv', 'Admin::ptcv');
 $routes->get('/admuser', 'Admin::admuser');
 $routes->get('/admstasiun', 'Admin::admstasiun');
+$routes->get('/admvoucher', 'Admin::admvoucher');
 $routes->get('/crtmitra', 'Admin::crtmitra');
 $routes->get('/crtdriver', 'Admin::crtdriver');
 $routes->get('/crtstasiun', 'Admin::crtstasiun');
+$routes->get('/crtvoucher', 'Admin::crtvocher');
 
 /**
  * --------------------------------------------------------------------

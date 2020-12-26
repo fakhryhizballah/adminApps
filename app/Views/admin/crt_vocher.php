@@ -9,20 +9,17 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create Mitra</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Buat Vocher</h1>
                         </div>
-                        <form class="user" method="POST" action="">
+                        <form class="user" method="POST" action="Admin/addvocher">
                             <?= csrf_field(); ?>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="namapt" name="namapt" placeholder="Nama PT/CV" autofocus value="<?= old('namapt'); ?>">
+                                <input type="number" class="form-control form-control-user  <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id=" nominal" name="nominal" placeholder="Nominal mL" autofocus value="<?= old('nominal'); ?>">
                                 <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Admin" autofocus value="<?= old('nama'); ?>">
-                                <div class="invalid-feedback"></div>
+                                <div><?= $validation->getError('nominal'); ?></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Create Mitra
+                                Buat Kode Vocer
                             </button>
                         </form>
                         <hr />

@@ -9,6 +9,8 @@ use App\Models\ExploreModel;
 use App\Models\StasiunModel;
 use App\Models\DriverModel;
 use App\Models\HistoryModel;
+use App\Models\VoucherModel;
+use CodeIgniter\I18n\Time;
 
 
 class Admin extends Controller
@@ -21,6 +23,7 @@ class Admin extends Controller
         $this->StasiunModel = new StasiunModel();
         $this->DriverModel = new DriverModel();
         $this->HistoryModel = new HistoryModel();
+        $this->VoucherModel = new VoucherModel();
     }
     public function index()
     {
@@ -128,6 +131,25 @@ class Admin extends Controller
         return view('admin/stasiun', $data);
     }
 
+    public function admvoucher()
+    {
+        if (session()->get('id_akun') == '') {
+            session()->setFlashdata('gagal', 'Login dulu');
+            return redirect()->to('/');
+        }
+        $nama = session()->get('nama');
+        $akun = $this->AdminModel->cek_login($nama);
+        $cari = "vocher";
+        $vocher = $this->VoucherModel->findAll();
+        $data = [
+            'title' => 'Voucher',
+            'vocher' => $vocher,
+            'akun' => $akun,
+
+        ];
+        return view('admin/voucher', $data);
+    }
+
     public function addStasiun()
     {
         if (session()->get('id_akun') == '') {
@@ -197,6 +219,44 @@ class Admin extends Controller
         return redirect()->to('/admstasiun');
     }
 
+    public function addvocher()
+    {
+        if (session()->get('id_akun') == '') {
+            session()->setFlashdata('gagal', 'Login dulu');
+            return redirect()->to('/');
+        }
+        if (!$this->validate([
+            'nominal' => [
+                'rules'  => 'required|min_length[4]|is_natural',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                    'min_length' => 'nominal Minimal 1000 mL',
+                    'is_natural' => 'Hanya nomor',
+                ]
+            ],
+        ])) {
+            $validation = \config\Services::validation();
+
+            // dd($validation->getError('nominal'));
+            return redirect()->to('/crtvoucher')->withInput()->with('validation', $validation);
+        }
+        $myTime = new Time('now');
+        $nominal = $this->request->getVar('nominal');
+        helper('text');
+        $token = random_string('numeric', 4);
+        $str = "Hello $myTime";
+        $kvocher = substr(sha1($str, false), 4, 4);
+        $data = [
+            'nominal' => $nominal + 0,
+            'id_akun' => session()->get('id_akun'),
+            'kvoucher' => strtoupper("$token $kvocher"),
+            'ket' => "Baru",
+
+        ];
+        $this->VoucherModel->addvocher($data);
+        return redirect()->to('/admvoucher');
+    }
+
     public function crtmitra()
     {
         if (session()->get('id_akun') == '') {
@@ -241,5 +301,20 @@ class Admin extends Controller
             'validation' => \Config\Services::validation()
         ];
         return view('admin/crt_stasiun', $data);
+    }
+    public function crtvocher()
+    {
+        if (session()->get('id_akun') == '') {
+            session()->setFlashdata('gagal', 'Login dulu');
+            return redirect()->to('/');
+        }
+        $nama = session()->get('nama');
+        $akun = $this->AdminModel->cek_login($nama);
+        $data = [
+            'title' => 'Create Stasiun',
+            'akun' => $akun,
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('admin/crt_vocher', $data);
     }
 }

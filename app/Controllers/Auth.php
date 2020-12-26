@@ -48,7 +48,7 @@ class Auth extends BaseController
 			'nama' => [
 				'rules'  => 'required',
 				'errors' => [
-					'required' => '{field} wajid di isi'
+					'required' => 'Username/email/no telpon wajib di isi'
 				]
 			],
 		])) {

@@ -17,5 +17,11 @@ $(document).ready(function() {
         "scrollY": 200,
         "scrollX": true,
     });
+    $('#voucher').DataTable({
+        scrollY: '50vh',
+        scrollCollapse: true,
+        "scrollX": 200,
+    
+    });
 });
 
