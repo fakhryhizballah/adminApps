@@ -55,6 +55,7 @@
                             <div class="form-group user-form">
                                 <img class="icon" src="/img/auth/password.png" alt="">
                                 <input type="password" class="form-control form-control-user" style="padding-left: 50px;" id="password" name="password" placeholder="Password" required>
+                                <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                             </div>
 
                             <!-- <div class="form-group">
