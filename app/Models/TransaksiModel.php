@@ -28,6 +28,10 @@ class TransaksiModel extends Model
         // return $builder;
         return $this->table('transaksi')->like('id_user', $keyword);
     }
+    public function status($keyword)
+    {
+        return $this->table('transaksi')->like('status', $keyword)->get()->getResult();
+    }
 
     public function editpay($order_id)
     {

@@ -10,6 +10,7 @@ use App\Models\StasiunModel;
 use App\Models\DriverModel;
 use App\Models\HistoryModel;
 use App\Models\VoucherModel;
+use App\Models\TransaksiModel;
 use CodeIgniter\I18n\Time;
 
 
@@ -24,6 +25,7 @@ class Admin extends Controller
         $this->DriverModel = new DriverModel();
         $this->HistoryModel = new HistoryModel();
         $this->VoucherModel = new VoucherModel();
+        $this->TransaksiModel = new TransaksiModel();
     }
     public function index()
     {
@@ -38,6 +40,8 @@ class Admin extends Controller
         $takeair = $this->UserModel->takeWater();
         $vbaru = $this->VoucherModel->search('Baru');
         $vlama = $this->VoucherModel->search('Lama');
+        $sbeli = $this->TransaksiModel->status('expire');
+
         foreach ($takeair as $row) {
             $totKerd[] = $row->kredit;
         };
@@ -60,6 +64,17 @@ class Admin extends Controller
         } else {
             $tVbaru = 0;
         }
+        // dd($sbeli);
+        if (!empty($sbeli)) {
+            foreach ($sbeli as $row) {
+                // dd($row);
+                $totbeli[] = $row->harga;
+            };
+            $tbeli = array_sum($totbeli);
+            // dd($tbeli);
+        } else {
+            $tbeli = 0;
+        }
 
         $tkerdit = (array_sum($totKerd));
         $tdebit = (array_sum($totDebit));
@@ -73,6 +88,7 @@ class Admin extends Controller
             'tdebit' => $tdebit,
             'tvbaru' => $tVbaru,
             'tvlama' => $tVlama,
+            'tbeli' => $tbeli,
         ];
         return view('admin/index', $data);
     }
