@@ -36,11 +36,29 @@ class Admin extends Controller
         $tuser = $this->UserModel->findAll();
         $tstasiun = $this->StasiunModel->findAll();
         $takeair = $this->UserModel->takeWater();
+        $vbaru = $this->VoucherModel->search('Baru');
+        $vlama = $this->VoucherModel->search('Lama');
         foreach ($takeair as $row) {
             $totKerd[] = $row->kredit;
-        }
+        };
         foreach ($takeair as $row) {
             $totDebit[] = $row->debit;
+        };
+        if (!empty($vlama)) {
+            foreach ($vlama as $row) {
+                $totVlama[] = $row->nominal;
+            };
+            $tVlama = array_sum($totVlama);
+        } else {
+            $tVlama = 0;
+        }
+        if (!empty($vbaru)) {
+            foreach ($vbaru as $row) {
+                $totVbaru[] = $row->nominal;
+            };
+            $tVbaru = array_sum($totVbaru);
+        } else {
+            $tVbaru = 0;
         }
 
         $tkerdit = (array_sum($totKerd));
@@ -52,7 +70,9 @@ class Admin extends Controller
             'tuser' => $tuser,
             'tstasiun' => $tstasiun,
             'tkerdit' => $tkerdit,
-            'tdebit' => $tdebit
+            'tdebit' => $tdebit,
+            'tvbaru' => $tVbaru,
+            'tvlama' => $tVlama,
         ];
         return view('admin/index', $data);
     }
