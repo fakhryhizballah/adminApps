@@ -276,20 +276,30 @@ class Admin extends Controller
             // dd($validation->getError('nominal'));
             return redirect()->to('/crtvoucher')->withInput()->with('validation', $validation);
         }
-        $myTime = new Time('now');
-        $nominal = $this->request->getVar('nominal');
-        helper('text');
-        $token = random_string('numeric', 4);
-        $str = "Hello $myTime";
-        $kvocher = substr(sha1($str, false), 4, 4);
-        $data = [
-            'nominal' => $nominal + 0,
-            'id_akun' => session()->get('id_akun'),
-            'kvoucher' => strtoupper("$token $kvocher"),
-            'ket' => "Baru",
+        $x = 1;
+        while ($x <= 5) {
+            $myTime = new Time('now');
+            $nominal = $this->request->getVar('nominal');
+            helper('text');
+            $token = random_string('numeric', 4);
+            $str = "Hello $myTime";
+            $kvocher = substr(sha1($str, false), 4, 4);
+            $kodeV = strtoupper("$token $kvocher");
+            $data = [
+                'nominal' => $nominal + 0,
+                'id_akun' => session()->get('id_akun'),
+                'kvoucher' =>  $kodeV,
+                'ket' => "Baru",
 
-        ];
-        $this->VoucherModel->addvocher($data);
+            ];
+            $kode = $this->VoucherModel->cari('8254 4B12');
+            $this->VoucherModel->addvocher($data);
+            if (empty($kode->nominal)) {
+                $x = 2;
+                dd($x);
+            }
+            dd($kode);
+        }
         return redirect()->to('/admvoucher');
     }
 

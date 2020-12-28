@@ -37,4 +37,8 @@ class VoucherModel extends Model
     {
         return $this->table('voucher')->like('ket', $keyword)->get()->getResult();
     }
+    public function cari($kodeV)
+    {
+        return $this->table('voucher')->like('kvoucher', $kodeV)->get()->getResult();
+    }
 }
