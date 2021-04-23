@@ -17,3 +17,9 @@ Porjet startup Pontianak
 ### Added
 
 - Add Mqtt PHP
+
+## [v1.1.1] 24-4-2021
+
+### Added
+
+- sweetalert 2

@@ -320,6 +320,7 @@
 
         <!-- template custom js -->
         <script src="/js/admin.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <script>
             $('.form-check-input').on('click', function() {
