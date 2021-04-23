@@ -138,7 +138,7 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Status Stasiun Spairum</h6>
-                    <div class="dropdown no-arrow">
+                    <!-- <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                         </a>
@@ -149,12 +149,25 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-bar">
+                    <!-- <div class="chart-bar">
                         <canvas id="myBarChart"></canvas>
+                    </div> -->
+                    <div class="card-body">
+                        <?php foreach ($tstasiun as $ts) : ?>
+                            <?php
+
+                            $isi = ($ts['isi'] / 1020) * 100;
+
+                            ?>
+                            <h4 class="small font-weight-bold"><?= $ts['lokasi']; ?><span class="float-right"><?= $ts['isi']; ?></span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar" role="progressbar" style="width: <?= $isi; ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
