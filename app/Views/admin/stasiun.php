@@ -18,7 +18,7 @@
                 <th scope="col">Isi</th>
                 <th scope="col">Indikator</th>
                 <th scope="col">Keterangan</th>
-
+                <th scope="col">Buka stasiun</th>
             </tr>
         </thead>
         <tbody style="text-align: center;">
@@ -34,6 +34,7 @@
                     <td><?= $st['isi']; ?></td>
                     <td><?= $st['indikator']; ?></td>
                     <td><?= $st['ket']; ?></td>
+                    <td> <button type="button" class="btn btn-info btn-circle" onclick="pos('<?= $st['id_mesin']; ?>')"><i class="fas fa-recycle"></i></button></td>
                 </tr>
                 <?php $i++;  ?>
             <?php endforeach; ?>
@@ -43,5 +44,47 @@
 <!-- /.container-fluid -->
 
 </div>
+<script>
+    function pos(id) {
+        $.ajax({
+            type: "post",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            url: "<?php echo site_url('Controls/OpenDor'); ?>",
+
+        })
+
+        let timerInterval
+        Swal.fire({
+            title: 'Pintu telah terbuka',
+            html: 'Pintu akan tetutup otomatis dalam <b></b> milliseconds.',
+            timer: 6000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
+        // alert(id);
+    }
+</script>
 <!-- End of Main Content -->
 <?= $this->endSection('admcontent'); ?>
