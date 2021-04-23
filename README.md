@@ -11,3 +11,9 @@ Porjet startup Pontianak
 ### Added
 
 - Versi stabil admin spairum
+
+## [v1.1.0] 23-4-2021
+
+### Added
+
+- Add Mqtt PHP
