@@ -25,3 +25,4 @@ Porjet startup Pontianak
 - sweetalert 2
 - add button buka pintu
 - contoroler Mqtt Pos
+- Add Vendor to CI4
