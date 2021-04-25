@@ -52,7 +52,8 @@
                 id: id
             },
             dataType: "json",
-            url: "<?php echo site_url('Controls/OpenDor'); ?>",
+            // url: "<?php echo site_url('/Controls/OpenDor'); ?>",
+            url: "/Controls/OpenDor",
 
         })
 
@@ -80,7 +81,7 @@
         }).then((result) => {
             /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
+                console.log('Pintu Telah terkunci')
             }
         })
         // alert(id);

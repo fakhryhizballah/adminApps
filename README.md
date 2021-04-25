@@ -26,3 +26,9 @@ Porjet startup Pontianak
 - add button buka pintu
 - contoroler Mqtt Pos
 - Add Vendor to CI4
+
+## [v1.1.2] 25-4-2021
+
+### Fix
+
+- Fix Bug Post Mqtt
