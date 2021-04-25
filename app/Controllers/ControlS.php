@@ -7,7 +7,7 @@ use CodeIgniter\Controller;
 use \PhpMqtt\Client\MqttClient;
 
 
-class Controls extends Controller
+class ControlS extends Controller
 {
     public function __construct()
     {

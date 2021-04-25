@@ -53,7 +53,7 @@
             },
             dataType: "json",
             // url: "<?php echo site_url('/Controls/OpenDor'); ?>",
-            url: "/Controls/OpenDor",
+            url: "/ControlS/OpenDor",
 
         })
 
