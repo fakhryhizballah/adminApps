@@ -32,3 +32,9 @@ Porjet startup Pontianak
 ### Fix
 
 - Fix Bug Post Mqtt
+
+## [v1.1.3] 10-5-2021
+
+### Added
+
+- Add Vocer Ket
