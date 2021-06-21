@@ -38,3 +38,9 @@ Porjet startup Pontianak
 ### Added
 
 - Add Vocer Ket
+
+## [v1.1.4] 21-6-2021
+
+### Fix
+
+- Login Email
