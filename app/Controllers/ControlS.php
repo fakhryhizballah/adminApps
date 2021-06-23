@@ -46,9 +46,12 @@ class ControlS extends Controller
                 'akun' => session()->get('id_akun')
             ];
             $myJSON = json_encode($data);
+            $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
+                ->setUsername('spairum')
+                ->setPassword('broker');
 
             $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
-            $mqtt->connect();
+            $mqtt->connect($connectionSettings, true);
             $mqtt->publish('Web',  $myJSON);
             $mqtt->disconnect();
         } else {

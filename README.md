@@ -44,3 +44,9 @@ Porjet startup Pontianak
 ### Fix
 
 - Login Email
+
+## [v1.1.5] 23-6-2021
+
+### Fix
+
+- connectionSettings MQTT
