@@ -36,10 +36,11 @@ class ControlS extends Controller
             session()->setFlashdata('gagal', 'Login dulu');
             return redirect()->to('/');
         }
+        $admin = session()->get('nama');
         if ($this->request->isAJAX()) {
             $server   = 'ws.spairum.my.id';
             $port     = 1883;
-            $clientId = 'OpenDor';
+            $clientId =  $admin;
             $id = $this->request->getVar('id');
             $data = [
                 'id' => $id,
@@ -52,7 +53,7 @@ class ControlS extends Controller
 
             $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
             $mqtt->connect($connectionSettings, true);
-            $mqtt->publish('Web',  $myJSON);
+            $mqtt->publish("opendor/$id",  $myJSON);
             $mqtt->disconnect();
         } else {
             exit('404');

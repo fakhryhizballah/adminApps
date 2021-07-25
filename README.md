@@ -50,3 +50,9 @@ Porjet startup Pontianak
 ### Fix
 
 - connectionSettings MQTT
+
+## [v1.1.6] 25-7-2021
+
+### Improve
+
+- connection sesific for open dor
