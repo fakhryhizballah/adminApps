@@ -56,3 +56,9 @@ Porjet startup Pontianak
 ### Improve
 
 - connection sesific for open dor
+
+## [v1.1.8] 31-7-2021
+
+### Change
+
+- Database remote
