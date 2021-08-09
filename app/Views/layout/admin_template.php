@@ -310,10 +310,7 @@
         <script src="/js/chart-bar.js"></script>
 
         <!-- Untuk AJAX UBAH DATA -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
 
         <!-- CDN data tabel -->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
@@ -322,7 +319,7 @@
         <script src="/js/admin.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-        <script>
+        <!-- <script>
             $('.form-check-input').on('click', function() {
                 const menuId = $(this).data('menu');
                 const roleId = $(this).data('role');
@@ -340,9 +337,9 @@
                 });
 
             })
-        </script>
+        </script> -->
 
-        <script>
+        <!-- <script>
             $(function() {
                 $("#tanggalantrian").datepicker({
                     changeMonth: true,
@@ -377,7 +374,7 @@
                     todayHighlight: true,
                 });
             });
-        </script>
+        </script> -->
 </body>
 
 </html>

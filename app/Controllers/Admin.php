@@ -156,6 +156,10 @@ class Admin extends Controller
         $nama = session()->get('nama');
         $akun = $this->AdminModel->cek_login($nama);
         $stasiun = $this->StasiunModel;
+        // $all = $this->StasiunModel->lastStatus();
+        // $ceks = $this->StasiunModel->statusCek("Office");
+        // dd($all);
+        // echo json_encode($query);
         $data = [
             'title' => 'Stasiun',
             'stasiun' => $stasiun->findAll(),

@@ -40,4 +40,14 @@ class StasiunModel extends Model
             ->where(array('id_mesin' => $id_mesin))
             ->get()->getRowArray();
     }
+    public function lastStatus()
+    {
+        return $this->db->table('mesin')
+            ->select('*')->join('log_mesin', 'log_mesin.id_mesin=mesin.id_mesin')
+            ->get()->getResult();
+    }
+    public function statusCek($keyword)
+    {
+        return $this->table('log_mesin')->like('id_mesin', $keyword)->get()->getResult();
+    }
 }
