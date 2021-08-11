@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://apptes.spairum.my.id:3003");
+const ws = new WebSocket("ws://spairum.my.id:3003");
 // const ws = new WebSocket("ws://10.8.0.7:3003");
 ws.addEventListener("open", function open() {
     console.log("Terhubung");
