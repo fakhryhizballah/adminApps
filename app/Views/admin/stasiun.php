@@ -13,9 +13,9 @@
                 <th scope="col">Lokasi</th>
                 <th scope="col">ID Mesin</th>
                 <th scope="col">RSSI</th>
-                <th scope="col">Status</th>
+                <!-- <th scope="col">Status</th> -->
                 <th scope="col">Isi</th>
-                <th scope="col">Indikator</th>
+                <!-- <th scope="col">Indikator</th> -->
                 <th scope="col">Keterangan</th>
                 <th scope="col">LOG</th>
                 <th scope="col">Buka stasiun</th>
@@ -28,10 +28,10 @@
                     <th scope="row"><?= $i; ?></th>
                     <td><a href="<?= $st['link']; ?>" target="_blank" class="btn btn-primary"><i class="fa fa-street-view" aria-hidden="true"></i> <?= $st['lokasi']; ?></a></td>
                     <td><?= $st['id_mesin']; ?></td>
-                    <td id="data<?= $st['id_mesin']; ?>">R</td>
-                    <td><?= $st['status']; ?></td>
+                    <td id="<?= $st['id_mesin']; ?>">Offline</td>
+                    <!-- <td><?= $st['status']; ?></td> -->
                     <td><?= $st['isi']; ?></td>
-                    <td><?= $st['indikator']; ?></td>
+                    <!-- <td><?= $st['indikator']; ?></td> -->
                     <td><?= $st['ket']; ?></td>
                     <td> <button type="button" class="btn btn-success btn-circle" onclick="cek('<?= $st['id_mesin']; ?>')"><i class="fas fa-history" aria-hidden="true"></i></button></td>
                     <td> <button type="button" class="btn btn-danger btn-circle" onclick="pos('<?= $st['id_mesin']; ?>')"><i class="fas fa-recycle"></i></button></td>
