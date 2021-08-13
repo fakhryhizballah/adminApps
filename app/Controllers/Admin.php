@@ -48,6 +48,9 @@ class Admin extends Controller
         foreach ($takeair as $row) {
             $totDebit[] = $row->debit;
         };
+        $ambil =  array_sum($totKerd);
+        // dd($ambil);
+
         if (!empty($vlama)) {
             foreach ($vlama as $row) {
                 $totVlama[] = $row->nominal;
@@ -89,6 +92,7 @@ class Admin extends Controller
             'tvbaru' => $tVbaru,
             'tvlama' => $tVlama,
             'tbeli' => $tbeli,
+            'tambil' => $ambil,
         ];
         return view('admin/index', $data);
     }
@@ -289,11 +293,12 @@ class Admin extends Controller
         $myTime = new Time('now');
         $nominal = $this->request->getVar('nominal');
         $jumlah = $this->request->getVar('jumlah');
+        $faker = \Faker\Factory::create('id_ID');
         for ($i = 0; $i < $jumlah; $i++) {
             helper('text');
             $token = random_string('numeric', 4);
-            $str = "Hello $myTime";
-            $kvocher = substr(sha1($str, false), 4, 4);
+            $str = "$faker->city $myTime";
+            $kvocher = substr(sha1($str, false), 4, 5);
             $data = [
                 'nominal' => $nominal + 0,
                 'id_akun' => session()->get('id_akun'),

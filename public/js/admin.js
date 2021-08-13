@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#example').DataTable({
+    $('#tabel').DataTable({
         // "scrollY": 200,
         "scrollX": true,
         "scrollY": '50vh',
