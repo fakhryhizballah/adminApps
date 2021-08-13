@@ -274,6 +274,12 @@ class Admin extends Controller
                     'is_natural' => 'Hanya nomor',
                 ]
             ],
+            'jumlah' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
         ])) {
             $validation = \config\Services::validation();
 
@@ -282,18 +288,21 @@ class Admin extends Controller
         }
         $myTime = new Time('now');
         $nominal = $this->request->getVar('nominal');
-        helper('text');
-        $token = random_string('numeric', 4);
-        $str = "Hello $myTime";
-        $kvocher = substr(sha1($str, false), 4, 4);
-        $data = [
-            'nominal' => $nominal + 0,
-            'id_akun' => session()->get('id_akun'),
-            'kvoucher' => strtoupper("$token $kvocher"),
-            'ket' => "Baru",
+        $jumlah = $this->request->getVar('jumlah');
+        for ($i = 0; $i < $jumlah; $i++) {
+            helper('text');
+            $token = random_string('numeric', 4);
+            $str = "Hello $myTime";
+            $kvocher = substr(sha1($str, false), 4, 4);
+            $data = [
+                'nominal' => $nominal + 0,
+                'id_akun' => session()->get('id_akun'),
+                'kvoucher' => strtoupper("$token $kvocher"),
+                'ket' => "Baru",
 
-        ];
-        $this->VoucherModel->addvocher($data);
+            ];
+            $this->VoucherModel->addvocher($data);
+        }
         return redirect()->to('/admvoucher');
     }
 
