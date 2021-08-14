@@ -25,8 +25,23 @@ $(document).ready(function() {
         "scrollX": 200,
     });
 
-
+    For()
 });
+
+function cekStatus(id_data) {
+    console.log(id_data);
+    // console.log("id_data");
+    $.ajax({
+        type: "post",
+        data: {
+            id: id_data
+        },
+        dataType: "json",
+        // url: "<?php echo site_url('/Controls/rssi'); ?>",
+        url: "/ControlS/rssi",
+    })
+
+}
 
 function cek(id) {
     $.ajax({
@@ -54,6 +69,8 @@ function cek(id) {
         url: "/ControlS/log/s",
     })
 }
+
+
 
 
 function pos(id) {

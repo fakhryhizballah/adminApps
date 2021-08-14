@@ -28,7 +28,7 @@
                     <th scope="row"><?= $i; ?></th>
                     <td><a href="<?= $st['link']; ?>" target="_blank" class="btn btn-primary"><i class="fa fa-street-view" aria-hidden="true"></i> <?= $st['lokasi']; ?></a></td>
                     <td><?= $st['id_mesin']; ?></td>
-                    <td id="<?= $st['id_mesin']; ?>">Offline</td>
+                    <td onclick="cekStatus('<?= $st['id_mesin']; ?>')" id="<?= $st['id_mesin']; ?>">Offline</td>
                     <!-- <td><?= $st['status']; ?></td> -->
                     <td><?= $st['isi']; ?></td>
                     <!-- <td><?= $st['indikator']; ?></td> -->
@@ -41,11 +41,14 @@
         </tbody>
     </table>
 </div>
+<script>
+    function For() {
+        <?php foreach ($stasiun as $st) : ?>
+            cekStatus('<?= $st['id_mesin']; ?>')
+        <?php endforeach; ?>
+    }
+</script>
 
-<!-- /.container-fluid -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    Launch demo modal
-</button>
 <!-- Modal -->
 <div class="modal fade" id="modal-log" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
