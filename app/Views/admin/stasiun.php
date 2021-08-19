@@ -6,7 +6,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-    <table class="table bg-white" id="tab">
+    <table class="table bg-white" id="tabel">
         <thead>
             <tr style="text-align: center;">
                 <th scope="col">No</th>
