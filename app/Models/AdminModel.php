@@ -24,6 +24,7 @@ class AdminModel extends Model
         return $this->db->table('admin')
             // ->where(array('nama' => $nama, 'password' => $password))
             ->where(array('nama' => $nama))
+            ->orWhere(array('email' => $nama))
             ->get()->getRowArray();
     }
 }
