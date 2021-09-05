@@ -66,7 +66,7 @@ function cek(id) {
             $('#modal-log').modal('show');
 
         },
-        url: "/ControlS/log/s",
+        url: "/ControlS/log/",
     })
 }
 
