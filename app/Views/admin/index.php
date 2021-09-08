@@ -7,10 +7,6 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
     <div class="row">
-        <?php $i = 0; ?>
-        <?php foreach ($tuser as $t) : ?>
-            <?php $i++;  ?>
-        <?php endforeach; ?>
         <!-- Pending Requests Card Total User -->
         <div class="col-xl-3 col-md-4 mb-3">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -18,7 +14,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total User</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $i; ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $tuser; ?></div>
                         </div>
                         <div class="col-auto">
                             <span class="fa-stack">
@@ -31,10 +27,6 @@
             </div>
         </div>
 
-        <?php $i = 0; ?>
-        <?php foreach ($tstasiun as $s) : ?>
-            <?php $i++;  ?>
-        <?php endforeach; ?>
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-4 mb-3">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -42,7 +34,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Stasiun</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $i; ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $tstasiun; ?></div>
                         </div>
                         <div class="col-auto">
                             <span class="fa-stack">
@@ -170,15 +162,13 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <!-- <div class="chart-bar">
+                    <div class="chart-bar">
                         <canvas id="myBarChart"></canvas>
-                    </div> -->
+                    </div>
                     <div class="card-body">
-                        <?php foreach ($tstasiun as $ts) : ?>
+                        <?php foreach ($stasiun as $ts) : ?>
                             <?php
-
                             $isi = ($ts['isi'] / 1020) * 100;
-
                             ?>
                             <h4 class="small font-weight-bold"><?= $ts['lokasi']; ?><span class="float-right"><?= $ts['isi']; ?></span></h4>
                             <div class="progress mb-4">

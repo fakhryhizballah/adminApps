@@ -35,11 +35,12 @@ class Admin extends Controller
         }
         $nama = session()->get('nama');
         $akun = $this->AdminModel->cek_login($nama);
-        $tuser = $this->UserModel->findAll();
-        $tstasiun = $this->StasiunModel->findAll();
+        $tuser = $this->UserModel->countAllResults();
+        $tstasiun = $this->StasiunModel->countAllResults();
+        $stasiun = $this->StasiunModel->findAll();
         $takeair = $this->UserModel->takeWater();
-        $vbaru = $this->VoucherModel->search('Baru');
-        $vlama = $this->VoucherModel->search('Lama');
+        $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru');
+        $vlama = $this->VoucherModel->selectSum('nominal')->search('lama');
         $sbeli = $this->TransaksiModel->status('expire');
 
         foreach ($takeair as $row) {
@@ -51,23 +52,15 @@ class Admin extends Controller
         $ambil =  array_sum($totKerd);
         // dd($ambil);
 
-        if (!empty($vlama)) {
-            foreach ($vlama as $row) {
-                $totVlama[] = $row->nominal;
-            };
-            $tVlama = array_sum($totVlama);
-        } else {
-            $tVlama = 0;
-        }
-        if (!empty($vbaru)) {
-            foreach ($vbaru as $row) {
-                $totVbaru[] = $row->nominal;
-            };
-            $tVbaru = array_sum($totVbaru);
-        } else {
-            $tVbaru = 0;
-        }
-        // dd($sbeli);
+        // if (!empty($vlama)) {
+        //     foreach ($vlama as $row) {
+        //         $totVlama[] = $row->nominal;
+        //     };
+        //     $tVlama = array_sum($totVlama);
+        // } else {
+        //     $tVlama = 0;
+        // }
+
         if (!empty($sbeli)) {
             foreach ($sbeli as $row) {
                 // dd($row);
@@ -81,16 +74,17 @@ class Admin extends Controller
 
         $tkerdit = (array_sum($totKerd));
         $tdebit = (array_sum($totDebit));
-        //dd($akun);
+        // dd($vlama[0]->nominal);
         $data = [
             'title' => 'Dashboard',
             'akun' => $akun,
             'tuser' => $tuser,
             'tstasiun' => $tstasiun,
+            'stasiun' => $stasiun,
             'tkerdit' => $tkerdit,
             'tdebit' => $tdebit,
-            'tvbaru' => $tVbaru,
-            'tvlama' => $tVlama,
+            'tvbaru' => $vbaru[0]->nominal,
+            'tvlama' => $vlama[0]->nominal,
             'tbeli' => $tbeli,
             'tambil' => $ambil,
         ];
