@@ -28,7 +28,8 @@ class Auth extends BaseController
 			];
 			// $myTime = Time::now('Asia/Pontianak');
 			// dd($myTime);
-			dd(getHostByName(getHostName()));
+			// dd(getHostByName(getHostName()));
+			// dd(gethostbyaddr($_SERVER['REMOTE_ADDR']));
 			return view('auth/login', $data);
 		}
 		session()->setFlashdata('gagal', 'Login dulu');
