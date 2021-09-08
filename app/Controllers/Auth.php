@@ -28,7 +28,7 @@ class Auth extends BaseController
 			];
 			// $myTime = Time::now('Asia/Pontianak');
 			// dd($myTime);
-
+			dd(phpinfo());
 			return view('auth/login', $data);
 		}
 		session()->setFlashdata('gagal', 'Login dulu');
