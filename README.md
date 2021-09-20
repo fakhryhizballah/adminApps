@@ -72,3 +72,12 @@ Porjet startup Pontianak
 ### Update
 
 - Update Composer dan CI 4
+
+### Change
+
+- Login With JWT
+
+### Improve
+
+- auth with Library OOP (Object Oriented Programming)
+- less code

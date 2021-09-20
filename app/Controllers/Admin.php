@@ -12,6 +12,7 @@ use App\Models\HistoryModel;
 use App\Models\VoucherModel;
 use App\Models\TransaksiModel;
 use CodeIgniter\I18n\Time;
+use App\Libraries\AuthLibaries;
 
 
 class Admin extends Controller
@@ -26,15 +27,11 @@ class Admin extends Controller
         $this->HistoryModel = new HistoryModel();
         $this->VoucherModel = new VoucherModel();
         $this->TransaksiModel = new TransaksiModel();
+        $this->AuthLibaries = new AuthLibaries();
     }
     public function index()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $tuser = $this->UserModel->countAllResults();
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
@@ -50,16 +47,6 @@ class Admin extends Controller
             $totDebit[] = $row->debit;
         };
         $ambil =  array_sum($totKerd);
-        // dd($ambil);
-
-        // if (!empty($vlama)) {
-        //     foreach ($vlama as $row) {
-        //         $totVlama[] = $row->nominal;
-        //     };
-        //     $tVlama = array_sum($totVlama);
-        // } else {
-        //     $tVlama = 0;
-        // }
 
         if (!empty($sbeli)) {
             foreach ($sbeli as $row) {
@@ -93,12 +80,7 @@ class Admin extends Controller
 
     public function admdriver()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $driver = $this->DriverModel->findAll();
         $data = [
             'title' => 'Driver',
@@ -110,12 +92,7 @@ class Admin extends Controller
 
     public function ptcv()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $data = [
             'title' => 'PT / CV',
             'akun' => $akun
@@ -125,12 +102,7 @@ class Admin extends Controller
 
     public function admuser()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $UserModel = $this->UserModel;
         $user = $UserModel->findAll();
 
@@ -147,12 +119,7 @@ class Admin extends Controller
 
     public function admstasiun()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $stasiun = $this->StasiunModel;
         // $all = $this->StasiunModel->lastStatus();
         // $ceks = $this->StasiunModel->statusCek("Office");
@@ -171,12 +138,7 @@ class Admin extends Controller
 
     public function admvoucher()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $cari = "vocher";
         $vocher = $this->VoucherModel->findAll();
         $data = [
@@ -190,12 +152,7 @@ class Admin extends Controller
 
     public function addStasiun()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         //validasi
         if (!$this->validate([
             'nama' => [
@@ -307,12 +264,7 @@ class Admin extends Controller
 
     public function crtmitra()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $data = [
             'title' => 'Create Mitra',
             'akun' => $akun
@@ -322,12 +274,7 @@ class Admin extends Controller
 
     public function crtdriver()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $data = [
             'title' => 'Create Driver',
             'akun' => $akun
@@ -337,12 +284,7 @@ class Admin extends Controller
 
     public function crtstasiun()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $data = [
             'title' => 'Create Stasiun',
             'akun' => $akun,
@@ -352,12 +294,7 @@ class Admin extends Controller
     }
     public function crtvocher()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $nama = session()->get('nama');
-        $akun = $this->AdminModel->cek_login($nama);
+        $akun = $this->AuthLibaries->authCek();
         $data = [
             'title' => 'Create Stasiun',
             'akun' => $akun,

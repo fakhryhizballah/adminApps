@@ -32,16 +32,27 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admdriver', 'Admin::admdriver');
-$routes->get('/ptcv', 'Admin::ptcv');
-$routes->get('/admuser', 'Admin::admuser');
-$routes->get('/admstasiun', 'Admin::admstasiun');
-$routes->get('/admvoucher', 'Admin::admvoucher');
-$routes->get('/crtmitra', 'Admin::crtmitra');
-$routes->get('/crtdriver', 'Admin::crtdriver');
-$routes->get('/crtstasiun', 'Admin::crtstasiun');
-$routes->get('/crtvoucher', 'Admin::crtvocher');
+$routes->get('/admin', 'Admin::index', ['filter' => 'AuthFilter']);
+$routes->get('/admdriver', 'Admin::admdriver', ['filter' => 'AuthFilter']);
+$routes->get('/ptcv', 'Admin::ptcv', ['filter' => 'AuthFilter']);
+$routes->get('/admuser', 'Admin::admuser', ['filter' => 'AuthFilter']);
+$routes->get('/admstasiun', 'Admin::admstasiun', ['filter' => 'AuthFilter']);
+$routes->get('/admvoucher', 'Admin::admvoucher', ['filter' => 'AuthFilter']);
+$routes->get('/crtmitra', 'Admin::crtmitra', ['filter' => 'AuthFilter']);
+$routes->get('/crtdriver', 'Admin::crtdriver', ['filter' => 'AuthFilter']);
+$routes->get('/crtstasiun', 'Admin::crtstasiun', ['filter' => 'AuthFilter']);
+$routes->get('/crtvoucher', 'Admin::crtvocher', ['filter' => 'AuthFilter']);
+// $routes->get('/', 'Auth::index');
+// $routes->get('/admin', 'Admin::index');
+// $routes->get('/admdriver', 'Admin::admdriver');
+// $routes->get('/ptcv', 'Admin::ptcv');
+// $routes->get('/admuser', 'Admin::admuser');
+// $routes->get('/admstasiun', 'Admin::admstasiun');
+// $routes->get('/admvoucher', 'Admin::admvoucher');
+// $routes->get('/crtmitra', 'Admin::crtmitra');
+// $routes->get('/crtdriver', 'Admin::crtdriver');
+// $routes->get('/crtstasiun', 'Admin::crtstasiun');
+// $routes->get('/crtvoucher', 'Admin::crtvocher');
 
 /**
  * --------------------------------------------------------------------

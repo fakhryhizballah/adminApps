@@ -5,7 +5,9 @@ namespace App\Controllers;
 
 use App\Models\AdminModel;
 use App\Models\OtpModel;
-// use CodeIgniter\I18n\Time;
+use CodeIgniter\I18n\Time;
+use \Firebase\JWT\JWT;
+use App\Models\TokenModel;
 
 
 class Auth extends BaseController
@@ -15,10 +17,13 @@ class Auth extends BaseController
 	{
 		$this->AdminModel = new AdminModel();
 		$this->OtpModel = new OtpModel();
-		// $this->Time = new Time('Asia/Jakarta');
+		$this->TokenModel = new TokenModel();
+		$this->Time = new Time('Asia/Jakarta');
 		$this->email = \Config\Services::email();
+		helper('text');
+		helper('cookie');
 	}
-
+	public static string $key = 'ss';
 	public function index()
 	{
 		if (session()->get('id_akun') == '') {
@@ -74,9 +79,35 @@ class Auth extends BaseController
 			//dd($cek);
 			session()->set('nama', $cek['nama']);
 			session()->set('id_akun', $cek['id_akun']);
+
+			$token = random_string('alnum', 28);
+			$key = $this->TokenModel->Key()['token'];
+			$payload = array(
+				'Key' => $token,
+				'id_user' => $cek['id_akun'],
+				'nama' => $cek['nama']
+			);
+			$jwt = JWT::encode($payload, $key,);
+
+			$this->TokenModel->save([
+				'id_user' => $cek['id_akun'],
+				'token'    => $token,
+				'status' => 'Login'
+			]);
+			$arr_cookie_options = array(
+				'expires' => time() + 60 * 60 * 24 * 30,
+				'path' => '/',
+				'domain' => "", // leading dot for compatibility or use subdomain
+				'secure' => true,     // or false
+				'httponly' => false,    // or false
+				'samesite' => 'None' // None || Lax  || Strict
+			);
+			setCookie("X-Sparum-Token", $jwt, $arr_cookie_options);
+
 			return redirect()->to('/Admin');
 		} else {
 			session()->setFlashdata('gagal', 'Username atau Password salah');
+
 			return redirect()->to('/');
 		}
 	}
@@ -89,6 +120,25 @@ class Auth extends BaseController
 		// $session->remove($array_items);
 		session()->setFlashdata('flash', 'Berhasil Logout');
 		session_destroy();
+		$jwt = $_COOKIE['X-Sparum-Token'];
+		$key = $this->TokenModel->Key()['token'];
+		$decoded = JWT::decode($jwt, $key, array('HS256'));
+		$token = $decoded->Key;
+		$id = $this->TokenModel->cek($token)['id'];
+		$this->TokenModel->update($id, [
+			'token'    => "Keluar",
+			'status' => 'logout'
+		]);
+		$arr_cookie_options = array(
+			'expires' => time() + 60 * 60 * 24 * 30,
+			'path' => '/',
+			'domain' => "", // leading dot for compatibility or use subdomain
+			'secure' => true,     // or false
+			'httponly' => false,    // or false
+			'samesite' => 'None' // None || Lax  || Strict
+		);
+		session()->setFlashdata('flash', 'Berhasil Logout');
+		setCookie("X-Sparum-Token", "Logout", $arr_cookie_options);
 		return redirect()->to('/');
 	}
 
