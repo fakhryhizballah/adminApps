@@ -63,7 +63,7 @@ Porjet startup Pontianak
 
 - Database remote
 
-## [v1.2.0] 31-9-2021
+## [v1.2.0] 20-9-2021
 
 ### Added
 
