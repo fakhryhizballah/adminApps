@@ -81,3 +81,9 @@ Porjet startup Pontianak
 
 - auth with Library OOP (Object Oriented Programming)
 - less code
+
+## [v1.2.0] 20-9-2021
+
+### FIX
+
+- Fix session manajement

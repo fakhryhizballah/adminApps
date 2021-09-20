@@ -26,19 +26,22 @@ class Auth extends BaseController
 	public static string $key = 'ss';
 	public function index()
 	{
-		if (session()->get('id_akun') == '') {
+		if (empty($_COOKIE['X-Sparum-Token'])) {
 			$data = [
-				'title' => 'Login',
+				'title' => 'Login - Spairum',
 				'validation' => \Config\Services::validation()
 			];
-			// $myTime = Time::now('Asia/Pontianak');
-			// dd($myTime);
-			// dd(getHostByName(getHostName()));
-			// dd(gethostbyaddr($_SERVER['REMOTE_ADDR']));
 			return view('auth/login', $data);
+		} else {
+			if ($_COOKIE['X-Sparum-Token'] == 'Logout') {
+				$data = [
+					'title' => 'Login - Spairum',
+					'validation' => \Config\Services::validation()
+				];
+				return view('auth/login', $data);
+			}
+			return redirect()->to('/admin');
 		}
-		session()->setFlashdata('gagal', 'Login dulu');
-		return redirect()->to('/admin');
 	}
 
 	//--------------------------------------------------------------------
@@ -76,9 +79,6 @@ class Auth extends BaseController
 		//dd($password);
 
 		if (($cek['password'] == $password)) {
-			//dd($cek);
-			session()->set('nama', $cek['nama']);
-			session()->set('id_akun', $cek['id_akun']);
 
 			$token = random_string('alnum', 28);
 			$key = $this->TokenModel->Key()['token'];
