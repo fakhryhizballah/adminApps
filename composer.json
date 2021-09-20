@@ -14,7 +14,8 @@
 		"laminas/laminas-escaper": "^2.6",
 		"psr/log": "^1.1",
 		"php-mqtt/client": "^1.1",
-		"fzaninotto/faker": "^1.9"
+		"fzaninotto/faker": "^1.9",
+		"firebase/php-jwt": "^5.4"
 	},
 	"require-dev": {
 		"codeigniter4/codeigniter4-standard": "^1.0",

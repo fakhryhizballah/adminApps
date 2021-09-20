@@ -62,3 +62,13 @@ Porjet startup Pontianak
 ### Change
 
 - Database remote
+
+## [v1.2.0] 31-9-2021
+
+### Added
+
+- add Library JWT Fire Base
+
+### Update
+
+- Update Composer dan CI 4
