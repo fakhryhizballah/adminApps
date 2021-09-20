@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\AdminModel;
 use App\Models\UserModel;
 use App\Models\ExploreModel;
 use App\Models\StasiunModel;
@@ -14,12 +13,10 @@ use App\Models\TransaksiModel;
 use CodeIgniter\I18n\Time;
 use App\Libraries\AuthLibaries;
 
-
 class Admin extends Controller
 {
     public function __construct()
     {
-        $this->AdminModel = new AdminModel();
         $this->UserModel = new UserModel();
         $this->ExploreModel = new ExploreModel();
         $this->StasiunModel = new StasiunModel();
