@@ -213,10 +213,7 @@ class Admin extends Controller
 
     public function addvocher()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
+        $akun = $this->AuthLibaries->authCek();
         if (!$this->validate([
             'nominal' => [
                 'rules'  => 'required|min_length[4]|is_natural',
@@ -249,7 +246,7 @@ class Admin extends Controller
             $kvocher = substr(sha1($str, false), 4, 5);
             $data = [
                 'nominal' => $nominal + 0,
-                'id_akun' => session()->get('id_akun'),
+                'id_akun' => $akun['id_akun'],
                 'kvoucher' => strtoupper("$token $kvocher"),
                 'ket' => "Baru",
 
