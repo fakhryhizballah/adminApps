@@ -137,7 +137,7 @@ class Admin extends Controller
     {
         $akun = $this->AuthLibaries->authCek();
         $cari = "vocher";
-        $vocher = $this->VoucherModel->findAll();
+        $vocher = $this->VoucherModel->search('Baru');
         $data = [
             'title' => 'Voucher',
             'vocher' => $vocher,

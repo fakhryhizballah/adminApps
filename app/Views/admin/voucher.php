@@ -7,7 +7,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
 
-    <table class="table bg-white display nowrap" id="voucher">
+    <table class="table bg-black display nowrap col-12" id="voucher">
         <thead>
             <tr style="text-align: center;">
                 <th scope="col">No</th>

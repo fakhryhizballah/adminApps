@@ -35,6 +35,6 @@ class VoucherModel extends Model
     }
     public function search($keyword)
     {
-        return $this->table('voucher')->like('ket', $keyword)->get()->getResult();
+        return $this->table('voucher')->like('ket', $keyword)->get()->getResultArray();
     }
 }
