@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 // use PhpMqtt\Client\Facades\MQTT;
 use \PhpMqtt\Client\MqttClient;
+use App\Libraries\AuthLibaries;
 
 
 class ControlS extends Controller
@@ -12,6 +13,7 @@ class ControlS extends Controller
     public function __construct()
     {
         // $this->MQTT = new MQTT::connection();
+        $this->AuthLibaries = new AuthLibaries();
     }
 
     // public function index()
@@ -32,11 +34,8 @@ class ControlS extends Controller
 
     public function OpenDor()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $admin = session()->get('nama');
+        $akun = $this->AuthLibaries->authCek();
+        $admin = $akun['nama'];
         if ($this->request->isAJAX()) {
             $server   = 'ws.spairum.my.id';
             $port     = 1883;
@@ -61,11 +60,12 @@ class ControlS extends Controller
     }
     public function log()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $admin = session()->get('nama');
+        // if (session()->get('id_akun') == '') {
+        //     session()->setFlashdata('gagal', 'Login dulu');
+        //     return redirect()->to('/');
+        // }
+        $akun = $this->AuthLibaries->authCek();
+        // $admin = session()->get('nama');
 
         $id = $this->request->getVar('id');
         $db      = \Config\Database::connect();
@@ -93,11 +93,8 @@ class ControlS extends Controller
     }
     public function rssi()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
-        $admin = session()->get('nama');
+        $akun = $this->AuthLibaries->authCek();
+        $admin = $akun['nama'];
 
         $id = $this->request->getVar('id');
         $server   = 'ws.spairum.my.id';
