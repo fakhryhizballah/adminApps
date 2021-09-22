@@ -30,13 +30,14 @@ class AjaxUser extends Controller
 
     public function GetTotalUser()
     {
-        if (session()->get('id_akun') == '') {
-            session()->setFlashdata('gagal', 'Login dulu');
-            return redirect()->to('/');
-        }
 
-        $tuser = $this->VoucherModel->selectSum('nominal')->search('Baru');
-
-        echo json_encode($tuser);
+        $UserModel = $this->UserModel;
+        // $user = $UserModel->findAll();
+        // $user = $UserModel->select(['id_user', 'nama', 'email', 'telp'])->get()->getResult();
+        $user = $UserModel->select(['id_user', 'nama', 'email', 'telp'])->get()->getResultArray();
+        // dd($user);
+        $data = ['data' => $user];
+        // dd($data);
+        echo json_encode($data);
     }
 }

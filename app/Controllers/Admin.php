@@ -67,8 +67,8 @@ class Admin extends Controller
             'stasiun' => $stasiun,
             'tkerdit' => $tkerdit,
             'tdebit' => $tdebit,
-            'tvbaru' => $vbaru[0]->nominal,
-            'tvlama' => $vlama[0]->nominal,
+            'tvbaru' => $vbaru[0]['nominal'],
+            'tvlama' => $vlama[0]['nominal'],
             'tbeli' => $tbeli,
             'tambil' => $ambil,
         ];
@@ -100,14 +100,14 @@ class Admin extends Controller
     public function admuser()
     {
         $akun = $this->AuthLibaries->authCek();
-        $UserModel = $this->UserModel;
-        $user = $UserModel->findAll();
+        // $UserModel = $this->UserModel;
+        // $user = $UserModel->findAll();
 
         // dd($user);
         $data = [
             'title' => 'User',
-            'user' => $user,
-            'pager' => $UserModel->pager,
+            // 'user' => $user,
+            // 'pager' => $UserModel->pager,
             'akun' => $akun
 
         ];

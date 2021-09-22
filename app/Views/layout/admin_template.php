@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,8 +18,7 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
-
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
 
@@ -310,71 +308,16 @@
         <script src="/js/chart-bar.js"></script>
 
         <!-- Untuk AJAX UBAH DATA -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
         <!-- CDN data tabel -->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
         <!-- template custom js -->
         <script src="/js/admin.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-        <!-- <script>
-            $('.form-check-input').on('click', function() {
-                const menuId = $(this).data('menu');
-                const roleId = $(this).data('role');
 
-                $.ajax({
-                    url: "<?= base_url('admin/changeaccess'); ?>",
-                    type: 'post',
-                    data: {
-                        menuId: menuId,
-                        roleId: roleId
-                    },
-                    success: function() {
-                        document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
-                    }
-                });
-
-            })
-        </script> -->
-
-        <!-- <script>
-            $(function() {
-                $("#tanggalantrian").datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: '1950:2020',
-                    dateFormat: 'dd/mm/yy',
-                    autoclose: true,
-                    todayHighlight: true,
-                });
-            });
-        </script>
-        <script>
-            $(function() {
-                $("#tanggalpembuatan").datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: '1950:2020',
-                    format: 'yyyy-mm-dd',
-                    autoclose: true,
-                    todayHighlight: true,
-                });
-            });
-        </script>
-        <script>
-            $(function() {
-                $("#tanggalkadaluwarsa").datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: '1950:2020',
-                    format: 'yyyy-mm-dd',
-                    autoclose: true,
-                    todayHighlight: true,
-                });
-            });
-        </script> -->
 </body>
 
 </html>

@@ -93,3 +93,9 @@ Porjet startup Pontianak
 ### FIX
 
 - Fix Ajax
+
+## [v1.2.3] 22-9-2021
+
+### FIX
+
+- user tabel ajax

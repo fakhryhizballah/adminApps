@@ -4,6 +4,7 @@ $(document).ready(function() {
         "scrollX": true,
         "scrollY": '50vh',
         "scrollCollapse": true,
+        "paging": false,
         columnDefs: [{
             targets: [0],
             orderData: [0, 1]
@@ -20,9 +21,25 @@ $(document).ready(function() {
         "scrollX": true,
     });
     $('#voucher').DataTable({
-        scrollY: '50vh',
-        scrollCollapse: true,
-        "scrollX": 200,
+        "scrollX": true,
+        "scrollY": "50vh",
+        "scrollCollapse": true,
+        "pageLength": 20
+    });
+
+
+    $('#userdata').DataTable({
+        "ajax": "/AjaxUser/GetTotalUser/",
+        columns: [{ data: 'id_user' },
+            { data: 'nama' },
+            { data: 'email' },
+            { data: 'telp' },
+        ],
+        "scrollX": true,
+        "scrollY": "50vh",
+        "scrollCollapse": true,
+        "lengthMenu": [10, 30, 50, 100],
+        "pageLength": 50
     });
 
     For()
