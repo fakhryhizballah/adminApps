@@ -33,8 +33,8 @@ class Admin extends Controller
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
         $takeair = $this->UserModel->takeWater();
-        $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru');
-        $vlama = $this->VoucherModel->selectSum('nominal')->search('lama');
+        $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru', $akun['id_akun']);
+        $vlama = $this->VoucherModel->selectSum('nominal')->search('lama', $akun['id_akun']);
         $sbeli = $this->TransaksiModel->status('expire');
 
         foreach ($takeair as $row) {
