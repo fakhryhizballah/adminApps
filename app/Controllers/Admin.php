@@ -138,7 +138,7 @@ class Admin extends Controller
         $akun = $this->AuthLibaries->authCek();
         $cari = "vocher";
         $vocher = $this->VoucherModel->search('Baru', $akun['id_akun']);
-        dd($vocher);
+        // dd($vocher);
         $data = [
             'title' => 'Voucher',
             'vocher' => $vocher,
