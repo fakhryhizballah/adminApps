@@ -12,6 +12,7 @@ use App\Models\VoucherModel;
 use App\Models\TransaksiModel;
 use CodeIgniter\I18n\Time;
 use App\Libraries\AuthLibaries;
+use App\Models\OtpModel;
 
 class Admin extends Controller
 {
@@ -25,11 +26,13 @@ class Admin extends Controller
         $this->VoucherModel = new VoucherModel();
         $this->TransaksiModel = new TransaksiModel();
         $this->AuthLibaries = new AuthLibaries();
+        $this->OtpModel = new OtpModel();
     }
     public function index()
     {
         $akun = $this->AuthLibaries->authCek();
-        $tuser = $this->UserModel->countAllResults();
+        // $tuser = $this->UserModel->countAllResults();
+        $tuser = $this->OtpModel->countAllResults();
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
         $takeair = $this->UserModel->takeWater();
