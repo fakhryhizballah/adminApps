@@ -1,5 +1,4 @@
-const ws = new WebSocket("ws://air.spairum.my.id:3002");
-// const ws = new WebSocket("ws://10.8.0.7:3003");
+const ws = new WebSocket("wss://socket.spairum.my.id:3001");
 ws.addEventListener("open", function open() {
     console.log("Terhubung");
     // console.log("nama anda <?= $akun['nama']; ?>");
