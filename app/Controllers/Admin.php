@@ -35,17 +35,29 @@ class Admin extends Controller
         $tuser = $this->OtpModel->countAllResults();
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
-        $takeair = $this->UserModel->takeWater();
+        // $takeair = $this->UserModel->takeWater();
         $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru', $akun['id_akun']);
         $vlama = $this->VoucherModel->selectSum('nominal')->search('lama', $akun['id_akun']);
         $sbeli = $this->TransaksiModel->status('expire');
-
-        foreach ($takeair as $row) {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('user');
+        $builder->select('kredit, debit');
+        $builder->join('otp', 'otp.id_user = user.id_user');
+        $query = $builder->get()->getResult();
+        // dd($query);
+        foreach ($query as $row) {
             $totKerd[] = $row->kredit;
         };
-        foreach ($takeair as $row) {
+        foreach ($query as $row) {
             $totDebit[] = $row->debit;
         };
+
+        // foreach ($takeair as $row) {
+        //     $totKerd[] = $row->kredit;
+        // };
+        // foreach ($takeair as $row) {
+        //     $totDebit[] = $row->debit;
+        // };
         $ambil =  array_sum($totKerd);
 
         if (!empty($sbeli)) {

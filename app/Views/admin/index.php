@@ -73,7 +73,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Voucher yang belum digunakan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tvbaru, 0, ",", "."); ?> mL</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tvbaru, 0, ",", "."); ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-cart-plus fa-2x text-gray-300"></i>
@@ -91,7 +91,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Voucher yang telah digunakan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tvlama, 0, ",", "."); ?> mL</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?= number_format($tvlama, 0, ",", "."); ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-cart-arrow-down fa-2x text-gray-300"></i>
@@ -107,8 +107,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                air telah digunakan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tambil, 0, ",", "."); ?> mL</div>
+                                Transaksi User</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?= number_format($tambil, 0, ",", "."); ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-cart-arrow-down fa-2x text-gray-300"></i>
@@ -190,7 +190,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah air yang telah di isi ulang User</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tkerdit, 0, ",", "."); ?> mL</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tkerdit, 0, ",", "."); ?></div>
                     </div>
                     <div class="col-auto">
                         <span class="fa-stack">
@@ -210,7 +210,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Air yang belum di isi ulang user</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tdebit, 0, ",", "."); ?> mL</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($tdebit, 0, ",", "."); ?></div>
                     </div>
                     <div class="col-auto">
                         <span class="fa-stack">
