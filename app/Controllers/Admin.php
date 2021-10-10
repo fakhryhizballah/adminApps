@@ -44,7 +44,7 @@ class Admin extends Controller
         $builder->select('kredit, debit');
         $builder->join('otp', 'otp.id_user = user.id_user');
         $query = $builder->get()->getResult();
-        dd($query);
+        // dd($query);
         foreach ($query as $row) {
             $totKerd[] = $row->kredit;
         };
