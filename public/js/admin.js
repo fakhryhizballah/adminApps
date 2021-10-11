@@ -34,11 +34,13 @@ $(document).ready(function() {
             { data: 'nama' },
             { data: 'email' },
             { data: 'telp' },
+            { data: 'debit' },
+            { data: 'status' },
         ],
         "scrollX": true,
         "scrollY": "50vh",
         "scrollCollapse": true,
-        "lengthMenu": [10, 30, 50, 100],
+        "lengthMenu": [10, 30, 50, 100, 50, 50],
         "pageLength": 50
     });
 
