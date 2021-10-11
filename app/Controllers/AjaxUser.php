@@ -32,11 +32,15 @@ class AjaxUser extends Controller
     {
 
         $UserModel = $this->UserModel;
-        // $user = $UserModel->findAll();
-        // $user = $UserModel->select(['id_user', 'nama', 'email', 'telp'])->get()->getResult();
-        $user = $UserModel->select(['id_user', 'nama', 'email', 'telp'])->get()->getResultArray();
-        // dd($user);
-        $data = ['data' => $user];
+        $db      = \Config\Database::connect();
+        $builder = $db->table('user');
+        $builder->join('otp', 'otp.id_user = user.id_user');
+        $builder->select('user.id_user, user.nama, user.email, user.telp, kredit, debit, otp.status');
+        $query = $builder->get()->getResultArray();
+        // $user = $UserModel->select(['id_user', 'nama', 'email', 'telp'])->get()->getResultArray();
+        // dd($query);
+        // $data = ['data' => $user];
+        $data = ['data' => $query];
         // dd($data);
         echo json_encode($data);
     }

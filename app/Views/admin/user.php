@@ -14,6 +14,8 @@
                 <th>nama</th>
                 <th>email</th>
                 <th>telp.</th>
+                <th>saldo.</th>
+                <th>Status.</th>
             </tr>
         </thead>
     </table>
