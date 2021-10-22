@@ -11,7 +11,9 @@
         <thead>
             <tr>
                 <th>id_user</th>
-                <th>nama</th>
+                <th>username</th>
+                <th>nama depan</th>
+                <th>nama belakang</th>
                 <th>email</th>
                 <th>telp.</th>
                 <th>saldo.</th>

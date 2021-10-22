@@ -30,8 +30,11 @@ $(document).ready(function() {
 
     $('#userdata').DataTable({
         "ajax": "/AjaxUser/GetTotalUser/",
+        select: true,
         columns: [{ data: 'id_user' },
             { data: 'nama' },
+            { data: 'nama_depan' },
+            { data: 'nama_belakang' },
             { data: 'email' },
             { data: 'telp' },
             { data: 'debit' },
@@ -41,7 +44,8 @@ $(document).ready(function() {
         "scrollY": "50vh",
         "scrollCollapse": true,
         "lengthMenu": [10, 30, 50, 100, 50, 50],
-        "pageLength": 50
+        "pageLength": 50,
+
     });
 
     For()
