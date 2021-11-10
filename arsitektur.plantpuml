@@ -35,5 +35,6 @@ admin -- Join
 
 admuser -- Join
 admstasiun -- mesin
+admvoucher -- vocher
 
 @enduml
