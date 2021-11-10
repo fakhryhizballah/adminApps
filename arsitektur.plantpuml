@@ -1,3 +1,39 @@
-@startuml Hello wword
-A -> B : Hello
+@startuml Hello word
+
+node Controllers
+node Ajax
+node Auth
+node ControlS
+node Admin
+
+component admin
+component admuser
+component admstasiun
+component admvoucher
+
+
+database vocher
+database mesin
+
+database Join  {
+    database user
+    database otp
+}
+
+
+' Controllers -- Ajax
+' Controllers -- Auth
+' Controllers -- ControlS
+' Controllers -- Admin
+
+Admin -- admin
+Admin -- admuser
+Admin -- admstasiun
+Admin -- admvoucher
+
+admin -- Join
+
+admuser -- Join
+admstasiun -- mesin
+
 @enduml
