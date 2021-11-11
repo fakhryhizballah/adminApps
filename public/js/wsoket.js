@@ -1,4 +1,5 @@
-const ws = new WebSocket("wss://socket.spairum.my.id:3001");
+// const ws = new WebSocket("wss://socket.spairum.my.id:3001");
+const ws = new WebSocket("wss://10.8.0.3:3001");
 ws.addEventListener("open", function open() {
     console.log("Terhubung");
     // console.log("nama anda <?= $akun['nama']; ?>");
@@ -16,18 +17,6 @@ ws.addEventListener('message', function incoming(data) {
     console.log(obj.RSSI);
     console.log(idstaus);
     document.getElementById(idstaus).innerText = obj.RSSI;
-
-    // if (obj.user == "<?= $akun['id_user']; ?>") {
-    //     if (obj.Status == "Megisi") {
-    //         document.getElementById("data").innerText = " Mulai megisi"
-    //         document.getElementById("btn_isi").disabled = true;
-    //     } else if (obj.Status == "Selesai") {
-    //         document.getElementById("data").innerText = " Selesai"
-    //         window.location.href = "https://app.spairum.my.id";
-    //     } else {
-    //         document.getElementById("data").innerText = obj.Status * 10 + "  mL"
-    //     }
-    // }
 
 });
 var timerID = 0;
