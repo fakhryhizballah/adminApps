@@ -289,7 +289,6 @@
                 </div>
             </div>
         </div>
-        <?= $this->renderSection('script'); ?>
 
         <!-- Bootstrap core JavaScript-->
         <script src="/js/jquery-v3.5.1.min.js"></script>
@@ -307,6 +306,7 @@
         <!-- Page level custom scripts -->
         <script src="/js/chart-bar.js"></script>
 
+        <?= $this->renderSection('script'); ?>
         <!-- Untuk AJAX UBAH DATA -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 

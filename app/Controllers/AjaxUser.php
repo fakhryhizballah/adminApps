@@ -62,4 +62,27 @@ class AjaxUser extends Controller
         echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 
     }
+
+    public function userdate()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('user');
+        $builder->select('kredit, debit, otp.created_at');
+        $builder->join('otp', 'otp.id_user = user.id_user');
+        $query = $builder->get()->getResult();
+
+        foreach ($query as $row) {
+            $date = date_create($row->created_at);
+            $datestamp[] = date_format($date, 'd/m/y');
+        };
+        // dd($datestamp);;
+
+        $array = array_map('strtolower', $datestamp);
+        $data  = array_count_values($array);
+        // print_r(array_count_values($array));
+        // dd($data);
+        // return $data;
+        // echo json_encode($data);
+        echo json_encode($array);
+    }
 }

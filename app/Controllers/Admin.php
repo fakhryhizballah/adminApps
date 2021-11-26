@@ -41,7 +41,7 @@ class Admin extends Controller
         $sbeli = $this->TransaksiModel->status('expire');
         $db      = \Config\Database::connect();
         $builder = $db->table('user');
-        $builder->select('kredit, debit');
+        $builder->select('kredit, debit, otp.created_at');
         $builder->join('otp', 'otp.id_user = user.id_user');
         $query = $builder->get()->getResult();
         // dd($query);
@@ -51,13 +51,17 @@ class Admin extends Controller
         foreach ($query as $row) {
             $totDebit[] = $row->debit;
         };
+        // foreach ($query as $row) {
+        //     $date = date_create($row->created_at);
+        //     $datestamp[] = date_format($date, 'd/m/y');
+        // };
+        // // dd($datestamp);;
 
-        // foreach ($takeair as $row) {
-        //     $totKerd[] = $row->kredit;
-        // };
-        // foreach ($takeair as $row) {
-        //     $totDebit[] = $row->debit;
-        // };
+        // $array = array_map('strtolower', $datestamp);
+
+        // print_r(array_count_values($array));
+        // dd(array_count_values($array));
+
         $ambil =  array_sum($totKerd);
 
         if (!empty($sbeli)) {
