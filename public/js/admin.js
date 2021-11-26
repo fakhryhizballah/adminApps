@@ -49,6 +49,7 @@ $(document).ready(function() {
     });
 
     For()
+    getDateUser()
 });
 
 function cekStatus(id_data) {

@@ -4,7 +4,7 @@ function getDateUser() {
             dataType: "json",
             url: "/AjaxUser/userdate",
             success: function(data) {
-                // console.log(data);
+                console.log(data);
                 const arr = data;
 
                 function foo(array) {
@@ -13,7 +13,7 @@ function getDateUser() {
                         arr = [...array], // clone array so we don't change the original when using .sort()
                         prev;
 
-                    arr.sort();
+                    // arr.sort();
                     for (let element of arr) {
                         if (element !== prev) {
                             a.push(element);
@@ -26,7 +26,7 @@ function getDateUser() {
                 }
 
                 const result = foo(arr);
-                // console.log('[' + result[0] + ']', '[' + result[1] + ']')
+                console.log('[' + result[0] + ']', '[' + result[1] + ']')
                 myUserChart.data.datasets[0].data = result[1]
                 myUserChart.data.labels = result[0]
                     // myChart.data.labels = data
@@ -37,7 +37,8 @@ function getDateUser() {
         // console.log(arr)
     console.log("test");
 }
-getDateUser();
+getDateUser()
+
 var ctx = document.getElementById("myUserChart");
 var myUserChart = new Chart(ctx, {
     type: 'line',
@@ -57,6 +58,11 @@ var myUserChart = new Chart(ctx, {
                 beginAtZero: true
             },
         },
-        autoPadding: true
+        // autoPadding: true
     }
 });
+
+// $(document).on('click', '#btn-add', function(e) {
+//     var data = $("#time").serialize();
+//     console.log(data);
+// });
