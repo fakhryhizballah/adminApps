@@ -15,12 +15,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
-=======
-    <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
->>>>>>> 7004128a27a15fb909b56b4acc86f992a620aa5f
 
 
 </head>
