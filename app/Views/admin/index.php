@@ -150,6 +150,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <!-- <form action="process.php" method="POST"> -->
+                    <!-- <form id="user_form">
+                        <div class="form-group">
+                            <label>Cek data dari:</label>
+                            <input type="date" id="time" name="time">
+                            <label>to</label>
+                            <input type="date" id="time2" name="time2">
+                            <button type="button" class="btn btn-success" id="btn-add">
+                                Submit
+                            </button>
+                        </div>
+                    </form> -->
                     <div class="chart-bar">
                         <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas>
                     </div>
