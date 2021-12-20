@@ -140,36 +140,24 @@
     <!-- Content Row -->
 
     <div class="row">
-
         <!-- Area Chart -->
-        <div class="col-xl-12 col-lg-7">
+        <div class="col">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">user Akuisisi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">User Akuisisi</h6>
+                    <h7 class="m-0  text-primary">Oktober 2021 - Now</h7>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <!-- <form action="process.php" method="POST"> -->
-                    <!-- <form id="user_form">
-                        <div class="form-group">
-                            <label>Cek data dari:</label>
-                            <input type="date" id="time" name="time">
-                            <label>to</label>
-                            <input type="date" id="time2" name="time2">
-                            <button type="button" class="btn btn-success" id="btn-add">
-                                Submit
-                            </button>
-                        </div>
-                    </form> -->
-                    <div class="chart-bar">
-                        <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas>
-                    </div>
+                    <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas>
+                    <!-- <div class="chart-bar">
+                    </div> -->
                 </div>
             </div>
         </div>
         <!-- Area Chart -->
-        <div class=" col-xl-12 col-lg-7">
+        <div class=" col">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

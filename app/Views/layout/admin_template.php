@@ -15,7 +15,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
 
 </head>
@@ -307,7 +308,7 @@
         <!-- Untuk AJAX UBAH DATA -->
 
         <!-- CDN data tabel -->
-        <scriptasync type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></scriptasync>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
         <!-- template custom js -->
         <script async src="/js/admin.js"></script>

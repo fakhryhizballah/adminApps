@@ -1,10 +1,37 @@
+$(document).ready(function () {
+    console.log("ready!");
+    getDateUser()
+});
+var ctx = document.getElementById("myUserChart");
+var myUserChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Jumlah user',
+            data: [],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            // tension: 0.1
+        },]
+    },
+    options: {
+        scales: {
+            x: {
+                beginAtZero: true
+            },
+        },
+        // autoPadding: true
+    },
+}
+);
 function getDateUser() {
     $.ajax({
             type: "get",
             dataType: "json",
             url: "/AjaxUser/userdate",
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 const arr = data;
 
                 function foo(array) {
@@ -35,32 +62,11 @@ function getDateUser() {
             }
         })
         // console.log(arr)
-    console.log("test");
 }
-getDateUser()
 
-var ctx = document.getElementById("myUserChart");
-var myUserChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Jumlah user',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            // tension: 0.1
-        }, ]
-    },
-    options: {
-        scales: {
-            x: {
-                beginAtZero: true
-            },
-        },
-        // autoPadding: true
-    }
-});
+
+
+
 
 // $(document).on('click', '#btn-add', function(e) {
 //     var data = $("#time").serialize();
