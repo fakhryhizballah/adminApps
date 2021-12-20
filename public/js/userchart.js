@@ -1,7 +1,5 @@
-$(document).ready(function () {
-    console.log("ready!");
-    getDateUser()
-});
+getDateUser()
+
 var ctx = document.getElementById("myUserChart");
 var myUserChart = new Chart(ctx, {
     type: 'line',
@@ -27,41 +25,42 @@ var myUserChart = new Chart(ctx, {
 );
 function getDateUser() {
     $.ajax({
-            type: "get",
-            dataType: "json",
-            url: "/AjaxUser/userdate",
-            success: function(data) {
-                // console.log(data);
-                const arr = data;
+        type: "get",
+        dataType: "json",
+        url: "/AjaxUser/userdate",
+        success: function (data) {
+            // console.log(data);
+            const arr = data;
 
-                function foo(array) {
-                    let a = [],
-                        b = [],
-                        arr = [...array], // clone array so we don't change the original when using .sort()
-                        prev;
+            function foo(array) {
+                let a = [],
+                    b = [],
+                    arr = [...array], // clone array so we don't change the original when using .sort()
+                    prev;
 
-                    // arr.sort();
-                    for (let element of arr) {
-                        if (element !== prev) {
-                            a.push(element);
-                            b.push(1);
-                        } else ++b[b.length - 1];
-                        prev = element;
-                    }
-
-                    return [a, b];
+                // arr.sort();
+                for (let element of arr) {
+                    if (element !== prev) {
+                        a.push(element);
+                        b.push(1);
+                    } else ++b[b.length - 1];
+                    prev = element;
                 }
 
-                const result = foo(arr);
-                console.log('[' + result[0] + ']', '[' + result[1] + ']')
-                myUserChart.data.datasets[0].data = result[1]
-                myUserChart.data.labels = result[0]
-                    // myChart.data.labels = data
-                    // Update chart
-                    // myUserChart.update();
+                return [a, b];
             }
-        })
-        // console.log(arr)
+
+            const result = foo(arr);
+
+            console.log('[' + result[0] + ']', '[' + result[1] + ']')
+            myUserChart.data.datasets[0].data = result[1]
+            myUserChart.data.labels = result[0]
+            // myChart.data.labels = data
+            // Update chart
+            // myUserChart.update();
+        }
+    })
+    // console.log(arr)
 }
 
 

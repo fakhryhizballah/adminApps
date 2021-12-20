@@ -150,7 +150,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas>
+                    <!-- <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas> -->
+                    <canvas id="myUserChart" style="position: relative; height:40vh; width:80vw"></canvas>
                     <!-- <div class="chart-bar">
                     </div> -->
                 </div>
