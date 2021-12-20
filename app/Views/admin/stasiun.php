@@ -41,13 +41,6 @@
         </tbody>
     </table>
 </div>
-<script>
-    function For() {
-        <?php foreach ($stasiun as $st) : ?>
-            cekStatus('<?= $st['id_mesin']; ?>')
-        <?php endforeach; ?>
-    }
-</script>
 
 <!-- Modal -->
 <div class="modal fade" id="modal-log" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -73,6 +66,24 @@
         </div>
     </div>
 </div>
-<script src="/js/wsoket.js"></script>
+
 <!-- End of Main Content -->
 <?= $this->endSection('admcontent'); ?>
+
+<?= $this->section('script'); ?>
+
+<script async src="/js/wsoket.js"></script>
+<script async src="/js/logStasiun.js"></script>
+
+<script defer>
+    function For() {
+        <?php foreach ($stasiun as $st) : ?>
+            cekStatus('<?= $st['id_mesin']; ?>')
+        <?php endforeach; ?>
+    }
+    $(document).ready(function() {
+        For()
+    });
+</script>
+
+<?= $this->endSection('script'); ?>

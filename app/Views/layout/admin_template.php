@@ -5,19 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Admin Apps Spairum">
+    <meta name="description" content="Management System Spairum">
     <meta name="author" content="Spairum">
 
     <title><?= $title; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
-    
+
     <?= $this->renderSection('css'); ?>
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"> -->
     <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -301,30 +301,31 @@
 
         <!-- Bootstrap core JavaScript-->
         <script src="/js/jquery-v3.5.1.min.js"></script>
-        <script src="/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="/asset/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="/asset/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="/js/chart-bar.js"></script>
-
-        <?= $this->renderSection('script'); ?>
-        <!-- Untuk AJAX UBAH DATA -->
+        <script src="/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
+        <!-- Custom scripts for all pages-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+        <script async src="/js/sb-admin-2.min.js"></script>
+
+        <!-- Page level plugins -->
+        <!-- <script src="/asset/chart.js/Chart.min.js"></script> -->
+
+        <!-- Page level custom scripts -->
+        <!-- <script async src="/js/chart-bar.js"></script> -->
+
+        <!-- Untuk AJAX UBAH DATA -->
+
         <!-- CDN data tabel -->
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
         <!-- template custom js -->
-        <script src="/js/admin.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script async src="/js/admin.js"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <?= $this->renderSection('script'); ?>
 
 
 </body>
