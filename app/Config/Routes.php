@@ -37,6 +37,7 @@ $routes->get('/admdriver', 'Admin::admdriver', ['filter' => 'AuthFilter']);
 $routes->get('/ptcv', 'Admin::ptcv', ['filter' => 'AuthFilter']);
 $routes->get('/admuser', 'Admin::admuser', ['filter' => 'AuthFilter']);
 $routes->get('/admstasiun', 'Admin::admstasiun', ['filter' => 'AuthFilter']);
+$routes->get('/admflush', 'Admin::admflush', ['filter' => 'AuthFilter']);
 $routes->get('/admvoucher', 'Admin::admvoucher', ['filter' => 'AuthFilter']);
 $routes->get('/crtmitra', 'Admin::crtmitra', ['filter' => 'AuthFilter']);
 $routes->get('/crtdriver', 'Admin::crtdriver', ['filter' => 'AuthFilter']);

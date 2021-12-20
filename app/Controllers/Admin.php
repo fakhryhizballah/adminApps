@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use App\Models\UserModel;
 use App\Models\ExploreModel;
 use App\Models\StasiunModel;
+use App\Models\FlushModel;
 use App\Models\DriverModel;
 use App\Models\HistoryModel;
 use App\Models\VoucherModel;
@@ -21,6 +22,7 @@ class Admin extends Controller
         $this->UserModel = new UserModel();
         $this->ExploreModel = new ExploreModel();
         $this->StasiunModel = new StasiunModel();
+        $this->FlushModel = new FlushModel();
         $this->DriverModel = new DriverModel();
         $this->HistoryModel = new HistoryModel();
         $this->VoucherModel = new VoucherModel();
@@ -150,6 +152,25 @@ class Admin extends Controller
             'akun' => $akun
         ];
         return view('admin/stasiun', $data);
+    }
+
+    public function admflush()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $flush = $this->FlushModel;
+        // $all = $this->FlushModel->lastStatus();
+        // $ceks = $this->FlushModel->statusCek("Office");
+        // dd($all);
+        // echo json_encode($query);
+        $data = [
+            'title' => 'Flush',
+            'flush' => $flush->findAll(),
+            'pager' => $flush->pager,
+            // 'flush' => $flush,
+
+            'akun' => $akun
+        ];
+        return view('admin/flush', $data);
     }
 
     public function admvoucher()
