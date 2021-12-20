@@ -73,6 +73,8 @@
 <?= $this->section('script'); ?>
 
 <script async src="/js/wsoket.js"></script>
+<script async src="/js/logStasiun.js"></script>
+
 <script defer>
     function For() {
         <?php foreach ($stasiun as $st) : ?>
