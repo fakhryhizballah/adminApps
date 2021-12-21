@@ -90,6 +90,7 @@ class Admin extends Controller
             'tvlama' => $vlama[0]['nominal'],
             'tbeli' => $tbeli,
             'tambil' => $ambil,
+            'total' => $tkerdit + $tdebit
         ];
         return view('admin/index', $data);
     }
