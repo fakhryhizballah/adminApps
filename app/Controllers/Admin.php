@@ -13,6 +13,8 @@ use App\Models\TransaksiModel;
 use CodeIgniter\I18n\Time;
 use App\Libraries\AuthLibaries;
 use App\Models\OtpModel;
+use App\Models\BotolModel;
+use App\Models\TestModel;
 
 class Admin extends Controller
 {
@@ -27,6 +29,8 @@ class Admin extends Controller
         $this->TransaksiModel = new TransaksiModel();
         $this->AuthLibaries = new AuthLibaries();
         $this->OtpModel = new OtpModel();
+        $this->BotolModel = new BotolModel();
+        $this->TestModel = new TestModel();
     }
     public function index()
     {

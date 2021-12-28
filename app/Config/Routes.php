@@ -42,6 +42,11 @@ $routes->get('/crtmitra', 'Admin::crtmitra', ['filter' => 'AuthFilter']);
 $routes->get('/crtdriver', 'Admin::crtdriver', ['filter' => 'AuthFilter']);
 $routes->get('/crtstasiun', 'Admin::crtstasiun', ['filter' => 'AuthFilter']);
 $routes->get('/crtvoucher', 'Admin::crtvocher', ['filter' => 'AuthFilter']);
+
+$routes->get('/admbotol', 'Botol::admbotol', ['filter' => 'AuthFilter']);
+$routes->delete('/deletebotol/(:num)', 'Botol::deletebotol/$1', ['filter' => 'AuthFilter']);
+$routes->get('/editbotol/(:segment)', 'Botol::editbotol/$1', ['filter' => 'AuthFilter']);
+$routes->post('/updatebotol/(:num)', 'Botol::updatebotol/$1', ['filter' => 'AuthFilter']);
 // $routes->get('/', 'Auth::index');
 // $routes->get('/admin', 'Admin::index');
 // $routes->get('/admdriver', 'Admin::admdriver');
