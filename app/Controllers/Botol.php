@@ -96,11 +96,12 @@ class Botol extends Controller
         }
     }
 
-    public function qrcodeprint()
+    public function qrcodeprint($page)
     {
+
         $data = [
             'title' => 'QR Print',
-            'botol' => $this->BotolModel->paginate(50),
+            'botol' => $this->BotolModel->paginate(35, '', $page),
             'pager' => $this->BotolModel->pager,
             // 'stasiun' => $stasiun,
         ];
