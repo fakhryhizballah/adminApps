@@ -10,13 +10,18 @@
 
     <title><?= $title; ?></title>
 
-    <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <?= $this->renderSection('css'); ?>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
 
 </head>
@@ -76,6 +81,13 @@
                     <i class="fas fa-fw fa-landmark" style="color: black;"></i>
                     <span>Stasiun</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admflush" style="color: black;">
+                    <i class="fas fa-fw fa-faucet" style="color: black;"></i>
+                    <span>Flush</span></a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/admvoucher" style="color: black;">
                     <i class="fas fa-barcode" style="color: black;"></i>
