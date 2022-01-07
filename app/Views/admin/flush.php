@@ -41,7 +41,7 @@
             <?php foreach ($flush as $fl) : ?>
                 <tr>
                     <th scope="row"><?= $i; ?></th>
-                    <td><input type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-style="ios"></td>
+                    <td><input type="checkbox" id="<?= $fl['new_id']; ?>" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-style="ios"></td>
                     <td><?= $fl['new_id']; ?></td>
                     <td><?= $fl['nama']; ?></td>
                     <td><?= $fl['faktor']; ?></td>
@@ -87,5 +87,39 @@
 
 <!-- Untuk button toggle flush -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script>
+    $('input:checkbox').change(function() {
+        $('#console-event').html('Toggle: ' + $(this).prop('checked'));
+        if ($(this).prop('checked')) {
+            console.log("Change event: " + this.id + " ON");
+            $.ajax({
+                type: "post",
+                data: {
+                    id_mesin: this.id,
+                    status: "LOW"
+                },
+                dataType: "json",
+                url: "/ControlS/flush",
+                success: function(data) {
+                    console.log("Ok: " + this.id + " ON");
+                }
+            })
+        } else {
+            console.log("Change event: " + this.id + " OFF");
+            $.ajax({
+                type: "post",
+                data: {
+                    id_mesin: this.id,
+                    status: "HIGH"
+                },
+                dataType: "json",
+                url: "/ControlS/flush",
+                success: function(data) {
+                    console.log("Ok: " + this.id + " OFF");
+                }
+            })
+        }
+    })
+</script>
 
 <?= $this->endSection('script'); ?>

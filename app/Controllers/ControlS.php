@@ -114,4 +114,26 @@ class ControlS extends Controller
         $mqtt->publish("RSSI/$id",  $myJSON);
         $mqtt->disconnect();
     }
+    public function flush()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $admin = $akun['nama'];
+        if ($this->request->isAJAX()) {
+            $server   = 'spairum.my.id';
+            $port     = 1883;
+            $clientId =  $admin;
+            $id = $this->request->getVar();
+            $myJSON = json_encode($id);
+            $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
+                ->setUsername('mqttuntan')
+                ->setPassword('mqttuntan');
+
+            $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
+            $mqtt->connect($connectionSettings, true);
+            $mqtt->publish("cleanUp",  $myJSON);
+            $mqtt->disconnect();
+        } else {
+            exit('404');
+        }
+    }
 }
