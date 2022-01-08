@@ -72,13 +72,24 @@ class Botol extends Controller
 
     public function addidbotol($jumlah)
     {
+        $akun = $this->AuthLibaries->authCek();
+        helper('text');
         $i = 0;
+        $G = 0;
+        $B = 0;
 
         while ($i < $jumlah) {
-            $angkarandom = (rand(1000, 5000));
-            $enkripsi = hash('sha256', $angkarandom);
-            $nilaidepanenkripsi = substr($enkripsi, 2, 10);
-            $upcase = strtoupper($nilaidepanenkripsi);
+            // $angkarandom = (rand(1000, 5000));
+            // $enkripsi = hash('sha256', $angkarandom);
+            // $nilaidepanenkripsi = substr($enkripsi, 2, 10);
+            // $upcase = strtoupper($nilaidepanenkripsi);
+            // $newidbotol = 'SPA' . $upcase;
+
+            $rand = random_string('alnum', 16);
+            $enkripsi = hash('sha256', $rand);
+            $nilaidepanenkripsi = substr($enkripsi, 2, 6);
+            $upcase = strtoupper($nilaidepanenkripsi . substr($enkripsi, 1, 4));
+            // dd($upcase);
             $newidbotol = 'SPA' . $upcase;
             $myTime = date("Y-m-d H:i:s");
             $cekidbotol = $this->BotolModel->cek_botol($newidbotol);
@@ -89,11 +100,16 @@ class Botol extends Controller
                     'created_at' => $myTime,
                 ]);
                 $i++;
-                echo ("Berhasil " . $newidbotol);
+                $B++;
+                // echo ("Berhasil " . $newidbotol);
             } else {
-                echo ("GAGAL " . $newidbotol);
+                $G++;
+                // echo ("GAGAL " . $newidbotol);
             }
         }
+        echo ("Berhasil = " . $B);
+        echo "<br/>";
+        echo ("Gagal = " . $G);
     }
 
     public function qrcodeprint($page)
@@ -101,10 +117,14 @@ class Botol extends Controller
 
         $data = [
             'title' => 'QR Print',
-            'botol' => $this->BotolModel->paginate(35, '', $page),
+            'botol' => $this->BotolModel->paginate(30, '', $page),
             'pager' => $this->BotolModel->pager,
             // 'stasiun' => $stasiun,
         ];
         return view('layout/qr_print', $data);
+    }
+    public function count()
+    {
+        dd($this->BotolModel->findAll());
     }
 }
