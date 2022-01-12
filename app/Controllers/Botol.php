@@ -86,9 +86,10 @@ class Botol extends Controller
             // $newidbotol = 'SPA' . $upcase;
 
             $rand = random_string('alnum', 16);
+            $rand2 = random_string('alnum', 5);
             $enkripsi = hash('sha256', $rand);
             $nilaidepanenkripsi = substr($enkripsi, 2, 6);
-            $upcase = strtoupper($nilaidepanenkripsi . substr($enkripsi, 1, 4));
+            $upcase = strtoupper($nilaidepanenkripsi . substr($rand2, 1, 4));
             // dd($upcase);
             $newidbotol = 'SPA' . $upcase;
             $myTime = date("Y-m-d H:i:s");
@@ -117,7 +118,7 @@ class Botol extends Controller
 
         $data = [
             'title' => 'QR Print',
-            'botol' => $this->BotolModel->paginate(30, '', $page),
+            'botol' => $this->BotolModel->paginate(48, '', $page),
             'pager' => $this->BotolModel->pager,
             // 'stasiun' => $stasiun,
         ];

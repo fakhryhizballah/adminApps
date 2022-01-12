@@ -11,8 +11,8 @@
 <body>
     <div>
         <?php foreach ($botol as $id) : ?>
-            <div style="display: inline-block;  text-align: center; border:2px solid black; border-radius: 5%; margin: 5px 5px 5px">
-                <div style="margin: 5px 5px 5px">
+            <div style="display: inline-block;  text-align: center; border:1px solid black; border-radius: 5%; margin: 5px 5px 5px">
+                <div style="margin: 5px 5px 5px ">
                     <span id="qrcode<?= $id['id_botol']; ?>"></span>
                     <p style="display:inline-block; margin:0 auto 0; font-size:13px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
                         <span>id: </span> <?= $id['id_botol']; ?>
