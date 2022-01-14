@@ -1,5 +1,5 @@
 // const socket = io("http://localhost:3000");
-const socket = io("https://socket.spairum.my.id:3000"{
+const socket = io("https://socket.spairum.my.id:3000", {
     withCredentials: true
 });
 socket.on("connect", () => {
