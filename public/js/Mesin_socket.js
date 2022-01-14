@@ -1,6 +1,9 @@
 // const socket = io("http://localhost:3000");
 const socket = io("https://socket.spairum.my.id:3000", {
-    withCredentials: true
+    withCredentials: true,
+    extraHeaders: {
+        "my-custom-header": "abcd"
+    }
 });
 socket.on("connect", () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
