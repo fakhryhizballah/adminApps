@@ -1,4 +1,5 @@
-const socket = io("http://localhost:3000");
+// const socket = io("http://localhost:3000");
+const socket = io("http://socket.spairum.my.id:3000");
 socket.on("connect", () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     // socket.emit("hello", "world");
