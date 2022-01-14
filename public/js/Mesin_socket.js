@@ -4,9 +4,7 @@ socket.on("connect", () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     // socket.emit("hello", "world");
 });
-socket.on("pesan", (arg) => {
-    console.log(arg); // world
-});
+
 socket.on("Sinyal/mesin", (data) => {
     console.log(data);
     // var vaule = data.Sinyal
