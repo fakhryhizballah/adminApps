@@ -30,7 +30,7 @@
                     <td><?= $st['id_mesin']; ?></td>
                     <td onclick="cekStatus('<?= $st['id_mesin']; ?>')" id="<?= $st['id_mesin']; ?>">Offline</td>
                     <!-- <td><?= $st['status']; ?></td> -->
-                    <td><?= $st['isi']; ?></td>
+                    <td id="isi<?= $st['id_mesin']; ?>"><?= $st['isi']; ?></td>
                     <!-- <td><?= $st['indikator']; ?></td> -->
                     <td><?= $st['ket']; ?></td>
                     <td> <button type="button" class="btn btn-success btn-circle" onclick="cek('<?= $st['id_mesin']; ?>')"><i class="fas fa-history" aria-hidden="true"></i></button></td>
@@ -72,8 +72,10 @@
 
 <?= $this->section('script'); ?>
 
-<script async src="/js/wsoket.js"></script>
+<script async src="/js/Mesin_socket.js"></script>
+<!-- <script async src="/js/wsoket.js"></script> -->
 <script async src="/js/logStasiun.js"></script>
+
 
 <script defer>
     function For() {

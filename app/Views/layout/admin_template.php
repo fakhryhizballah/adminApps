@@ -22,7 +22,7 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"> -->
     <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
 
 </head>
 
@@ -300,7 +300,8 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="/js/jquery-v3.5.1.min.js"></script>
+        <!-- <script src="/js/jquery-v3.5.1.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="/asset/jquery-easing/jquery.easing.min.js"></script>
