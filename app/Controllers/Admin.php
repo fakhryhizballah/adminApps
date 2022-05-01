@@ -33,11 +33,10 @@ class Admin extends Controller
     public function index()
     {
         $akun = $this->AuthLibaries->authCek();
-        // $tuser = $this->UserModel->countAllResults();
+        // dd($akun);
         $tuser = $this->OtpModel->countAllResults();
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
-        // $takeair = $this->UserModel->takeWater();
         $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru', $akun['id_akun']);
         $vlama = $this->VoucherModel->selectSum('nominal')->search('lama', $akun['id_akun']);
         $sbeli = $this->TransaksiModel->status('expire');
@@ -53,16 +52,6 @@ class Admin extends Controller
         foreach ($query as $row) {
             $totDebit[] = $row->debit;
         };
-        // foreach ($query as $row) {
-        //     $date = date_create($row->created_at);
-        //     $datestamp[] = date_format($date, 'd/m/y');
-        // };
-        // // dd($datestamp);;
-
-        // $array = array_map('strtolower', $datestamp);
-
-        // print_r(array_count_values($array));
-        // dd(array_count_values($array));
 
         $ambil =  array_sum($totKerd);
 
@@ -92,7 +81,8 @@ class Admin extends Controller
             'tvlama' => $vlama[0]['nominal'],
             'tbeli' => $tbeli,
             'tambil' => $ambil,
-            'total' => $tkerdit + $tdebit
+            'total' => $tkerdit + $tdebit,
+            'level' => $akun['level'],
         ];
         return view('admin/index', $data);
     }
@@ -104,7 +94,8 @@ class Admin extends Controller
         $data = [
             'title' => 'Driver',
             'akun' => $akun,
-            'driver' => $driver
+            'driver' => $driver,
+            'level' => $akun['level'],
         ];
         return view('admin/driver', $data);
     }
@@ -130,7 +121,8 @@ class Admin extends Controller
             'title' => 'User',
             // 'user' => $user,
             // 'pager' => $UserModel->pager,
-            'akun' => $akun
+            'akun' => $akun,
+            'level' => $akun['level'],
 
         ];
         return view('admin/user', $data);
@@ -149,8 +141,8 @@ class Admin extends Controller
             'stasiun' => $stasiun->findAll(),
             'pager' => $stasiun->pager,
             // 'stasiun' => $stasiun,
-
-            'akun' => $akun
+            'akun' => $akun,
+            'level' => $akun['level'],
         ];
         return view('admin/stasiun', $data);
     }
@@ -168,8 +160,8 @@ class Admin extends Controller
             'flush' => $flush->findAll(),
             'pager' => $flush->pager,
             // 'flush' => $flush,
-
-            'akun' => $akun
+            'akun' => $akun,
+            'level' => $akun['level'],
         ];
         return view('admin/flush', $data);
     }
@@ -184,6 +176,7 @@ class Admin extends Controller
             'title' => 'Voucher',
             'vocher' => $vocher,
             'akun' => $akun,
+            'level' => $akun['level'],
 
         ];
         return view('admin/voucher', $data);
@@ -277,14 +270,12 @@ class Admin extends Controller
             // dd($validation->getError('nominal'));
             return redirect()->to('/crtvoucher')->withInput()->with('validation', $validation);
         }
-        $myTime = new Time('now');
         $nominal = $this->request->getVar('nominal');
         $jumlah = $this->request->getVar('jumlah');
-        $faker = \Faker\Factory::create('id_ID');
         for ($i = 0; $i < $jumlah; $i++) {
             helper('text');
             $token = random_string('numeric', 4);
-            $str = "$faker->city $myTime";
+            $str = uniqid();
             $kvocher = substr(sha1($str, false), 4, 5);
             $data = [
                 'nominal' => $nominal + 0,
@@ -335,6 +326,8 @@ class Admin extends Controller
             'title' => 'Create Stasiun',
             'akun' => $akun,
             'validation' => \Config\Services::validation(),
+            'level' => $akun['level'],
+            
         ];
         return view('admin/crt_vocher', $data);
     }

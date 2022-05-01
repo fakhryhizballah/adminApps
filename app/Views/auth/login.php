@@ -82,7 +82,7 @@
                             </div> -->
                             <hr>
                             <div class="text-right">
-                                <a class="small" href="/lupa">lupa<strong class="text-primary">Password<strong></a>
+                                <a class="small" href="https://air.spairum.my.id/lupa">lupa<strong class="text-primary">Password<strong></a>
                             </div>
                         </div>
                 </div>

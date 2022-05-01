@@ -49,61 +49,64 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black;">
-                    <i class="fas fa-fw fa-handshake" style="color: black;"></i>
-                    <span>Mitra</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" style="color: black;">
-                    <!-- data-parent="#accordionSidebar" -->
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admdriver">
-                            <i class="fas fa-fw fa-user"></i>
-                            <span>Driver</span>
-                        </a>
-                        <a class="collapse-item" href="/ptcv">
-                            <i class="fas fa-fw fa-building"></i>
-                            <span>PT / CV</span>
-                        </a>
+            <?php if ($level == 5) : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black;">
+                        <i class="fas fa-fw fa-handshake" style="color: black;"></i>
+                        <span>Mitra</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" style="color: black;">
+                        <!-- data-parent="#accordionSidebar" -->
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/admdriver">
+                                <i class="fas fa-fw fa-user"></i>
+                                <span>Driver</span>
+                            </a>
+                            <a class="collapse-item" href="/ptcv">
+                                <i class="fas fa-fw fa-building"></i>
+                                <span>PT / CV</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endif; ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="/admuser" style="color: black;">
                     <i class="fas fa-fw fa-user-tie" style="color: black;"></i>
                     <span>User</span></a>
             </li>
+            <?php if ($level >= 3) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admstasiun" style="color: black;">
+                        <i class="fas fa-fw fa-landmark" style="color: black;"></i>
+                        <span>Stasiun</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if ($level >= 4) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admflush" style="color: black;">
+                        <i class="fas fa-fw fa-faucet" style="color: black;"></i>
+                        <span>Flush</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if ($level >= 2) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admvoucher" style="color: black;">
+                        <i class="fas fa-barcode" style="color: black;"></i>
+                        <span>Voucher</span></a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/admstasiun" style="color: black;">
-                    <i class="fas fa-fw fa-landmark" style="color: black;"></i>
-                    <span>Stasiun</span></a>
-            </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/admflush" style="color: black;">
-                    <i class="fas fa-fw fa-faucet" style="color: black;"></i>
-                    <span>Flush</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/admvoucher" style="color: black;">
-                    <i class="fas fa-barcode" style="color: black;"></i>
-                    <span>Voucher</span></a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse" style="color: black;">
-                    <i class="fas fa-fw fa-plus-circle" style="color: black;"></i>
-                    <span>Create</span>
-                </a>
-                <div id="collapse" class="collapse" aria-labelledby="headingTwo" style="color: black;">
-                    <!-- data-parent="#accordionSidebar" -->
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/crtmitra">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse" style="color: black;">
+                        <i class="fas fa-fw fa-plus-circle" style="color: black;"></i>
+                        <span>Create</span>
+                    </a>
+                    <div id="collapse" class="collapse" aria-labelledby="headingTwo" style="color: black;">
+                        <!-- data-parent="#accordionSidebar" -->
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <!-- <a class="collapse-item" href="/crtmitra">
                             <i class="fas fa-fw fa-handshake"></i>
                             <span>Mitra/Supplier</span>
                         </a>
@@ -114,14 +117,15 @@
                         <a class="collapse-item" href="/crtstasiun">
                             <i class="fas fa-fw fa-landmark"></i>
                             <span>Stasiun</span>
-                        </a>
-                        <a class="collapse-item" href="/crtvoucher">
-                            <i class="fas fa-barcode"></i>
-                            <span>Buat vocher</span>
-                        </a>
+                        </a> -->
+                            <a class="collapse-item" href="/crtvoucher">
+                                <i class="fas fa-barcode"></i>
+                                <span>Buat vocher</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endif; ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('auth/logout'); ?>" style="color: black;">
