@@ -11,7 +11,8 @@
     <title><?= $title; ?></title>
 
     <!-- Custom fonts for this template-->
-    <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -229,7 +230,7 @@
                         <li class="nav-item mr-3 mt-2">
                             <div class="icon">
                                 <!-- <i class="fas fa-stethoscope"></i> -->
-                                <img src="/img/spairum logo.png" class="logo" style="width: 140px; height:auto" alt="">
+                                <img src="https://cdn.spairum.my.id/img/spairum.png" class="logo" style="width: 140px; height:auto" alt="logo spairum">
                             </div>
 
                         </li>
