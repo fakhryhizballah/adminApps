@@ -143,6 +143,7 @@ class Admin extends Controller
             // 'stasiun' => $stasiun,
             'akun' => $akun,
             'level' => $akun['level'],
+            'socket' => getenv('soket.url'),
         ];
         return view('admin/stasiun', $data);
     }

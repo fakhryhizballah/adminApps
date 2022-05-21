@@ -66,6 +66,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="socket" value="<?= $socket; ?>">
 
 <!-- End of Main Content -->
 <?= $this->endSection('admcontent'); ?>

@@ -19,7 +19,7 @@ class ControlS extends Controller
     // public function index()
     // {
     //     $server   = 'ws.spairum.my.id';
-    //     $port     = 1883;
+    //     $port     = getenv('mqtt.port');
     //     $clientId = 'test-subscriber';
 
     //     $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
@@ -37,8 +37,8 @@ class ControlS extends Controller
         $akun = $this->AuthLibaries->authCek();
         $admin = $akun['nama'];
         if ($this->request->isAJAX()) {
-            $server   = 'spairum.my.id';
-            $port     = 1883;
+            $server    = getenv('mqtt.server');
+            $port     = getenv('mqtt.port');
             $clientId =  $admin;
             $id = $this->request->getVar('id');
             $data = [
@@ -47,8 +47,8 @@ class ControlS extends Controller
             ];
             $myJSON = json_encode($data);
             $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-                ->setUsername('mqttuntan')
-                ->setPassword('mqttuntan');
+                ->setUsername(getenv('mqtt.username'))
+                ->setPassword(getenv('mqtt.password'));
 
             $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
             $mqtt->connect($connectionSettings, true);
@@ -75,7 +75,7 @@ class ControlS extends Controller
         $query = $builder->orderBy('created_at', 'DESC')->get(15)->getResult();
         echo json_encode($query);
         // $server   = 'ws.spairum.my.id';
-        // $port     = 1883;
+        // $port     = getenv('mqtt.port');
         // $clientId =  $admin;
         // $data = [
         //     'id' => $id,
@@ -97,8 +97,8 @@ class ControlS extends Controller
         $admin = $akun['nama'];
 
         $id = $this->request->getVar('id');
-        $server   = 'spairum.my.id';
-        $port     = 1883;
+        $server    = getenv('mqtt.server');
+        $port     = getenv('mqtt.port');
         $clientId =  $admin;
         $data = [
             'id' => $id,
@@ -106,8 +106,8 @@ class ControlS extends Controller
         ];
         $myJSON = json_encode($data);
         $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-            ->setUsername('mqttuntan')
-            ->setPassword('mqttuntan');
+            ->setUsername(getenv('mqtt.username'))
+            ->setPassword(getenv('mqtt.password'));
 
         $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
         $mqtt->connect($connectionSettings, true);
@@ -119,14 +119,14 @@ class ControlS extends Controller
         $akun = $this->AuthLibaries->authCek();
         $admin = $akun['nama'];
         if ($this->request->isAJAX()) {
-            $server   = 'spairum.my.id';
-            $port     = 1883;
+            $server    = getenv('mqtt.server');
+            $port     = getenv('mqtt.port');
             $clientId =  $admin;
             $id = $this->request->getVar();
             $myJSON = json_encode($id);
             $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-                ->setUsername('mqttuntan')
-                ->setPassword('mqttuntan');
+                ->setUsername(getenv('mqtt.username'))
+                ->setPassword(getenv('mqtt.password'));
 
             $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
             $mqtt->connect($connectionSettings, true);
