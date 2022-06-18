@@ -84,6 +84,13 @@
                         <span>Stasiun</span></a>
                 </li>
             <?php endif; ?>
+            <?php if ($level >= 3) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admlokasi" style="color: black;">
+                        <i class="fas fa-fw fa-map" style="color: black;"></i>
+                        <span>Lokasi</span></a>
+                </li>
+            <?php endif; ?>
             <?php if ($level >= 4) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admflush" style="color: black;">
@@ -114,11 +121,11 @@
                         <a class="collapse-item" href="/crtdriver">
                             <i class="fas fa-fw fa-user"></i>
                             <span>Driver</span>
-                        </a>
-                        <a class="collapse-item" href="/crtstasiun">
-                            <i class="fas fa-fw fa-landmark"></i>
-                            <span>Stasiun</span>
-                        </a> -->
+                        </a>-->
+                            <a class="collapse-item" href="/crtlokasi">
+                                <i class="fas fa-fw fa-location-dot"></i>
+                                <span>Lokasi</span>
+                            </a>
                             <a class="collapse-item" href="/crtvoucher">
                                 <i class="fas fa-barcode"></i>
                                 <span>Buat vocher</span>
