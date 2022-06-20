@@ -21,8 +21,8 @@
                             <div class="form-group">
                                 <select class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="jenis" name="jenis" placeholder="Jenis" value="<?= old('jenis'); ?>">
                                     <option disabled selected value="">Jenis Lokasi...</option>
-                                    <option value="Stasiun">Stasiun</option>
-                                    <option value="Lokasi">Lokasi</option>
+                                    <option value="Tempat Sampah">Tempat Sampah</option>
+                                    <option value="Bank Sampah">Bank Sampah</option>
                                 </select>
                                 <div class="invalid-feedback">
                                 </div>
