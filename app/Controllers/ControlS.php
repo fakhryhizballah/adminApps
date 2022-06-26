@@ -60,10 +60,6 @@ class ControlS extends Controller
     }
     public function log()
     {
-        // if (session()->get('id_akun') == '') {
-        //     session()->setFlashdata('gagal', 'Login dulu');
-        //     return redirect()->to('/');
-        // }
         $akun = $this->AuthLibaries->authCek();
         // $admin = session()->get('nama');
 
@@ -74,22 +70,6 @@ class ControlS extends Controller
         // $builder->join('mesin', 'mesin.id_mesin = log_mesin.id_mesin')->where('lokasi', $id)->orderBy('updated_at', 'DESC');
         $query = $builder->orderBy('created_at', 'DESC')->get(15)->getResult();
         echo json_encode($query);
-        // $server   = 'ws.spairum.my.id';
-        // $port     = getenv('mqtt.port');
-        // $clientId =  $admin;
-        // $data = [
-        //     'id' => $id,
-        //     'akun' => session()->get('id_akun')
-        // ];
-        // $myJSON = json_encode($data);
-        // $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-        //     ->setUsername('spairum')
-        //     ->setPassword('broker');
-
-        // $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
-        // $mqtt->connect($connectionSettings, true);
-        // $mqtt->publish("RSSI/$id",  $myJSON);
-        // $mqtt->disconnect();
     }
     public function rssi()
     {
@@ -102,7 +82,7 @@ class ControlS extends Controller
         $clientId =  $admin;
         $data = [
             'id' => $id,
-            'akun' => session()->get('id_akun')
+            'akun' => $clientId
         ];
         $myJSON = json_encode($data);
         $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
@@ -111,7 +91,7 @@ class ControlS extends Controller
 
         $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
         $mqtt->connect($connectionSettings, true);
-        $mqtt->publish("RSSI/$id",  $myJSON);
+        $mqtt->publish("mesin/status/wifi/$id",  $myJSON);
         $mqtt->disconnect();
     }
     public function flush()
@@ -135,5 +115,29 @@ class ControlS extends Controller
         } else {
             exit('404');
         }
+    }
+    public function postmqtt()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        // dd($akun);
+        if ($this->request->isAJAX()) {
+            $server    = getenv('mqtt.server');
+            $port     = getenv('mqtt.port');
+            $clientId =  $akun['id_user'];
+            $payload = $this->request->getVar('payload');
+            $topic = $this->request->getVar('topic');
+            $myJSON = json_encode($payload);
+            $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
+                ->setUsername(getenv('mqtt.username'))
+                ->setPassword(getenv('mqtt.password'));
+
+            $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
+            $mqtt->connect($connectionSettings, true);
+            $mqtt->publish($topic,  $myJSON);
+            $mqtt->disconnect();
+        } else {
+            exit('404');
+        }
+        
     }
 }
