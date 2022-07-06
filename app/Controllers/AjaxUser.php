@@ -11,6 +11,8 @@ use App\Models\DriverModel;
 use App\Models\HistoryModel;
 use App\Models\VoucherModel;
 use App\Models\TransaksiModel;
+use App\Models\LokasiModel;
+use App\Models\FotoModel;
 use GuzzleHttp\Psr7;
 
 class AjaxUser extends Controller
@@ -25,6 +27,8 @@ class AjaxUser extends Controller
         $this->HistoryModel = new HistoryModel();
         $this->VoucherModel = new VoucherModel();
         $this->TransaksiModel = new TransaksiModel();
+        $this->LokasiModel = new LokasiModel();
+        $this->FotoModel = new FotoModel();
     }
 
     public function GetTotalUser()
@@ -85,5 +89,18 @@ class AjaxUser extends Controller
         // return $data;
         // echo json_encode($data);
         echo json_encode($array);
+    }
+
+    public function detailLokasi()
+    {
+        $id = $this->request->getVar('id');
+        $foto = $this->FotoModel->getDetail($id);
+        $lokasi = $this->LokasiModel->getDetail($id);
+        $data = [
+            'foto' => $foto,
+            'lokasi' => $lokasi
+        ];
+
+        echo json_encode($data);
     }
 }

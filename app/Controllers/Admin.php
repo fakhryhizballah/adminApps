@@ -154,15 +154,14 @@ class Admin extends Controller
     public function admlokasi()
     {
         $akun = $this->AuthLibaries->authCek();
-        $lokasi = $this->LokasiModel;
+        $lokasi = $this->LokasiModel->getLokasi();
         // $all = $this->StasiunModel->lastStatus();
         // $ceks = $this->StasiunModel->statusCek("Office");
         // dd($all);
         // echo json_encode($query);
         $data = [
             'title' => 'Lokasi',
-            'lokasi' => $lokasi->findAll(),
-            'pager' => $lokasi->pager,
+            'lokasi' => $lokasi,
             // 'stasiun' => $stasiun,
             'akun' => $akun,
             'level' => $akun['level'],

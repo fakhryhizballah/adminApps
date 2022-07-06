@@ -18,7 +18,7 @@ class LokasiModel extends Model
         'gmaps',
         'keterangan',
     ];
-    public function getLokasi($id = false)
+    public function getDetail($id = false)
     {
         if ($id === false) {
             return $this->findAll();
@@ -27,6 +27,10 @@ class LokasiModel extends Model
         }
     }
 
+    public function getLokasi()
+    {
+        return $this->select('id_lokasi , nama , keterangan')->get()->getResultArray();
+    }
 
     public function updateLokasi($data, $id)
     {
