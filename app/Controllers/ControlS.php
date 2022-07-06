@@ -118,12 +118,13 @@ class ControlS extends Controller
     }
     public function postmqtt()
     {
-        $akun = $this->AuthLibaries->authCek();
+        // $akun = $this->AuthLibaries->authCek();
         // dd($akun);
         if ($this->request->isAJAX()) {
             $server    = getenv('mqtt.server');
             $port     = getenv('mqtt.port');
-            $clientId =  $akun['id_user'];
+            // $clientId =  $akun['id_user'];
+            $clientId =  rand();
             $payload = $this->request->getVar('payload');
             $topic = $this->request->getVar('topic');
             $myJSON = json_encode($payload);
