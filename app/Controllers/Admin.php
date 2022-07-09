@@ -163,6 +163,7 @@ class Admin extends Controller
             'title' => 'Lokasi',
             'lokasi' => $lokasi,
             // 'stasiun' => $stasiun,
+            'validation' => \Config\Services::validation(),
             'akun' => $akun,
             'level' => $akun['level'],
             'socket' => getenv('soket.url'),
@@ -327,6 +328,62 @@ class Admin extends Controller
         ]);
 
 
+        session()->setFlashdata('Berhasil', 'Lokasi Berhasil Di tambahkan');
+        return redirect()->to('/admlokasi');
+    }
+
+    public function editlokasi()
+    {
+        $akun = $this->AuthLibaries->authCek();
+
+        if (!$this->validate([
+            'nama' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'jenis' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'geo' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'gmaps' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'keterangan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+        ])) {
+            $validation = \config\Services::validation();
+
+            // dd($validation->getError('nominal'));
+            return redirect()->to('/admlokasi')->withInput()->with('validation', $validation);
+        }
+        $id = $this->request->getVar('id_lokasi');
+
+        $data = ([
+            'nama' => $this->request->getVar('nama'),
+            'jenis' => $this->request->getVar('jenis'),
+            'geo' => $this->request->getVar('geo'),
+            'gmaps' => $this->request->getVar('gmaps'),
+            'keterangan' => $this->request->getVar('keterangan'),
+        ]);
+
+        $this->LokasiModel->updateLokasi($data, $id);
         session()->setFlashdata('Berhasil', 'Lokasi Berhasil Di tambahkan');
         return redirect()->to('/admlokasi');
     }

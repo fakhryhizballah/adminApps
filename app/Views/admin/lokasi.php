@@ -69,30 +69,75 @@
                     </a>
                 </div>
 
-                <table class="table table-no-bordered no-margin">
-                    <tbody>
-                        <tr>
-                            <th>Nama Lokasi</th>
-                            <td><span id="nama"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Jenis</th>
-                            <td><span id="jenis"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Geo</th>
-                            <td><span id="geo"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Link Maps</th>
-                            <td><span id="gmaps"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Keterangan</th>
-                            <td><span id="keterangan"></span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="container">
+                    <form class="user" method="POST" action="admin/editlokasi">
+                        <?= csrf_field(); ?>
+                        <br>
+                        <div class="form-group" hidden>
+                            <label for="id_lokasi">ID Lokasi</label>
+                            <input readonly type="text" class="form-control form-control-user  <?= ($validation->hasError('id_lokasi')) ? 'is-invalid' : ''; ?>" id="id_lokasi" name="id_lokasi" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('id_lokasi'); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama Lokasi</label>
+                            <input required type="text" class="form-control form-control-user  <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('nama'); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jenis">Jenis</label>
+                            <input required type="text" class="form-control form-control-user  <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" id="jenis" name="jenis" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('jenis'); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="geo">Geo</label>
+                            <input required type="text" class="form-control form-control-user  <?= ($validation->hasError('geo')) ? 'is-invalid' : ''; ?>" id="geo" name="geo" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('geo'); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gmaps">Link Maps</label>
+                            <input required type="text" class="form-control form-control-user  <?= ($validation->hasError('gmaps')) ? 'is-invalid' : ''; ?>" id="gmaps" name="gmaps" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('gmaps'); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <input required type="text" class="form-control form-control-user  <?= ($validation->hasError('keterangan')) ? 'is-invalid' : ''; ?>" id="keterangan" name="keterangan" autofocus>
+                            <div class="invalid-feedback"></div>
+                            <div><?= $validation->getError('keterangan'); ?></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Update Data
+                        </button>
+                    </form>
+                    <!-- <table class="table table-no-bordered no-margin">
+                        <tbody>
+                            <tr>
+                                <th>Nama Lokasi</th>
+                                <td><input type="text" class="form-control form-control-user" id="nama"></td>
+                            </tr>
+                            <tr>
+                                <th>Jenis</th>
+                                <td><input type="text" class="form-control form-control-user" id="jenis"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Geo</th>
+                                <td><span id="geo"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Link Maps</th>
+                                <td><span id="gmaps"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Keterangan</th>
+                                <td><span id="keterangan"></span></td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
