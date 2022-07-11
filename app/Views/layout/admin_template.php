@@ -13,6 +13,7 @@
     <!-- Custom fonts for this template-->
     <!-- <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->

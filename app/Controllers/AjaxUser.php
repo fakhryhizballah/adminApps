@@ -103,4 +103,131 @@ class AjaxUser extends Controller
 
         echo json_encode($data);
     }
+
+    public function fotomap()
+    {
+        $image = \Config\Services::image();
+        $id = $this->request->getPost();
+        $daad = json_decode($id);
+        $nilai = $daad->id_lokasi;
+        // $id_lokasi = $id[0]->id_lokasi;
+        // $data = [
+        //     'id_lokasi' => $id_lokasi,
+        //     // 'foto'  => $url
+        // ];
+        // $save = $this->fotoModel->save($data);
+
+        $response = [
+            'success' => true,
+            'data' => $nilai,
+            // 'msg' => "Image successfully uploaded"
+            'msg' => 'dfghj'
+
+        ];
+        return $this->response->setJSON($response);
+
+        $validateImage = $this->validate([
+            'file' => [
+                'uploaded[file]',
+                'mime_in[file, image/png, image/jpg,image/jpeg, image/gif]',
+                'max_size[file, 4096]',
+            ],
+
+        ]);
+
+        $response = [
+            'success' => false,
+            'data' => '',
+            'msg' => "Image could not upload"
+        ];
+
+        if ($validateImage) {
+            $imageFile = $this->request->getFile('file');
+
+            // $imageFile->move(WRITEPATH . 'uploads');
+            try {
+                $namafile = $imageFile->getClientName();
+                $mime = $imageFile->getClientMimeType();
+                $imageFile->move(WRITEPATH . '/img/', $namafile);
+                // $image->withFile(WRITEPATH . "/img/$namafile")->save("/img/$namafile");
+                $file = new \CodeIgniter\Files\File(WRITEPATH . "/img/$namafile");
+                $link = $file->getRealPath();
+                $img = new \CURLFILE($link);
+                $img->setMimetype($mime);
+                $img->setPostFilename($namafile);
+
+                $curl = curl_init();
+                $headers = array("Content-Type:multipart/form-data");
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://cdn.spairum.my.id/api/upload/single/',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HEADER => true,
+                    // CURLOPT_SSL_VERIFYPEER => false, // this line makes it work under https
+                    CURLOPT_HTTPHEADER => $headers,
+                    CURLOPT_POSTFIELDS => array('image' => $img),
+                ));
+
+                $response = curl_exec($curl);
+                $status = curl_getinfo($curl);
+                unlink(WRITEPATH . "/img/$namafile");
+
+                if (!curl_errno($curl)) {
+                    $status = curl_getinfo($curl);
+                    if ($status['http_code'] == 200) {
+                        $info = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+                        $body = substr($response, $info);
+                    } else {
+                        // unlink(WRITEPATH ."/img/user/$potoProfil");
+                        // dd($status);
+                        $response = [
+                            'success' => false,
+                            'data' => '',
+                            'msg' => "Sorry Gagal mengupdate foto profil"
+                        ];
+                        return $this->response->setJSON($response);
+                    }
+                } else {
+                    $errmsg = curl_error($curl);
+                    $response = [
+                        'success' => false,
+                        // 'data' => $save,
+                        // 'msg' => "Image successfully uploaded"
+                        'msg' => $errmsg
+                    ];
+                    return $this->response->setJSON($response);
+                    // dd($errmsg);
+                }
+
+                curl_close($curl);
+
+                $url = json_decode($body, true)['data']['url'];
+            } catch (\Exception $e) {
+                $response = [
+                    'success' => false,
+                    // 'data' => $save,
+                    // 'msg' => "Image successfully uploaded"
+                    'msg' => $e
+                ];
+                return $this->response->setJSON($response);
+            }
+            $id_lokasi = $id[0]->id_lokasi;
+            $data = [
+                'id_lokasi' => $id_lokasi,
+                'foto'  => $url
+            ];
+            // $save = $this->fotoModel->save($data);
+            $response = [
+                'success' => true,
+                'data' => $data,
+                // 'msg' => "Image successfully uploaded"
+                'msg' => $url
+
+            ];
+        }
+        return $this->response->setJSON($response);
+    }
 }

@@ -24,6 +24,13 @@
                 <tr>
                     <th scope="row"><?= $i; ?></th>
                     <td>
+                        <!-- <input type="file" name="fotomap" id="fotomap" style="display: none;"> -->
+
+                        <a class="btn btn-success btn-sm btn-circle" onclick="fotomap('<?= $lk['id_lokasi']; ?>')">
+                            <i class="material-symbols-outlined">
+                                add_a_photo
+                            </i>
+                        </a>
                         <a class="btn btn-secondary btn-sm btn-circle" onclick="detail('<?= $lk['id_lokasi']; ?>')">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -40,7 +47,46 @@
     </table>
 </div>
 
-<!-- Modal -->
+<!-- Modal Fotomap -->
+<div class="modal fade" id="fotoModal" tabindex="-1" role="dialog" aria-labelledby="fotoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fotoModalLabel">Upload Foto Map</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <form class="user" id="upload_image_form" method="POST" enctype="multipart/form-data">
+
+                        <input readonly type="hidden" class="form-control form-control-user" id="id_lokasi" name="id_lokasi">
+
+                        <div id="alertMessage" class="alert alert-warning mb-3" style="display: none">
+                            <span id="alertMsg"></span>
+                        </div>
+                        <div class="d-grid text-center">
+                            <img class="mb-3" id="ajaxImgUpload" alt="Preview Image" src="https://via.placeholder.com/300" />
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="file" multiple="true" id="finput" onchange="onFileUpload(this);" class="form-control form-control-lg" accept="image/*">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger uploadBtn">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detail -->
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -113,30 +159,6 @@
                             Update Data
                         </button>
                     </form>
-                    <!-- <table class="table table-no-bordered no-margin">
-                        <tbody>
-                            <tr>
-                                <th>Nama Lokasi</th>
-                                <td><input type="text" class="form-control form-control-user" id="nama"></td>
-                            </tr>
-                            <tr>
-                                <th>Jenis</th>
-                                <td><input type="text" class="form-control form-control-user" id="jenis"></span></td>
-                            </tr>
-                            <tr>
-                                <th>Geo</th>
-                                <td><span id="geo"></span></td>
-                            </tr>
-                            <tr>
-                                <th>Link Maps</th>
-                                <td><span id="gmaps"></span></td>
-                            </tr>
-                            <tr>
-                                <th>Keterangan</th>
-                                <td><span id="keterangan"></span></td>
-                            </tr>
-                        </tbody>
-                    </table> -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -156,9 +178,9 @@
 
 <script async src="/js/Mesin_socket.js"></script>
 <!-- <script async src="/js/wsoket.js"></script> -->
-<script async src="/js/detail.js"></script>
+<script async src="/js/admlokasi.js"></script>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $(document).on('click', '#detail', function() {
             var id_lokasi = $(this).data('id');
@@ -175,6 +197,6 @@
             $('#keterangan').text(keterangan);
         })
     })
-</script>
+</script> -->
 
 <?= $this->endSection('script'); ?>
