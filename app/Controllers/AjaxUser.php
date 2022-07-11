@@ -108,24 +108,8 @@ class AjaxUser extends Controller
     {
         $image = \Config\Services::image();
         $id = $this->request->getPost();
-        $daad = json_decode($id);
-        $nilai = $daad->id_lokasi;
-        // $id_lokasi = $id[0]->id_lokasi;
-        // $data = [
-        //     'id_lokasi' => $id_lokasi,
-        //     // 'foto'  => $url
-        // ];
-        // $save = $this->fotoModel->save($data);
-
-        $response = [
-            'success' => true,
-            'data' => $nilai,
-            // 'msg' => "Image successfully uploaded"
-            'msg' => 'dfghj'
-
-        ];
-        return $this->response->setJSON($response);
-
+        $id_lokasi = $id['id_lokasi'];
+        
         $validateImage = $this->validate([
             'file' => [
                 'uploaded[file]',
@@ -166,7 +150,7 @@ class AjaxUser extends Controller
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_HEADER => true,
-                    // CURLOPT_SSL_VERIFYPEER => false, // this line makes it work under https
+                    CURLOPT_SSL_VERIFYPEER => false, // this line makes it work under https
                     CURLOPT_HTTPHEADER => $headers,
                     CURLOPT_POSTFIELDS => array('image' => $img),
                 ));
@@ -181,8 +165,7 @@ class AjaxUser extends Controller
                         $info = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
                         $body = substr($response, $info);
                     } else {
-                        // unlink(WRITEPATH ."/img/user/$potoProfil");
-                        // dd($status);
+                        
                         $response = [
                             'success' => false,
                             'data' => '',
@@ -194,39 +177,44 @@ class AjaxUser extends Controller
                     $errmsg = curl_error($curl);
                     $response = [
                         'success' => false,
-                        // 'data' => $save,
-                        // 'msg' => "Image successfully uploaded"
                         'msg' => $errmsg
                     ];
                     return $this->response->setJSON($response);
-                    // dd($errmsg);
                 }
 
                 curl_close($curl);
 
                 $url = json_decode($body, true)['data']['url'];
+
+                // $db      = \Config\Database::connect();
+                // $builder = $db->table('fotoMaps');
+                // $builder->set('id_lokasi', $id_lokasi);
+                // $builder->set('foto', $url)->insert();
+                $new = [
+                    "id_lokasi" => $id_lokasi,
+                    "foto" => $url
+
+                ];
+                $this->FotoModel->save($new);
+
             } catch (\Exception $e) {
                 $response = [
                     'success' => false,
-                    // 'data' => $save,
+                    'data' => $e,
                     // 'msg' => "Image successfully uploaded"
-                    'msg' => $e
+                    'msg' => "Exception"
                 ];
                 return $this->response->setJSON($response);
             }
-            $id_lokasi = $id[0]->id_lokasi;
-            $data = [
-                'id_lokasi' => $id_lokasi,
-                'foto'  => $url
-            ];
-            // $save = $this->fotoModel->save($data);
+
             $response = [
                 'success' => true,
-                'data' => $data,
-                // 'msg' => "Image successfully uploaded"
-                'msg' => $url
+                'data' => $url,
+                'datatype' => gettype($url),
+                'msg' => "Image  successfully uploaded"
 
             ];
+        
         }
         return $this->response->setJSON($response);
     }
