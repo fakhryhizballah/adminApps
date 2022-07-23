@@ -83,7 +83,7 @@ class Auth extends BaseController
 			$payload = array(
 				'Key' => $token,
 				'id_user' => $cek['id_akun'],
-				'nama' => $cek['nama']
+				'nama' => $cek['nama'],
 			);
 			$jwt = JWT::encode($payload, $key,);
 

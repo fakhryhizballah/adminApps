@@ -113,17 +113,14 @@ class Admin extends Controller
     public function admuser()
     {
         $akun = $this->AuthLibaries->authCek();
-        // $UserModel = $this->UserModel;
-        // $user = $UserModel->findAll();
 
-        // dd($user);
+
         $data = [
             'title' => 'User',
-            // 'user' => $user,
-            // 'pager' => $UserModel->pager,
+
             'akun' => $akun,
             'level' => $akun['level'],
-
+            
         ];
         return view('admin/user', $data);
     }
@@ -132,10 +129,7 @@ class Admin extends Controller
     {
         $akun = $this->AuthLibaries->authCek();
         $stasiun = $this->StasiunModel;
-        // $all = $this->StasiunModel->lastStatus();
-        // $ceks = $this->StasiunModel->statusCek("Office");
-        // dd($all);
-        // echo json_encode($query);
+
         $data = [
             'title' => 'Stasiun',
             'stasiun' => $stasiun->findAll(),
