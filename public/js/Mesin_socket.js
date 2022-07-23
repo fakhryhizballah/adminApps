@@ -8,7 +8,8 @@
 
 const url = document.getElementById("socket");
 const socket = io(url.value, {
-    withCredentials: true,
+    // withCredentials: true,
+    withCredentials: false,
     extraHeaders: {
         "my-custom-header": "abcd"
     }
@@ -18,28 +19,38 @@ socket.on("connect", () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     // socket.emit("hello", "world");
 });
+// client-side
 
-socket.on("Sinyal/mesin", (data) => {
-    console.log(data);
+
+socket.on("mesin/status", (data) => {
+    // console.log(data);
     // var vaule = data.Sinyal
     var obj = JSON.parse(data)
     // console.log("data", obj.Sinyal);
-    var idstaus = ("data", obj.Sinyal);
-    console.log(obj.RSSI);
-    console.log(idstaus);
+    var idstaus = ("data", obj.clientid);
+    // console.log(obj.RSSI);
+    // console.log(idstaus);
+    document.getElementById("isi" + idstaus).innerText = obj.vaule;
     document.getElementById(idstaus).innerText = obj.RSSI;
 });
-socket.on("mersure/mesin", (data) => {
-    console.log(data);
-    // var vaule = data.Sinyal
-    var obj = JSON.parse(data)
-    var id_mesin = (obj.id_mesin);
-    var id = ("isi".id_mesin);
-    console.log(obj.vaule);
-    console.log("isi" + id_mesin);
-    document.getElementById("isi" + id_mesin).innerText = obj.vaule;
-});
-socket.on("Offline/mesin", (data) => {
+
+socket.on("mesin/status/offline", (data) => {
     console.log(data);
     document.getElementById(data).innerText = 'Recently Offline';
 });
+
+setInterval(intervalFunc, 5000);
+
+function intervalFunc() {
+    console.log('Refresh');
+    $.ajax({
+        type: "POST",
+        data: {
+            topic: "mesin/status/ping",
+            // payload: data
+        },
+        dataType: "json",
+        url: "/ControlS/postmqtt",
+    })
+
+}

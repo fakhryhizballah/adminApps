@@ -72,21 +72,9 @@
 <?= $this->endSection('admcontent'); ?>
 
 <?= $this->section('script'); ?>
-
 <script async src="/js/Mesin_socket.js"></script>
 <!-- <script async src="/js/wsoket.js"></script> -->
 <script async src="/js/logStasiun.js"></script>
 
-
-<script defer>
-    function For() {
-        <?php foreach ($stasiun as $st) : ?>
-            cekStatus('<?= $st['id_mesin']; ?>')
-        <?php endforeach; ?>
-    }
-    $(document).ready(function() {
-        For()
-    });
-</script>
 
 <?= $this->endSection('script'); ?>
