@@ -8,6 +8,7 @@ use App\Models\OtpModel;
 use CodeIgniter\I18n\Time;
 use \Firebase\JWT\JWT;
 use App\Models\TokenModel;
+use App\Libraries\SetStatic;
 
 
 class Auth extends BaseController
@@ -20,6 +21,7 @@ class Auth extends BaseController
 		$this->TokenModel = new TokenModel();
 		$this->Time = new Time('Asia/Jakarta');
 		$this->email = \Config\Services::email();
+		$this->SetStatic = new SetStatic();
 		helper('text');
 		helper('cookie');
 	}
@@ -77,11 +79,11 @@ class Auth extends BaseController
 		if (($cek['password'] == $password)) {
 
 			$token = random_string('alnum', 28);
-			$key = $this->TokenModel->Key()['token'];
+			$key = getenv('tokenkey');
 			$payload = array(
 				'Key' => $token,
 				'id_user' => $cek['id_akun'],
-				'nama' => $cek['nama']
+				'nama' => $cek['nama'],
 			);
 			$jwt = JWT::encode($payload, $key,);
 
@@ -90,15 +92,8 @@ class Auth extends BaseController
 				'token'    => $token,
 				'status' => 'Login'
 			]);
-			$arr_cookie_options = array(
-				'expires' => time() + 60 * 60 * 24 * 30,
-				'path' => '/',
-				'domain' => "", // leading dot for compatibility or use subdomain
-				'secure' => true,     // or false
-				'httponly' => false,    // or false
-				'samesite' => 'None' // None || Lax  || Strict
-			);
-			setCookie("X-Sparum-Token", $jwt, $arr_cookie_options);
+
+			setCookie("X-Sparum-Token", $jwt, SetStatic::cookie_options());
 
 			return redirect()->to('/Admin');
 		} else {
@@ -116,7 +111,7 @@ class Auth extends BaseController
 		session()->setFlashdata('flash', 'Berhasil Logout');
 		session_destroy();
 		$jwt = $_COOKIE['X-Sparum-Token'];
-		$key = $this->TokenModel->Key()['token'];
+		$key = getenv('tokenkey');
 		$decoded = JWT::decode($jwt, $key, array('HS256'));
 		$token = $decoded->Key;
 		$id = $this->TokenModel->cek($token)['id'];
@@ -124,38 +119,13 @@ class Auth extends BaseController
 			'token'    => "Keluar",
 			'status' => 'logout'
 		]);
-		$arr_cookie_options = array(
-			'expires' => time() + 60 * 60 * 24 * 30,
-			'path' => '/',
-			'domain' => "", // leading dot for compatibility or use subdomain
-			'secure' => true,     // or false
-			'httponly' => false,    // or false
-			'samesite' => 'None' // None || Lax  || Strict
-		);
 		session()->setFlashdata('flash', 'Berhasil Logout');
-		setCookie("X-Sparum-Token", "Logout", $arr_cookie_options);
+		setCookie(
+			"X-Sparum-Token",
+			"Logout",
+			SetStatic::cookie_options()
+		);
 		return redirect()->to('/');
 	}
 
-	
-
-	//--------------------------------------------------------------------
-	// public function kirimEmail()
-	// {
-	// 	helper('text');
-	// 	$token = random_string('numeric', 10);
-
-	// 	$this->email->setFrom('support@apps.spairum.com', 'Team Support');
-	// 	$this->email->setTo('fakhryhiz@student.untan.ac.id');
-	// 	$this->email->setSubject('Email OTP Verification');
-	// 	$this->email->setMessage("<h1>Hallo </h1><p>Terimakasih telah mendaftar silahkan  melakukan verifikasi pada tautan dibawah :</p>
-	// 	<a href='https://apps.spairum.com/otp/$token' style='display:block;width:115px;height:25px;background:#4e9caf;padding:10px;text-align:center;border-radius:5px;color:white;font-weight:bold' > Verivikasi</a>
-	// 	<p>Selanjutnya anda dapat melakukan login ke apps.spairum.com sebagai user</p>");
-	// 	$this->email->send();
-	// 	if (!$this->email->send()) {
-	// 		return false;
-	// 	} else {
-	// 		return true;
-	// 	}
-	// }
 }
