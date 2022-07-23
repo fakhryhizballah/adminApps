@@ -7,6 +7,8 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 use App\Models\TokenModel;
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
+use App\Libraries\SetStatic;
 use Exception;
 
 
@@ -15,6 +17,7 @@ class AuthFilter implements FilterInterface
     public function __construct()
     {
         $this->TokenModel = new TokenModel();
+        $this->SetStatic = new SetStatic();
         helper('text');
         helper('cookie');
     }
@@ -25,18 +28,15 @@ class AuthFilter implements FilterInterface
             return redirect()->to('/');
         }
         $jwt = $_COOKIE['X-Sparum-Token'];
-        $key = $this->TokenModel->Key()['token'];
-        // $decoded = JWT::decode($jwt, $key, array('HS256'));
+        $key = getenv('tokenkey');
         try {
-            $decoded = JWT::decode($jwt, $key, array('HS256'));
-            $key = $this->TokenModel->Key()['token'];
-            $decoded = JWT::decode($jwt, $key, array('HS256'));
+            $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
         } catch (Exception $exception) {
+            setCookie("X-Sparum-Token", "Token-Invalid", SetStatic::cookie_options());
             session()->setFlashdata('gagal', 'Login Dulu');
             return redirect()->to('/');
         }
         $token = $decoded->Key;
-        // dd($token);
         if (empty($this->TokenModel->cek($token))) {
             session()->setFlashdata('gagal', 'Anda sudah Logout, Silahkan Masuk lagi');
             return redirect()->to('/');
