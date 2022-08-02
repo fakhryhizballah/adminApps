@@ -19,7 +19,7 @@ class AuthLibaries
     {
         if (empty($_COOKIE['X-Sparum-Token'])) {
             session()->setFlashdata('gagal', 'Anda belum Login');
-            return redirect()->to('/');
+            return;
         }
         $jwt = $_COOKIE['X-Sparum-Token'];
         try {
@@ -29,14 +29,14 @@ class AuthLibaries
             // dd($token);
             if (empty($this->TokenModel->cek($token))) {
                 session()->setFlashdata('gagal', 'Anda sudah Logout, Silahkan Masuk lagi');
-                return redirect()->to('/');
+                return;
             }
             $nama = $decoded->nama;
             $akun = $this->AdminModel->cek_login($nama);
             return $akun;
         } catch (Exception $exception) {
             session()->setFlashdata('gagal', 'Login Dulu');
-            return redirect()->to('/');
+            return;
         }
       
     }

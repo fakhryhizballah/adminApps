@@ -9,6 +9,7 @@ use CodeIgniter\I18n\Time;
 use \Firebase\JWT\JWT;
 use App\Models\TokenModel;
 use App\Libraries\SetStatic;
+use App\Libraries\AuthLibaries;
 
 
 class Auth extends BaseController
@@ -19,6 +20,7 @@ class Auth extends BaseController
 		$this->AdminModel = new AdminModel();
 		$this->OtpModel = new OtpModel();
 		$this->TokenModel = new TokenModel();
+		$this->AuthLibaries = new AuthLibaries();
 		$this->Time = new Time('Asia/Jakarta');
 		$this->email = \Config\Services::email();
 		$this->SetStatic = new SetStatic();
@@ -29,22 +31,17 @@ class Auth extends BaseController
 
 	public function index()
 	{
-		if (empty($_COOKIE['X-Sparum-Token'])) {
+
+		$akun = $this->AuthLibaries->authCek();
+		if ($akun == null) {
 			$data = [
 				'title' => 'Login - Spairum',
-				'validation' => \Config\Services::validation()
+				'validation' => \Config\Services::validation(),
 			];
 			return view('auth/login', $data);
-		} else {
-			if ($_COOKIE['X-Sparum-Token'] == 'Logout') {
-				$data = [
-					'title' => 'Login - Spairum',
-					'validation' => \Config\Services::validation()
-				];
-				return view('auth/login', $data);
-			}
-			return redirect()->to('/admin');
 		}
+		return redirect()->to('/admin');
+		// dd($akun);
 	}
 
 	//--------------------------------------------------------------------
