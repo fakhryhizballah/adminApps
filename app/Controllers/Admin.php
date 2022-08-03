@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use App\Models\UserModel;
 use App\Models\ExploreModel;
 use App\Models\StasiunModel;
+use App\Models\LokasiModel;
 use App\Models\FlushModel;
 use App\Models\DriverModel;
 use App\Models\HistoryModel;
@@ -19,9 +20,11 @@ class Admin extends Controller
 {
     public function __construct()
     {
+        helper('text');
         $this->UserModel = new UserModel();
         $this->ExploreModel = new ExploreModel();
         $this->StasiunModel = new StasiunModel();
+        $this->LokasiModel = new LokasiModel();
         $this->FlushModel = new FlushModel();
         $this->DriverModel = new DriverModel();
         $this->HistoryModel = new HistoryModel();
@@ -142,6 +145,26 @@ class Admin extends Controller
         return view('admin/stasiun', $data);
     }
 
+    public function admlokasi()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $lokasi = $this->LokasiModel->getLokasi();
+        // $all = $this->StasiunModel->lastStatus();
+        // $ceks = $this->StasiunModel->statusCek("Office");
+        // dd($all);
+        // echo json_encode($query);
+        $data = [
+            'title' => 'Lokasi',
+            'lokasi' => $lokasi,
+            // 'stasiun' => $stasiun,
+            'validation' => \Config\Services::validation(),
+            'akun' => $akun,
+            'level' => $akun['level'],
+            'socket' => getenv('soket.url'),
+        ];
+        return view('admin/lokasi', $data);
+    }
+
     public function admflush()
     {
         $akun = $this->AuthLibaries->authCek();
@@ -241,6 +264,124 @@ class Admin extends Controller
         return redirect()->to('/admstasiun');
     }
 
+    public function addlokasi()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        if (!$this->validate([
+            'nama' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'jenis' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'geo' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'gmaps' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'keterangan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+        ])) {
+            $validation = \config\Services::validation();
+
+            // dd($validation->getError('nominal'));
+            return redirect()->to('/crtlokasi')->withInput()->with('validation', $validation);
+        }
+        // $rdm = random_string('alnum', 16);
+        $rdm = random_string('alnum', 16);
+        $id_lokasi = $this->LokasiModel->where('id_lokasi', $rdm)->get()->getRowArray();
+        while ($id_lokasi != null) {
+            $rdm = random_string('alnum', 16);
+            $id_lokasi = $this->LokasiModel->where('id_lokasi', $rdm)->get()->getRowArray();
+        }
+
+        $this->LokasiModel->save([
+            'id_lokasi' => $rdm,
+            'nama' => $this->request->getVar('nama'),
+            'jenis' => $this->request->getVar('jenis'),
+            'geo' => $this->request->getVar('geo'),
+            'gmaps' => $this->request->getVar('gmaps'),
+            'keterangan' => $this->request->getVar('keterangan'),
+        ]);
+
+
+        session()->setFlashdata('Berhasil', 'Lokasi Berhasil Di tambahkan');
+        return redirect()->to('/admlokasi');
+    }
+
+    public function editlokasi()
+    {
+        $akun = $this->AuthLibaries->authCek();
+
+        if (!$this->validate([
+            'nama' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'jenis' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'geo' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'gmaps' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+            'keterangan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajid di isi',
+                ]
+            ],
+        ])) {
+            $validation = \config\Services::validation();
+
+            // dd($validation->getError('nominal'));
+            return redirect()->to('/admlokasi')->withInput()->with('validation', $validation);
+        }
+        $id = $this->request->getVar('id_lokasi');
+
+        $data = ([
+            'nama' => $this->request->getVar('nama'),
+            'jenis' => $this->request->getVar('jenis'),
+            'geo' => $this->request->getVar('geo'),
+            'gmaps' => $this->request->getVar('gmaps'),
+            'keterangan' => $this->request->getVar('keterangan'),
+        ]);
+
+        $this->LokasiModel->updateLokasi($data, $id);
+        session()->setFlashdata('Berhasil', 'Lokasi Berhasil Di tambahkan');
+        return redirect()->to('/admlokasi');
+    }
+
     public function addvocher()
     {
         $akun = $this->AuthLibaries->authCek();
@@ -310,9 +451,20 @@ class Admin extends Controller
         $data = [
             'title' => 'Create Stasiun',
             'akun' => $akun,
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
         ];
         return view('admin/crt_stasiun', $data);
+    }
+    public function crtlokasi()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $data = [
+            'title' => 'Create Lokasi',
+            'akun' => $akun,
+            'validation' => \Config\Services::validation(),
+            'level' => $akun['level'],
+        ];
+        return view('admin/crt_lokasi', $data);
     }
     public function crtvocher()
     {
@@ -322,7 +474,7 @@ class Admin extends Controller
             'akun' => $akun,
             'validation' => \Config\Services::validation(),
             'level' => $akun['level'],
-            
+
         ];
         return view('admin/crt_vocher', $data);
     }

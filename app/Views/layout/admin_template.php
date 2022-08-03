@@ -13,6 +13,7 @@
     <!-- Custom fonts for this template-->
     <!-- <link href="/asset/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -84,6 +85,13 @@
                         <span>Stasiun</span></a>
                 </li>
             <?php endif; ?>
+            <?php if ($level >= 3) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admlokasi" style="color: black;">
+                        <i class="fas fa-fw fa-map" style="color: black;"></i>
+                        <span>Lokasi</span></a>
+                </li>
+            <?php endif; ?>
             <?php if ($level >= 4) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admflush" style="color: black;">
@@ -114,11 +122,11 @@
                         <a class="collapse-item" href="/crtdriver">
                             <i class="fas fa-fw fa-user"></i>
                             <span>Driver</span>
-                        </a>
-                        <a class="collapse-item" href="/crtstasiun">
-                            <i class="fas fa-fw fa-landmark"></i>
-                            <span>Stasiun</span>
-                        </a> -->
+                        </a>-->
+                            <a class="collapse-item" href="/crtlokasi">
+                                <i class="fas fa-fw fa-location-dot"></i>
+                                <span>Lokasi</span>
+                            </a>
                             <a class="collapse-item" href="/crtvoucher">
                                 <i class="fas fa-barcode"></i>
                                 <span>Buat vocher</span>
