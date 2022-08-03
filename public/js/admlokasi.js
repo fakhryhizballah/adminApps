@@ -86,7 +86,7 @@ $("#upload_image_form").on("submit", function (e) {
   // $(".uploadBtn").prop("Disabled");
   $(".uploadBtn").prop('disabled', true);
   e.preventDefault();
-  // console.log("fotomap klik " + Math.floor(Math.random() * 10));
+  console.log("fotomap  " + Math.floor(Math.random() * 10));
   $.ajax({
     method: "POST",
     data: new FormData(this),
