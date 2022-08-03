@@ -180,23 +180,4 @@
 <!-- <script async src="/js/wsoket.js"></script> -->
 <script async src="/js/admlokasi.js"></script>
 
-<!-- <script>
-    $(document).ready(function() {
-        $(document).on('click', '#detail', function() {
-            var id_lokasi = $(this).data('id');
-            var nama = $(this).data('nama');
-            var jenis = $(this).data('jenis');
-            var geo = $(this).data('geo');
-            var gmaps = $(this).data('gmaps');
-            var keterangan = $(this).data('keterangan');
-            $('#id_lokasi').text(id_lokasi);
-            $('#nama').text(nama);
-            $('#jenis').text(jenis);
-            $('#geo').text(geo);
-            $('#gmaps').text(gmaps);
-            $('#keterangan').text(keterangan);
-        })
-    })
-</script> -->
-
 <?= $this->endSection('script'); ?>
