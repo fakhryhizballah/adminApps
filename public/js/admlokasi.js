@@ -74,38 +74,44 @@ function fotomap(id) {
   });
 
   document.getElementById("id_lokasi").value = id;
-  $(document).ready(function () {
-    $("#upload_image_form").on("submit", function (e) {
-      $(".uploadBtn").html("Uploading ...");
-      $(".uploadBtn").prop("Disabled");
-      e.preventDefault();
-      if ($("#file").val() == "") {
-        alert("Choose File");
-        $(".uploadBtn").html("Upload");
-        $(".uploadBtn").prop("enabled");
-        document.getElementById("upload_image_form").reset();
-      } else {
-        $.ajax({
-          method: "POST",
-          data: new FormData(this),
-          processData: false,
-          contentType: false,
-          cache: false,
-          dataType: "json",
-          url: "/AjaxUser/fotomap/",
-          success: function (res) {
-            console.log(res);
-            if (res.success == true) {
-              $("#ajaxImgUpload").attr(
-                "src",
-                "https://via.placeholder.com/300"
-              );
-              $("#alertMsg").html(res.msg);
-              $("#alertMessage").show();
-            } else if (res.success == false) {
-              $("#alertMsg").html(res.msg);
-              $("#alertMessage").show();
-            }
+  $("#upload_image_form").on("submit", function (e) {
+    $(".uploadBtn").html("Uploading ...");
+    $(".uploadBtn").prop("Disabled");
+    e.preventDefault();
+    if ($("#file").val() == "") {
+      alert("Choose File");
+      $(".uploadBtn").html("Upload");
+      $(".uploadBtn").prop("enabled");
+      document.getElementById("upload_image_form").reset();
+    } else {
+      $.ajax({
+        method: "POST",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        cache: false,
+        dataType: "json",
+        url: "/AjaxUser/fotomap/",
+        success: function (res) {
+          console.log(res);
+          if (res.success == true) {
+            $("#ajaxImgUpload").attr(
+              "src",
+              "https://via.placeholder.com/300"
+            );
+            $("#alertMsg").html(res.msg);
+            $("#alertMessage").show();
+            document.getElementById("upload_image_form").reset();
+            setTimeout(function () {
+              $("#alertMsg").html("");
+              $("#alertMessage").hide();
+            }, 4000);
+            $(".uploadBtn").html("Upload");
+            $(".uploadBtn").prop("Enabled");
+            return;
+          } else if (res.success == false) {
+            $("#alertMsg").html(res.msg);
+            $("#alertMessage").show();
             setTimeout(function () {
               $("#alertMsg").html("");
               $("#alertMessage").hide();
@@ -113,9 +119,10 @@ function fotomap(id) {
             $(".uploadBtn").html("Upload");
             $(".uploadBtn").prop("Enabled");
             document.getElementById("upload_image_form").reset();
-          },
-        });
-      }
-    });
+            return;
+          }
+        },
+      });
+    }
   });
 }

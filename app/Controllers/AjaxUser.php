@@ -119,21 +119,17 @@ class AjaxUser extends Controller
 
         ]);
 
-        $response = [
-            'success' => false,
-            'data' => '',
-            'msg' => "Image could not upload"
-        ];
 
         if ($validateImage) {
             $imageFile = $this->request->getFile('file');
 
             // $imageFile->move(WRITEPATH . 'uploads');
             try {
+                $db      = \Config\Database::connect();
+                $db->transStart();
                 $namafile = $imageFile->getClientName();
                 $mime = $imageFile->getClientMimeType();
                 $imageFile->move(WRITEPATH . '/img/', $namafile);
-                // $image->withFile(WRITEPATH . "/img/$namafile")->save("/img/$namafile");
                 $file = new \CodeIgniter\Files\File(WRITEPATH . "/img/$namafile");
                 $link = $file->getRealPath();
                 $img = new \CURLFILE($link);
@@ -168,8 +164,8 @@ class AjaxUser extends Controller
                         
                         $response = [
                             'success' => false,
-                            'data' => '',
-                            'msg' => "Sorry Gagal mengupdate foto profil"
+                            'data' => $status['http_code'],
+                            'msg' => "Sorry Gagal - File terlalu besar"
                         ];
                         return $this->response->setJSON($response);
                     }
@@ -186,22 +182,18 @@ class AjaxUser extends Controller
 
                 $url = json_decode($body, true)['data']['url'];
 
-                // $db      = \Config\Database::connect();
-                // $builder = $db->table('fotoMaps');
-                // $builder->set('id_lokasi', $id_lokasi);
-                // $builder->set('foto', $url)->insert();
                 $new = [
                     "id_lokasi" => $id_lokasi,
                     "foto" => $url
 
                 ];
                 $this->FotoModel->save($new);
+                $db->transComplete();
 
             } catch (\Exception $e) {
                 $response = [
                     'success' => false,
                     'data' => $e,
-                    // 'msg' => "Image successfully uploaded"
                     'msg' => "Exception"
                 ];
                 return $this->response->setJSON($response);
@@ -214,7 +206,13 @@ class AjaxUser extends Controller
                 'msg' => "Image  successfully uploaded"
 
             ];
-        
+        } else {
+            $response = [
+                'success' => false,
+                'data' => $validateImage,
+                'msg' => "Image could not upload"
+            ];
+            return $this->response->setJSON($response);
         }
         return $this->response->setJSON($response);
     }
