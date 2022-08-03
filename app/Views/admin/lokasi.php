@@ -26,7 +26,7 @@
                     <td>
                         <!-- <input type="file" name="fotomap" id="fotomap" style="display: none;"> -->
 
-                        <a class="btn btn-success btn-sm btn-circle" onclick="fotomap('<?= $lk['id_lokasi']; ?>')">
+                        <a class="btn btn-success btn-sm btn-circle" onclick="fotomap('<?= $lk['id_lokasi']; ?>','<?= $lk['nama']; ?> ')">
                             <i class="material-symbols-outlined">
                                 add_a_photo
                             </i>
