@@ -314,6 +314,7 @@ class Admin extends Controller
 
         $this->LokasiModel->save([
             'id_lokasi' => $rdm,
+            'id_user' => $akun['id_akun'],
             'nama' => $this->request->getVar('nama'),
             'jenis' => $this->request->getVar('jenis'),
             'geo' => $this->request->getVar('geo'),

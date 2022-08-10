@@ -11,6 +11,7 @@ class LokasiModel extends Model
     protected $useTimestamps    = true;
     protected $allowedFields    = [
         'id_lokasi',
+        'id_user',
         'id_stasiun',
         'nama',
         'jenis',
