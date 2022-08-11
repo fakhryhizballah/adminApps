@@ -123,7 +123,7 @@ class Admin extends Controller
 
             'akun' => $akun,
             'level' => $akun['level'],
-            
+
         ];
         return view('admin/user', $data);
     }
@@ -149,10 +149,6 @@ class Admin extends Controller
     {
         $akun = $this->AuthLibaries->authCek();
         $lokasi = $this->LokasiModel->getLokasi();
-        // $all = $this->StasiunModel->lastStatus();
-        // $ceks = $this->StasiunModel->statusCek("Office");
-        // dd($all);
-        // echo json_encode($query);
         $data = [
             'title' => 'Lokasi',
             'lokasi' => $lokasi,
@@ -313,6 +309,7 @@ class Admin extends Controller
         }
 
         $this->LokasiModel->save([
+            'id_user' => $this->request->getVar('id_user'),
             'id_lokasi' => $rdm,
             'nama' => $this->request->getVar('nama'),
             'jenis' => $this->request->getVar('jenis'),

@@ -13,6 +13,9 @@
                         </div>
                         <form class="user" method="POST" action="admin/addlokasi">
                             <?= csrf_field(); ?>
+
+                            <input type="hidden" class="form-control form-control-user" id="id_user" name="id_user" value="<?= $akun['id_akun']; ?>">
+
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user  <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" placeholder="Nama Lokasi" autofocus value="<?= old('nama'); ?>">
                                 <div class="invalid-feedback"></div>

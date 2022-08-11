@@ -60,22 +60,23 @@ function onFileUpload(input, id) {
       $(id).attr("src", e.target.result).width(300);
     };
     reader.readAsDataURL(input.files[0]);
-    $(".uploadBtn").prop('disabled', false);
+    $(".uploadBtn").prop("disabled", false);
   }
 }
 
 function fotomap(id, nama) {
   $("#fotoModal").modal("show");
-  $(".uploadBtn").prop('disabled', true);
+  $(".uploadBtn").prop("disabled", true);
   document.getElementById("id_lokasi").value = id;
-  document.getElementById("fotoModalLabel").innerHTML = "Upload Foto Maps : " + nama;
+  document.getElementById("fotoModalLabel").innerHTML =
+    "Upload Foto Maps : " + nama;
   $("#fotoModal").on("hidden.bs.modal", function () {
     console.log("close Modal");
     $("#ajaxImgUpload").attr("src", "https://via.placeholder.com/300");
     document.getElementById("finput").value = null;
     $(".uploadBtn").html("Upload");
     // $(".uploadBtn").prop("enabled");
-    $(".uploadBtn").prop('disabled', true);
+    $(".uploadBtn").prop("disabled", true);
     document.getElementById("upload_image_form").reset();
     document.getElementById("id_lokasi").value = null;
     return;
@@ -84,7 +85,7 @@ function fotomap(id, nama) {
 $("#upload_image_form").on("submit", function (e) {
   $(".uploadBtn").html("Uploading ...");
   // $(".uploadBtn").prop("Disabled");
-  $(".uploadBtn").prop('disabled', true);
+  $(".uploadBtn").prop("disabled", true);
   e.preventDefault();
   console.log("fotomap  " + Math.floor(Math.random() * 10));
   $.ajax({
@@ -98,10 +99,7 @@ $("#upload_image_form").on("submit", function (e) {
     success: function (res) {
       console.log(res);
       if (res.success == true) {
-        $("#ajaxImgUpload").attr(
-          "src",
-          "https://via.placeholder.com/300"
-        );
+        $("#ajaxImgUpload").attr("src", "https://via.placeholder.com/300");
         $("#alertMsg").html(res.msg);
         $("#alertMessage").show();
         document.getElementById("upload_image_form").reset();
@@ -127,4 +125,3 @@ $("#upload_image_form").on("submit", function (e) {
     },
   });
 });
-

@@ -10,6 +10,7 @@ class LokasiModel extends Model
     protected $table            = 'map';
     protected $useTimestamps    = true;
     protected $allowedFields    = [
+        'id_user',
         'id_lokasi',
         'id_stasiun',
         'nama',
