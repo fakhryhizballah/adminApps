@@ -147,7 +147,7 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">User Akuisisi</h6>
-                    <h7 class="m-0  text-primary">Oktober 2021 - Now</h7>
+                    <h7 class="m-0  text-primary">November 2021 - Now</h7>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
