@@ -176,8 +176,6 @@
 
 <?= $this->section('script'); ?>
 
-<script async src="/js/Mesin_socket.js"></script>
-<!-- <script async src="/js/wsoket.js"></script> -->
 <script async src="/js/admlokasi.js"></script>
 
 <?= $this->endSection('script'); ?>
