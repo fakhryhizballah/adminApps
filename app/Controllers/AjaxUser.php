@@ -73,7 +73,7 @@ class AjaxUser extends Controller
         $builder = $db->table('user');
         $builder->select('kredit, debit, otp.created_at');
         $builder->join('otp', 'otp.id_user = user.id_user');
-        $builder->where('otp.created_at >', date('2021-10-01 10:28:35'));
+        $builder->where('otp.created_at >', date('2021-11-01'));
         $query = $builder->get()->getResult();
 
         foreach ($query as $row) {
