@@ -18,6 +18,7 @@
                 <!-- <th scope="col">Indikator</th> -->
                 <th scope="col">Keterangan</th>
                 <th scope="col">LOG</th>
+                <th scope="col">Log Refill</th>
                 <th scope="col">Buka stasiun</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                     <!-- <td><?= $st['indikator']; ?></td> -->
                     <td><?= $st['ket']; ?></td>
                     <td> <button type="button" class="btn btn-success btn-circle" onclick="cek('<?= $st['id_mesin']; ?>')"><i class="fas fa-history" aria-hidden="true"></i></button></td>
+                    <td> <button type="button" class="btn btn-info btn-circle" onclick="refill('<?= $st['id_mesin']; ?>')"><i class="fas fa-tint" aria-hidden="true"></i></button></td>
                     <td> <button type="button" class="btn btn-danger btn-circle" onclick="pos('<?= $st['id_mesin']; ?>')"><i class="fas fa-recycle"></i></button></td>
                 </tr>
                 <?php $i++;  ?>
@@ -66,6 +68,82 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Refill -->
+<div class="modal fade" id="modal-refill" tabindex="-1" role="dialog" aria-labelledby="refillModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="refillModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="toast align-items-center text-white bg-info border-0" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Berhasi menyimpan log refill
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="container mt-5">
+                    <form class="user" id="upload_image_form" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tgl" class="form-label">Tanggal Refill</label>
+                                    <input type="text" name="tgl" id="tgl" class="form-control form-control-user" placeholder="Tanggal Refill" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="harga" class="form-label">Harga</label>
+                                    <input type="text" name="harga" id="harga" class="form-control form-control-user" placeholder="Harga" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="merek" class="form-label">Merek</label>
+                                    <input type="text" name="merek" id="merek" class="form-control form-control-user" placeholder="Merek" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="volume" class="form-label">Volume</label>
+                                    <input type="text" name="volume" id="volume" class="form-control form-control-user" placeholder="Volume" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="terpakai" class="form-label">Terpakai</label>
+                            <input type="text" name="terpakai" id="terpakai" class="form-control form-control-user" placeholder="Terpakai" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-user btn-block uploadBtn">Tambah</button>
+                        </div>
+
+                    </form>
+                </div>
+                <br>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p id="log-refill"></p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
 <input type="hidden" id="socket" value="<?= $socket; ?>">
 
 <!-- End of Main Content -->

@@ -71,6 +71,19 @@ class ControlS extends Controller
         $query = $builder->orderBy('created_at', 'DESC')->get(15)->getResult();
         echo json_encode($query);
     }
+    public function refill()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        // $admin = session()->get('nama');
+
+        $id = $this->request->getVar('id');
+        $db      = \Config\Database::connect();
+        $builder = $db->table('refill');
+        $builder->select('*')->where('id_mesin', $id);
+        // $builder->join('mesin', 'mesin.id_mesin = log_mesin.id_mesin')->where('lokasi', $id)->orderBy('updated_at', 'DESC');
+        $query = $builder->orderBy('created_at', 'terpakai', 'volume')->get(15)->getResult();
+        echo json_encode($query);
+    }
     public function rssi()
     {
         $akun = $this->AuthLibaries->authCek();
@@ -139,6 +152,5 @@ class ControlS extends Controller
         } else {
             exit('404');
         }
-        
     }
 }
