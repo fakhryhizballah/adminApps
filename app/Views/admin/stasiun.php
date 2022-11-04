@@ -80,27 +80,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="toast align-items-center text-white bg-info border-0" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            Berhasi menyimpan log refill
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>
                 <div class="container mt-5">
-                    <form class="user" id="upload_image_form" method="POST" enctype="multipart/form-data">
+                    <form class="user" id="refill_form" action="" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col">
+                                <input type="hidden" name="id" id="id">
                                 <div class="form-group">
                                     <label for="tgl" class="form-label">Tanggal Refill</label>
-                                    <input type="text" name="tgl" id="tgl" class="form-control form-control-user" placeholder="Tanggal Refill" required>
+                                    <input type="datetime-local" name="tgl" id="tgl" class="form-control form-control-user" placeholder="Tanggal Refill" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="harga" class="form-label">Harga</label>
-                                    <input type="text" name="harga" id="harga" class="form-control form-control-user" placeholder="Harga" required>
+                                    <input type="number" name="harga" id="harga" class="form-control form-control-user" placeholder="Harga" required>
                                 </div>
                             </div>
                         </div>
@@ -113,19 +106,18 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="volume" class="form-label">Volume</label>
-                                    <input type="text" name="volume" id="volume" class="form-control form-control-user" placeholder="Volume" required>
+                                    <label for="volume" class="form-label">Volume(mL)</label>
+                                    <input type="number" name="volume" id="volume" class="form-control form-control-user" placeholder="Volume" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="terpakai" class="form-label">Terpakai</label>
-                            <input type="text" name="terpakai" id="terpakai" class="form-control form-control-user" placeholder="Terpakai" required>
+                            <label for="terpakai" class="form-label">Terpakai(mL)</label>
+                            <input type="text" name="terpakai" id="terpakai" class="form-control form-control-user" placeholder="Terpakai">
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-user btn-block uploadBtn">Tambah</button>
                         </div>
-
                     </form>
                 </div>
                 <br>

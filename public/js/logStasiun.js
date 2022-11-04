@@ -46,6 +46,13 @@ function cek(id) {
 }
 
 function refill(id) {
+  $(".modal-title").text("Refill " + id);
+  $("#id").val(id)
+  $("#modal-refill").modal("show");
+  refilLog(id);
+}
+function refilLog(id) {
+  $("#refill_form")[0].reset();
   $.ajax({
     type: "post",
     data: {
@@ -56,32 +63,69 @@ function refill(id) {
       // console.log(data[0]['id']);
       console.log(data);
       // document.getElementById("data").innerHTML = data[0]['id'];
-      let code = "";
+      try {
+        let code = "";
       data.forEach(myFunction);
 
       document.getElementById("log-refill").innerHTML = code;
 
       function myFunction(item, index) {
         code +=
-          " Refill tanggal " +
+          " Merek air : " +
+          item["merek"] +
+          "<br>" +
+          "di refill pada " +
           item["tgl"] +
           " dengan volume " +
           item["volume"] +
-          " terpakai " +
-          item["terpakai"] +
-          " pada " +
-          " : " +
+        "mL " +
+        "<br>" +
           item["created_at"] +
           "<br>" +
           "<hr>";
       }
-      $(".modal-title").text("Refill " + data[0].id_mesin);
-      $("#modal-refill").modal("show");
+      } catch (error) {
+        console.log('error');
+      }
     },
     url: "/ControlS/refill/",
   });
-}
 
+}
+$("#refill_form").submit(function (e) {
+
+  e.preventDefault();
+  $.ajax({
+    url: "/ControlS/refillLog",
+    type: "POST",
+    data: $("#refill_form").serialize(),
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      if (response.error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        })
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        refilLog($("#id").val());
+        // $("#modal-refill").modal("hide");
+      }
+    },
+    error: function () {
+      alert("Form submission failed!");
+    }
+  });
+  $("#refill_form")[0].reset();
+});
 function pos(id) {
   $.ajax({
     type: "post",

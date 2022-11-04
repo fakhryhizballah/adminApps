@@ -6,8 +6,6 @@ use CodeIgniter\Controller;
 // use PhpMqtt\Client\Facades\MQTT;
 use \PhpMqtt\Client\MqttClient;
 use App\Libraries\AuthLibaries;
-
-
 class ControlS extends Controller
 {
     public function __construct()
@@ -81,8 +79,55 @@ class ControlS extends Controller
         $builder = $db->table('refill');
         $builder->select('*')->where('id_mesin', $id);
         // $builder->join('mesin', 'mesin.id_mesin = log_mesin.id_mesin')->where('lokasi', $id)->orderBy('updated_at', 'DESC');
-        $query = $builder->orderBy('created_at', 'terpakai', 'volume')->get(15)->getResult();
+        $query = $builder->orderBy('created_at DESC')->get(5)->getResult();
         echo json_encode($query);
+    }
+    public function refillLog()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        if ($this->request->isAJAX()) {
+            // get time now
+            $time = date("Y-m-d H:i:s");;
+
+
+            try {
+                $payload = $this->request->getVar();
+                $db      = \Config\Database::connect();
+                $builder = $db->table('refill');
+                $builder->insert(
+                    [
+                        'id_mesin' => $payload['id'],
+                        'volume' => $payload['volume'],
+                        'terpakai' => $payload['terpakai'],
+                        'tgl' => $payload['tgl'],
+                        'harga' => $payload['harga'],
+                        'merek' => $payload['merek'],
+                        'created_at' => $time,
+                        'updated_at' => $time,
+                    ]
+                );
+
+                $data = [
+                    'error' => false,
+                    'data' => $time,
+                    'message' => "Berhasil"
+                ];
+                return json_encode($data);
+            } catch (\Throwable $th) {
+
+                $data = [
+                    'error' => true,
+                    'message' => $th->getMessage(),
+                ];
+                return json_encode($data);
+            }
+
+
+            // echo json_encode($data);
+
+        } else {
+            exit('404');
+        }
     }
     public function rssi()
     {
