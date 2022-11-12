@@ -233,9 +233,8 @@ class AjaxUser extends Controller
         }
         return $this->response->setJSON($response);
     }
-    public function getConfigMesin()
+    public function getconfigmesin()
     {
-        $id = $this->request->getVar('id');
         $query = $this->MesinModel->select('id, new_id, nama,faktor,harga')->findAll();
 
         $data = [

@@ -1,5 +1,5 @@
 $('#mesin').DataTable({
-    "ajax": "/ajaxuser/getConfigMesin",
+    "ajax": "/ajaxuser/getconfigmesin",
     select: true,
     columns: [
         { data: 'id' },
