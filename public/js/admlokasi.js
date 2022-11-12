@@ -128,3 +128,54 @@ $("#upload_image_form").on("submit", function (e) {
   });
 });
 
+function onoff() {
+  currentvalue = document.getElementById('onoff').value;
+  if (currentvalue == "false") {
+    document.getElementById("onoff").value = "true";
+  } else {
+    document.getElementById("onoff").value = "false";
+  }
+}
+
+$('input:checkbox').change(function () {
+  $('#console-event').html('Toggle: ' + $(this).prop('checked'));
+  var id = $(this).data('id');
+  if ($(this).prop('checked')) {
+    console.log("Change event: " + this.id + " ON");
+    var status = "true";
+    console.log("id: " + id);
+  } else {
+    console.log("Change event: " + this.id + " OFF");
+    var status = "false";
+
+  }
+  console.log("id: " + id + " status: " + status);
+  $.ajax({
+    type: "post",
+    data: {
+      id: id,
+      status: status,
+    },
+    dataType: "json",
+    url: "/AjaxUser/statusLokasi/",
+    success: function (data) {
+      console.log(data);
+      if (data.status == 200) {
+        console.log("success");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: data.messages,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } else {
+        console.log("error");
+      }
+    },
+  });
+})
+
+$('#lokasi').DataTable({
+
+});

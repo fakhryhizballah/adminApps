@@ -103,6 +103,21 @@ class AjaxUser extends Controller
 
         echo json_encode($data);
     }
+    public function statusLokasi()
+    {
+        $id = $this->request->getVar('id');
+        $status = $this->request->getVar('status');
+        $data = [
+            'status' => $status
+        ];
+        $this->LokasiModel->update($id, $data);
+        $response = [
+            'status' => 200,
+            'error' => null,
+            'messages' => 'Data berhasil diubah'
+        ];
+        echo json_encode($response);
+    }
 
     public function fotomap()
     {

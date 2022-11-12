@@ -1,4 +1,22 @@
 <?= $this->extend('layout/admin_template'); ?>
+<?= $this->section('css'); ?>
+
+<!-- Untuk button toggle flush -->
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<style>
+    .toggle.ios,
+    .toggle-on.ios,
+    .toggle-off.ios {
+        border-radius: 20px;
+    }
+
+    .toggle.ios .toggle-handle {
+        border-radius: 20px;
+    }
+</style>
+
+<?= $this->endSection('css'); ?>
+
 <?= $this->section('admcontent'); ?>
 
 <div class="container-fluid">
@@ -6,8 +24,8 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-    <table class="table bg-white" id="tabel">
-        <thead>
+    <table class="table bg-white hover row-border" id="lokasi">
+        <thead class="thead-light">
             <tr style="text-align: center;">
                 <th scope="col">No</th>
                 <th scope="col">Action</th>
@@ -15,6 +33,7 @@
                 <!-- <th scope="col">Status</th> -->
                 <!-- <th scope="col">Indikator</th> -->
                 <th scope="col">Keterangan</th>
+                <th scope="col">Status</th>
 
             </tr>
         </thead>
@@ -40,6 +59,9 @@
                     </td>
                     <td><?= $lk['nama']; ?></td>
                     <td><?= $lk['keterangan']; ?></td>
+                    <td>
+                        <input type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="danger" data-size="sm" data-id="<?= $lk['id']; ?>" <?= $lk['status'] == 'true' ? 'checked' : ''; ?>>
+                    </td>
                 </tr>
                 <?php $i++;  ?>
             <?php endforeach; ?>
@@ -175,7 +197,7 @@
 <?= $this->endSection('admcontent'); ?>
 
 <?= $this->section('script'); ?>
-
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script async src="/js/admlokasi.js"></script>
 
 <?= $this->endSection('script'); ?>

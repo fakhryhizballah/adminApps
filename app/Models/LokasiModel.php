@@ -18,6 +18,7 @@ class LokasiModel extends Model
         'geo',
         'gmaps',
         'keterangan',
+        'status'
     ];
     public function getDetail($id = false)
     {
@@ -30,7 +31,7 @@ class LokasiModel extends Model
 
     public function getLokasi()
     {
-        return $this->select('id_lokasi , nama , keterangan')->get()->getResultArray();
+        return $this->select('id,id_lokasi , nama , keterangan, status')->get()->getResultArray();
     }
 
     public function updateLokasi($data, $id)
