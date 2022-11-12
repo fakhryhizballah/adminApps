@@ -162,12 +162,21 @@ $('input:checkbox').change(function () {
       console.log(data);
       if (data.status == 200) {
         console.log("success");
-        Swal.fire({
+        const Toast = Swal.mixin({
+          toast: true,
           position: 'top-end',
-          icon: 'success',
-          title: data.messages,
           showConfirmButton: false,
-          timer: 1500
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: data.messages
         })
       } else {
         console.log("error");
