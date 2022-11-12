@@ -13,6 +13,7 @@ use App\Models\VoucherModel;
 use App\Models\TransaksiModel;
 use App\Models\LokasiModel;
 use App\Models\FotoModel;
+use App\Models\MesinModel;
 use GuzzleHttp\Psr7;
 
 class AjaxUser extends Controller
@@ -29,6 +30,7 @@ class AjaxUser extends Controller
         $this->TransaksiModel = new TransaksiModel();
         $this->LokasiModel = new LokasiModel();
         $this->FotoModel = new FotoModel();
+        $this->MesinModel = new MesinModel();
     }
 
     public function GetTotalUser()
@@ -230,5 +232,36 @@ class AjaxUser extends Controller
             return $this->response->setJSON($response);
         }
         return $this->response->setJSON($response);
+    }
+    public function getConfigMesin()
+    {
+        $id = $this->request->getVar('id');
+        $query = $this->MesinModel->select('id, new_id, nama,faktor,harga')->findAll();
+
+        $data = [
+            'status' => 200,
+            'error' => null,
+            'records' => count($query),
+            'data' => $query
+        ];
+        echo json_encode($data);
+    }
+    public function updateMesin()
+    {
+        $id = $this->request->getVar('id');
+        $pesan = $this->request->getVar();
+        $data = [
+            'nama' => $pesan['nama'],
+            'faktor' => $pesan['faktor'],
+            'harga' => $pesan['harga'],
+        ];
+        $this->MesinModel->update($id, $data);
+        $response = [
+            'status' => 200,
+            'error' => null,
+            'data' => $data,
+            'messages' => 'Data berhasil diubah'
+        ];
+        echo json_encode($response);
     }
 }

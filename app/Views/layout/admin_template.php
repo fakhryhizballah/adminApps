@@ -92,6 +92,13 @@
                         <span>Lokasi</span></a>
                 </li>
             <?php endif; ?>
+            <?php if ($level >= 3) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admsetmesin" style="color: black;">
+                        <i class="fas fa-fw fa-cog" style="color: black;"></i>
+                        <span>Setting Mesin</span></a>
+                </li>
+            <?php endif; ?>
             <?php if ($level >= 4) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admflush" style="color: black;">

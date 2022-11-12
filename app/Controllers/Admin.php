@@ -164,6 +164,18 @@ class Admin extends Controller
         ];
         return view('admin/lokasi', $data);
     }
+    public function admsetmesin()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $data = [
+            'title' => 'Setting Mesin',
+            'validation' => \Config\Services::validation(),
+            'akun' => $akun,
+            'level' => $akun['level'],
+            'socket' => getenv('soket.url'),
+        ];
+        return view('admin/mesin', $data);
+    }
 
     public function admflush()
     {
