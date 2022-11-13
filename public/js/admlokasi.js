@@ -186,5 +186,6 @@ $('input:checkbox').change(function () {
 })
 
 $('#lokasi').DataTable({
+  "scrollX": true,
 
 });

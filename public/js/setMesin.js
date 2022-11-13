@@ -1,5 +1,5 @@
 $('#mesin').DataTable({
-    "ajax": "/ajaxuser/getconfigmesin/",
+    "ajax": "/AjaxUser/getconfigmesin/",
     select: true,
     columns: [
         { data: 'id' },
@@ -27,8 +27,10 @@ $('#mesin').DataTable({
                 return '<input type="text" class="form-control" onchange="update(' + row.id + ')" id="harga' + row.id + '" value="' + data + '" > '
             }
         },
-    ]
-    // "scrollX": true,
+    ],
+    "scrollX": true,
+    // "scrollY": "200px",
+    // "scrollCollapse": true,
     // "scrollY": "50vh",
     // "scrollCollapse": true,
     // "lengthMenu": [10, 30, 50, 100, 50, 50],

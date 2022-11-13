@@ -7,7 +7,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
 
-    <table id="userdata" class="display" style="width:100%">
+    <table id="userdata" class="table bg-white hover row-border display " style="width:100%">
         <thead>
             <tr>
                 <th>id_user</th>

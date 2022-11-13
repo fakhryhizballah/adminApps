@@ -14,9 +14,10 @@ use App\Models\TransaksiModel;
 use App\Models\LokasiModel;
 use App\Models\FotoModel;
 use App\Models\MesinModel;
+use App\Controllers\BaseController;
 use GuzzleHttp\Psr7;
 
-class AjaxUser extends Controller
+class AjaxUser extends BaseController
 {
     public function __construct()
     {
