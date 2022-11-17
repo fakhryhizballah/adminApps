@@ -32,6 +32,7 @@ socket.on("mesin/status", (data) => {
     // console.log(idstaus);
     let nilai = 48 - parseInt(obj.vaule);
     let pesen = nilai * 100 / 48;
+    console.log(pesen + "%");
     document.getElementById("isi" + idstaus).innerText = parseInt(pesen) + "%";
     document.getElementById(idstaus).innerText = obj.RSSI;
 });
