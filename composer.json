@@ -16,7 +16,8 @@
 		"php-mqtt/client": "^1.1",
 		"fzaninotto/faker": "^1.9",
 		"firebase/php-jwt": "^5.4",
-		"guzzlehttp/guzzle": "^7.4"
+		"guzzlehttp/guzzle": "^7.4",
+		"google/apiclient": "^2.12"
 	},
 	"require-dev": {
 		"codeigniter4/codeigniter4-standard": "^1.0",
