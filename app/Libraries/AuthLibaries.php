@@ -32,7 +32,8 @@ class AuthLibaries
                 return;
             }
             $nama = $decoded->nama;
-            $akun = $this->AdminModel->cek_login($nama);
+            // $akun = $this->AdminModel->cek_login($nama);
+            $akun = $this->AdminModel->privilege($nama);
             return $akun;
         } catch (Exception $exception) {
             session()->setFlashdata('gagal', 'Login Dulu');

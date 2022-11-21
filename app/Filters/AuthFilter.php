@@ -6,6 +6,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 use App\Models\TokenModel;
+use App\Models\AdminModel;
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 use App\Libraries\SetStatic;
@@ -17,6 +18,7 @@ class AuthFilter implements FilterInterface
     public function __construct()
     {
         $this->TokenModel = new TokenModel();
+        $this->AdminModel = new AdminModel();
         $this->SetStatic = new SetStatic();
         helper('text');
         helper('cookie');
@@ -40,6 +42,15 @@ class AuthFilter implements FilterInterface
         if (empty($this->TokenModel->cek($token))) {
             session()->setFlashdata('gagal', 'Anda sudah Logout, Silahkan Masuk lagi');
             return redirect()->to('/');
+        }
+        $path = substr($_SERVER['REQUEST_URI'], 1);
+        $akun = $this->AdminModel->privilege($decoded->id_user);
+        // dd($akun);
+        if ($akun[$path] == 'false') {
+            $route = array_search("true", $akun, true);
+            // dd($route);
+            return redirect()->to('/' . $route);
+            return;
         }
     }
 

@@ -116,13 +116,10 @@ class Admin extends Controller
     public function admuser()
     {
         $akun = $this->AuthLibaries->authCek();
-
-
         $data = [
             'title' => 'User',
-
             'akun' => $akun,
-            'level' => $akun['level'],
+            // 'level' => $akun['level'],
             
         ];
         return view('admin/user', $data);

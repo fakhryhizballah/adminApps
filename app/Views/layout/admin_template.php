@@ -45,104 +45,83 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin'); ?>" style="color: black;">
-                    <i class="fas fa-fw fa-home" style="color: black;"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <?php if ($level == 5) : ?>
+            <?php if ($akun['admin'] == 'true') : ?>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black;">
-                        <i class="fas fa-fw fa-handshake" style="color: black;"></i>
-                        <span>Mitra</span>
+                    <a class="nav-link" href="<?= base_url('admin'); ?>" style="color: black;">
+                        <i class="fas fa-fw fa-home" style="color: black;"></i>
+                        <span>Dashboard</span>
                     </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" style="color: black;">
-                        <!-- data-parent="#accordionSidebar" -->
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/admdriver">
-                                <i class="fas fa-fw fa-user"></i>
-                                <span>Driver</span>
-                            </a>
-                            <a class="collapse-item" href="/ptcv">
-                                <i class="fas fa-fw fa-building"></i>
-                                <span>PT / CV</span>
-                            </a>
-                        </div>
-                    </div>
                 </li>
             <?php endif; ?>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/admuser" style="color: black;">
-                    <i class="fas fa-fw fa-user-tie" style="color: black;"></i>
-                    <span>User</span></a>
-            </li>
-            <?php if ($level >= 3) : ?>
+            <?php if ($akun['admuser'] == 'true') : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admuser" style="color: black;">
+                        <i class="fas fa-fw fa-user-tie" style="color: black;"></i>
+                        <span>User</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if ($akun['admstasiun'] == 'true') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admstasiun" style="color: black;">
                         <i class="fas fa-fw fa-landmark" style="color: black;"></i>
                         <span>Stasiun</span></a>
                 </li>
             <?php endif; ?>
-            <?php if ($level >= 3) : ?>
+            <?php if ($akun['admlokasi'] == 'true') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admlokasi" style="color: black;">
                         <i class="fas fa-fw fa-map" style="color: black;"></i>
                         <span>Lokasi</span></a>
                 </li>
             <?php endif; ?>
-            <?php if ($level >= 3) : ?>
+            <?php if ($akun['admsetmesin'] == 'true') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admsetmesin" style="color: black;">
                         <i class="fas fa-fw fa-cog" style="color: black;"></i>
                         <span>Setting Mesin</span></a>
                 </li>
             <?php endif; ?>
-            <?php if ($level >= 4) : ?>
+            <?php if ($akun['admflush'] == 'true') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admflush" style="color: black;">
                         <i class="fas fa-fw fa-faucet" style="color: black;"></i>
                         <span>Flush</span></a>
                 </li>
             <?php endif; ?>
-            <?php if ($level >= 2) : ?>
+            <?php if ($akun['admvoucher'] == 'true') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admvoucher" style="color: black;">
                         <i class="fas fa-barcode" style="color: black;"></i>
                         <span>Voucher</span></a>
                 </li>
+            <?php endif; ?>
 
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse" style="color: black;">
-                        <i class="fas fa-fw fa-plus-circle" style="color: black;"></i>
-                        <span>Create</span>
-                    </a>
-                    <div id="collapse" class="collapse" aria-labelledby="headingTwo" style="color: black;">
-                        <!-- data-parent="#accordionSidebar" -->
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <a class="collapse-item" href="/crtmitra">
-                            <i class="fas fa-fw fa-handshake"></i>
-                            <span>Mitra/Supplier</span>
-                        </a>
-                        <a class="collapse-item" href="/crtdriver">
-                            <i class="fas fa-fw fa-user"></i>
-                            <span>Driver</span>
-                        </a>-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse" style="color: black;">
+                    <i class="fas fa-fw fa-plus-circle" style="color: black;"></i>
+                    <span>Create</span>
+                </a>
+                <div id="collapse" class="collapse" aria-labelledby="headingTwo" style="color: black;">
+                    <!-- data-parent="#accordionSidebar" -->
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <?php if ($akun['crtlokasi'] == 'true') : ?>
                             <a class="collapse-item" href="/crtlokasi">
                                 <i class="fas fa-fw fa-location-dot"></i>
                                 <span>Lokasi</span>
                             </a>
+                        <?php endif; ?>
+                        <?php if ($akun['crtvoucher'] == 'true') : ?>
                             <a class="collapse-item" href="/crtvoucher">
                                 <i class="fas fa-barcode"></i>
                                 <span>Buat vocher</span>
                             </a>
-                        </div>
+                        <?php endif; ?>
                     </div>
-                </li>
-            <?php endif; ?>
+                </div>
+            </li>
+
+
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('auth/logout'); ?>" style="color: black;">

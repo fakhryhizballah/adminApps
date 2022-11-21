@@ -27,4 +27,13 @@ class AdminModel extends Model
             ->orWhere(array('email' => $nama))
             ->get()->getRowArray();
     }
+    public function privilege($id_usr)
+    {
+        return $this->db->table('user')
+            ->select('level.* , user.nama')
+            ->join('level', 'level.id_akun = user.id_user')
+            ->where(array('nama' => $id_usr))
+            ->orWhere(array('id_user' => $id_usr))
+            ->get()->getRowArray();
+    }
 }
