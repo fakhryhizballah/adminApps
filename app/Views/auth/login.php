@@ -77,6 +77,9 @@
                                         </a> -->
                             <!-- </form> -->
                             <hr>
+                            <a href="<?= $urlOauth; ?>" class="btn btn-default btn-lg btn-rounded shadow btn-block">
+                                <i class="fab fa-google-plus-g"></i> Masuk dengan Google
+                            </a>
                             <!-- <div class="text-center">
                                 <a class="small" href="/daftar">Create an Account!</a>
                             </div> -->

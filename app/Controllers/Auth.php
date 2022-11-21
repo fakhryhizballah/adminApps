@@ -33,17 +33,75 @@ class Auth extends BaseController
 	{
 
 		$akun = $this->AuthLibaries->authCek();
+
+		$client = new \Google_Client();
+		$clientID = getenv('google.clientID');
+		$clientSecret = getenv('google.clientSecret');
+		$redirectUri = getenv('google.redirectUri');
+		$guzzleClient = new \GuzzleHttp\Client(['verify' => false]);
+		$client->setHttpClient($guzzleClient);
+		$client->setClientId($clientID);
+		$client->setClientSecret($clientSecret);
+		$client->setRedirectUri($redirectUri);
+		$client->addScope("email");
+		$client->addScope("profile");
+		$authUrl = $client->createAuthUrl();
 		if ($akun == null) {
 			$data = [
 				'title' => 'Login - Spairum',
 				'validation' => \Config\Services::validation(),
+				'urlOauth' => $authUrl
 			];
 			return view('auth/login', $data);
 		}
 		return redirect()->to('/admin');
 		// dd($akun);
 	}
+	public function redirect()
+	{
+		$client = new \Google_Client();
+		$guzzleClient = new \GuzzleHttp\Client(['verify' => false]);
+		$clientID = getenv('google.clientID');
+		$clientSecret = getenv('google.clientSecret');
+		$redirectUri = getenv('google.redirectUri');
+		$client->setHttpClient($guzzleClient);
+		$client->setClientId($clientID);
+		$client->setClientSecret($clientSecret);
+		$client->setRedirectUri($redirectUri);
+		$client->addScope("email");
+		$client->addScope("profile");
+		if (isset($_GET["code"])) {
 
+			$token = $client->fetchAccessTokenWithAuthCode($_GET["code"]);
+			$client->setAccessToken($token);
+			$gauth = new \Google_Service_Oauth2($client);
+			$data = $gauth->userinfo->get();
+			// dd($data);
+			$admin = $this->AdminModel->cek_login($data->email);
+			if (empty($admin)) {
+				session()->setFlashdata('gagal', 'Akun tidak terdaftar');
+				return redirect()->to('/');
+			}
+			$token = random_string('alnum', 28);
+			$key = getenv('tokenkey');
+			$payload = array(
+				'Key' => $token,
+				'id_user' => $admin['id_akun'],
+				'nama' => $admin['nama'],
+			);
+			$jwt = JWT::encode($payload, $key,);
+			$this->TokenModel->save([
+				'id_user' => $admin['id_akun'],
+				'token'    => $token,
+				'status' => 'Login'
+			]);
+
+			setCookie("X-Sparum-Token", $jwt, SetStatic::cookie_options());
+
+			return redirect()->to('/Admin');
+		}
+		return redirect()->to('/');
+	}
 	//--------------------------------------------------------------------
 
 	public function login()
