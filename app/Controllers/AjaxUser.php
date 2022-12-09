@@ -264,4 +264,36 @@ class AjaxUser extends BaseController
         ];
         echo json_encode($response);
     }
+    public function userlevel()
+    {
+        $id_usr = $this->request->getVar('id_usr');
+
+        // try {
+
+        //     $cek = $this->AdminModel->get_admin($id_usr);
+        //     if ($cek['admlevel'] == "false") {
+        //         return $this->response->setJSON([
+        //             'status' => 404,
+        //             'error' => null,
+        //             'messages' => 'Data tidak ditemukan'
+        //         ])->setStatusCode(401);
+        //     }
+        // } catch (\Exception $e) {
+        //     return $this->response->setJSON([
+        //         'status' => 401,
+        //         'error' => null,
+        //         'messages' => 'unauthorized'
+        //     ])->setStatusCode(401);
+        // }
+        $query = $this->AdminModel->alluser();
+        // dd($query);
+        $data = [
+            'status' => 200,
+            'error' => null,
+            'records' => count($query),
+            'data' => $query
+        ];
+        echo json_encode($data);
+        return;
+    }
 }

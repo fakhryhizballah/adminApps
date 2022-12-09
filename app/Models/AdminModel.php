@@ -34,6 +34,20 @@ class AdminModel extends Model
             ->join('level', 'level.id_akun = user.id_user')
             ->where(array('nama' => $id_usr))
             ->orWhere(array('id_user' => $id_usr))
+        ->get()->getRowArray();
+    }
+    public function get_admin($id_usr)
+    {
+        return $this->db->table('level')
+            ->select('admlevel')
+            ->where('id_akun', $id_usr)
             ->get()->getRowArray();
+    }
+    public function alluser()
+    {
+        return $this->db->table('level')
+        ->select('id_akun,user.nama,admin,admstasiun,admuser,admlokasi,admsetmesin,admflush,admvoucher,crtvoucher,crtlokasi')
+        ->join('user', 'user.id_user = level.id_akun')
+        ->get()->getResultArray();
     }
 }

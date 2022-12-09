@@ -141,6 +141,22 @@ class Admin extends Controller
         ];
         return view('admin/stasiun', $data);
     }
+    public function admlevel()
+    {
+        $akun = $this->AuthLibaries->authCek();
+        $stasiun = $this->StasiunModel;
+
+        $data = [
+            'title' => 'Stasiun',
+            'stasiun' => $stasiun->findAll(),
+            'pager' => $stasiun->pager,
+            // 'stasiun' => $stasiun,
+            'akun' => $akun,
+            'level' => $akun['level'],
+            'socket' => getenv('soket.url'),
+        ];
+        return view('admin/level', $data);
+    }
 
     public function admlokasi()
     {

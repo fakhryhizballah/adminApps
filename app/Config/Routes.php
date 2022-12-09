@@ -46,6 +46,7 @@ $routes->get('/crtstasiun', 'Admin::crtstasiun', ['filter' => 'AuthFilter']);
 $routes->get('/crtlokasi', 'Admin::crtlokasi', ['filter' => 'AuthFilter']);
 $routes->get('/crtvoucher', 'Admin::crtvocher', ['filter' => 'AuthFilter']);
 $routes->get('/admsetmesin', 'Admin::admsetmesin', ['filter' => 'AuthFilter']);
+$routes->get('/admlevel', 'Admin::admlevel', ['filter' => 'AuthFilter']);
 // $routes->get('/', 'Auth::index');
 // $routes->get('/admin', 'Admin::index');
 // $routes->get('/admdriver', 'Admin::admdriver');
