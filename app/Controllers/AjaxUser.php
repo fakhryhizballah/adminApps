@@ -15,6 +15,7 @@ use App\Models\LokasiModel;
 use App\Models\FotoModel;
 use App\Models\MesinModel;
 use App\Controllers\BaseController;
+use App\Libraries\AuthLibaries;
 use GuzzleHttp\Psr7;
 
 class AjaxUser extends BaseController
@@ -32,11 +33,11 @@ class AjaxUser extends BaseController
         $this->LokasiModel = new LokasiModel();
         $this->FotoModel = new FotoModel();
         $this->MesinModel = new MesinModel();
+        $this->AuthLibaries = new AuthLibaries();
     }
 
     public function GetTotalUser()
     {
-
         $UserModel = $this->UserModel;
         $db      = \Config\Database::connect();
         $builder = $db->table('user');
@@ -266,25 +267,26 @@ class AjaxUser extends BaseController
     }
     public function userlevel()
     {
-        $id_usr = $this->request->getVar('id_usr');
+        // $id_usr = $this->request->getVar('id_usr');
 
-        // try {
+        try {
+            $akun = $this->AuthLibaries->authCek();
 
-        //     $cek = $this->AdminModel->get_admin($id_usr);
-        //     if ($cek['admlevel'] == "false") {
-        //         return $this->response->setJSON([
-        //             'status' => 404,
-        //             'error' => null,
-        //             'messages' => 'Data tidak ditemukan'
-        //         ])->setStatusCode(401);
-        //     }
-        // } catch (\Exception $e) {
-        //     return $this->response->setJSON([
-        //         'status' => 401,
-        //         'error' => null,
-        //         'messages' => 'unauthorized'
-        //     ])->setStatusCode(401);
-        // }
+            $cek = $this->AdminModel->get_admin($akun['id_akun']);
+            if ($cek['admlevel'] == "false") {
+                return $this->response->setJSON([
+                    'status' => 404,
+                    'error' => null,
+                    'messages' => 'Data tidak ditemukan'
+                ])->setStatusCode(401);
+            }
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 401,
+                'error' => null,
+                'messages' => 'unauthorized'
+            ])->setStatusCode(401);
+        }
         $query = $this->AdminModel->alluser();
         // dd($query);
         $data = [
