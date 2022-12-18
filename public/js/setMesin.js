@@ -1,3 +1,4 @@
+"use strict";
 $('#mesin').DataTable({
     "ajax": "/AjaxUser/getconfigmesin/",
     select: true,
