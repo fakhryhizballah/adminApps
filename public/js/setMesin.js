@@ -49,7 +49,7 @@ function update(id) {
     }
     console.log(data);
     $.ajax({
-        url: '/ajaxuser/updateMesin/',
+        url: '/AjaxUser/updateMesin/',
         type: 'POST',
         data: data,
         dataType: 'json',
