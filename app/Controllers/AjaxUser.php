@@ -270,8 +270,12 @@ class AjaxUser extends BaseController
                 'error' => $e,
                 'messages' => 'Unauthorized'
             ];
-            echo json_encode($response);
-            exit;
+            // retrun status with status code 401 and json response
+
+            // $this->response->setStatusCode(401);
+            return $this->response->setStatusCode(401, 'Unauthorized')->setJSON($response);
+
+
         }
     }
     public function userlevel()
