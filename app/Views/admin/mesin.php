@@ -21,7 +21,7 @@
                 <th scope="col">Nama Air</th>
                 <!-- <th scope="col">Status</th> -->
                 <!-- <th scope="col">Indikator</th> -->
-                <th scope="col">kalibarsi</th>
+                <th scope="col">kalibrasi</th>
                 <th scope="col">harga/100Ml</th>
 
             </tr>
