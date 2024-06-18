@@ -123,7 +123,7 @@ class Admin extends Controller
 
             'akun' => $akun,
             'level' => $akun['level'],
-            
+
         ];
         return view('admin/user', $data);
     }
@@ -380,7 +380,7 @@ class Admin extends Controller
             // dd($validation->getError('nominal'));
             return redirect()->to('/admlokasi')->withInput()->with('validation', $validation);
         }
-        $id = $this->request->getVar('id_lokasi');
+        $id = $this->request->getVar('id_lok');
 
         $data = ([
             'nama' => $this->request->getVar('nama'),
@@ -389,6 +389,7 @@ class Admin extends Controller
             'gmaps' => $this->request->getVar('gmaps'),
             'keterangan' => $this->request->getVar('keterangan'),
         ]);
+        // dd($data);
 
         $this->LokasiModel->updateLokasi($data, $id);
         session()->setFlashdata('Berhasil', 'Lokasi Berhasil Di tambahkan');

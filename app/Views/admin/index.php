@@ -47,7 +47,7 @@
             </div>
         </div>
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-4 mb-3">
+        <!-- <div class="col-xl-3 col-md-4 mb-3">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -142,22 +142,22 @@
 
     <div class="row">
         <!-- Area Chart -->
-        <div class="col">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <!-- <div class="col">
+            <div class="card shadow mb-4"> -->
+        <!-- Card Header - Dropdown -->
+        <!-- <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">User Akuisisi</h6>
                     <h7 class="m-0  text-primary">November 2021 - Now</h7>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <!-- <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas> -->
-                    <canvas id="myUserChart" style="position: relative; height:40vh; width:80vw"></canvas>
-                    <!-- <div class="chart-bar">
+                </div> -->
+        <!-- Card Body -->
+        <!-- <div class="card-body"> -->
+        <!-- <canvas id="myUserChart" style="width: 754px; height: 377px;"></canvas> -->
+        <!-- <canvas id="myUserChart" style="position: relative; height:40vh; width:80vw"></canvas> -->
+        <!-- <div class="chart-bar">
                     </div> -->
-                </div>
+        <!-- </div>
             </div>
-        </div>
+        </div> -->
         <!-- Area Chart -->
         <div class=" col">
             <div class="card shadow mb-4">

@@ -142,10 +142,9 @@
                         <?= csrf_field(); ?>
                         <br>
                         <div class="form-group" hidden>
-                            <label for="id_lokasi">ID Lokasi</label>
-                            <input readonly type="text" class="form-control form-control-user  <?= ($validation->hasError('id_lokasi')) ? 'is-invalid' : ''; ?>" id="id_lokasi" name="id_lokasi" autofocus>
-                            <div class="invalid-feedback"></div>
-                            <div><?= $validation->getError('id_lokasi'); ?></div>
+                            <label for="id_lok">ID Lokasi</label>
+                            <input required type="text" class="form-control form-control-user" id="id_lok" name="id_lok">
+
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Lokasi</label>

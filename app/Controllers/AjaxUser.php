@@ -127,7 +127,7 @@ class AjaxUser extends BaseController
         $image = \Config\Services::image();
         $id = $this->request->getPost();
         $id_lokasi = $id['id_lokasi'];
-        
+
         $validateImage = $this->validate([
             'file' => [
                 'uploaded[file]',
@@ -179,7 +179,7 @@ class AjaxUser extends BaseController
                         $info = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
                         $body = substr($response, $info);
                     } else {
-                        
+
                         $response = [
                             'success' => false,
                             'data' => $status['http_code'],
@@ -207,7 +207,6 @@ class AjaxUser extends BaseController
                 ];
                 $this->FotoModel->save($new);
                 $db->transComplete();
-
             } catch (\Exception $e) {
                 $response = [
                     'success' => false,

@@ -33,7 +33,8 @@ function detail(id) {
         fotoElement.appendChild(createDivNode(div, index));
       });
 
-      document.getElementById("id_lokasi").value = lokasi.id_lokasi;
+      document.getElementById("id_lok").value = lokasi.id_lokasi;
+      // console.log(document.getElementById("id_lokasi").value);
       document.getElementById("nama").value = lokasi.nama;
       document.getElementById("jenis").value = lokasi.jenis;
       document.getElementById("geo").value = lokasi.geo;
@@ -60,31 +61,33 @@ function onFileUpload(input, id) {
       $(id).attr("src", e.target.result).width(300);
     };
     reader.readAsDataURL(input.files[0]);
-    $(".uploadBtn").prop('disabled', false);
+    $(".uploadBtn").prop("disabled", false);
   }
 }
 
 function fotomap(id, nama) {
   $("#fotoModal").modal("show");
-  $(".uploadBtn").prop('disabled', true);
+  $(".uploadBtn").prop("disabled", true);
   document.getElementById("id_lokasi").value = id;
-  document.getElementById("fotoModalLabel").innerHTML = "Upload Foto Maps : " + nama;
+  document.getElementById("fotoModalLabel").innerHTML =
+    "Upload Foto Maps : " + nama;
   $("#fotoModal").on("hidden.bs.modal", function () {
     console.log("close Modal");
     $("#ajaxImgUpload").attr("src", "https://via.placeholder.com/300");
     document.getElementById("finput").value = null;
     $(".uploadBtn").html("Upload");
     // $(".uploadBtn").prop("enabled");
-    $(".uploadBtn").prop('disabled', true);
+    $(".uploadBtn").prop("disabled", true);
     document.getElementById("upload_image_form").reset();
     document.getElementById("id_lokasi").value = null;
+
     return;
   });
 }
 $("#upload_image_form").on("submit", function (e) {
   $(".uploadBtn").html("Uploading ...");
   // $(".uploadBtn").prop("Disabled");
-  $(".uploadBtn").prop('disabled', true);
+  $(".uploadBtn").prop("disabled", true);
   e.preventDefault();
   console.log("fotomap  " + Math.floor(Math.random() * 10));
   $.ajax({
@@ -98,10 +101,7 @@ $("#upload_image_form").on("submit", function (e) {
     success: function (res) {
       console.log(res);
       if (res.success == true) {
-        $("#ajaxImgUpload").attr(
-          "src",
-          "https://via.placeholder.com/300"
-        );
+        $("#ajaxImgUpload").attr("src", "https://via.placeholder.com/300");
         $("#alertMsg").html(res.msg);
         $("#alertMessage").show();
         document.getElementById("upload_image_form").reset();
@@ -129,7 +129,7 @@ $("#upload_image_form").on("submit", function (e) {
 });
 
 function onoff() {
-  currentvalue = document.getElementById('onoff').value;
+  currentvalue = document.getElementById("onoff").value;
   if (currentvalue == "false") {
     document.getElementById("onoff").value = "true";
   } else {
@@ -137,17 +137,16 @@ function onoff() {
   }
 }
 
-$('input:checkbox').change(function () {
-  $('#console-event').html('Toggle: ' + $(this).prop('checked'));
-  var id = $(this).data('id');
-  if ($(this).prop('checked')) {
+$("input:checkbox").change(function () {
+  $("#console-event").html("Toggle: " + $(this).prop("checked"));
+  var id = $(this).data("id");
+  if ($(this).prop("checked")) {
     console.log("Change event: " + this.id + " ON");
     var status = "true";
     console.log("id: " + id);
   } else {
     console.log("Change event: " + this.id + " OFF");
     var status = "false";
-
   }
   console.log("id: " + id + " status: " + status);
   $.ajax({
@@ -164,28 +163,27 @@ $('input:checkbox').change(function () {
         console.log("success");
         const Toast = Swal.mixin({
           toast: true,
-          position: 'top-end',
+          position: "top-end",
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
 
         Toast.fire({
-          icon: 'success',
-          title: data.messages
-        })
+          icon: "success",
+          title: data.messages,
+        });
       } else {
         console.log("error");
       }
     },
   });
-})
+});
 
-$('#lokasi').DataTable({
-  "scrollX": true,
-
+$("#lokasi").DataTable({
+  scrollX: true,
 });

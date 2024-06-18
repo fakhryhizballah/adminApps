@@ -174,7 +174,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -183,7 +183,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
 
                     <!-- Topbar Navbar -->
@@ -195,14 +195,14 @@
 
                         <!-- Nav Item - User Information -->
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1 mr-4">
+                        <!-- <li class="nav-item dropdown no-arrow mx-1 mr-4">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw" style="color: blue;"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <i class="fas fa-bell fa-fw" style="color: blue;"></i> -->
+                        <!-- Counter - Alerts -->
+                        <!-- <span class="badge badge-danger badge-counter">3+</span>
+                            </a> -->
+                        <!-- Dropdown - Alerts -->
+                        <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -241,7 +241,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item mr-3 mt-2">
                             <div class="icon">
@@ -252,7 +252,8 @@
                         </li>
 
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                            <a class="nav-link" aria-haspopup="true" aria-expanded="false">
                                 <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x" style="color: aqua;"></i>
                                     <i class="fa fa-user fa-stack-1x" style="color: white;"></i>
@@ -262,12 +263,12 @@
                                 <!-- <img class="img-profile rounded-circle" src="< ?= base_url('img/profile/') . $user['image']; ?>"> -->
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     My Profile
                                 </a>
-                            </div>
+                            </div> -->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
