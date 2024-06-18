@@ -37,7 +37,7 @@ class Admin extends Controller
     {
         $akun = $this->AuthLibaries->authCek();
         // dd($akun);
-        $tuser = $this->OtpModel->countAllResults();
+        $tuser = $this->UserModel->countAllResults();
         $tstasiun = $this->StasiunModel->countAllResults();
         $stasiun = $this->StasiunModel->findAll();
         $vbaru = $this->VoucherModel->selectSum('nominal')->search('baru', $akun['id_akun']);
