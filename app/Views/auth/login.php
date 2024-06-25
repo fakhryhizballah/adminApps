@@ -81,7 +81,7 @@
                                 <a class="small" href="/daftar">Create an Account!</a>
                             </div> -->
                             <hr>
-                            <div class="text-right">
+                            <div class="text-right" hidden>
                                 <a class="small" href="https://air.spairum.my.id/lupa">lupa<strong class="text-primary">Password<strong></a>
                             </div>
                         </div>
